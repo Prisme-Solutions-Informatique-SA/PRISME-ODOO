@@ -8,7 +8,7 @@ table.gridtable {
 	border-width: 1px;
 	border-color: #666666;
 	border-collapse: collapse;
-        page-break-inside: avoid;
+       page-break-inside: avoid;
 }
 table.gridtable th {
 	border-width: 1px;
@@ -24,13 +24,12 @@ table.gridtable td {
 	border-color: #666666;
 	background-color: #ffffff;
 }
+.lw { font-size: 15px; }
 h1 {page-break-before: always;}
 </style>
 </head>
 <body>
   <div align="center">${helper.embed_logo_by_name('prisme_logo')|n}</div>
-</br>
-</br>
 </br>
 <%
 i=0
@@ -46,15 +45,15 @@ i=0
     %>
 <table width="100%">
 <tr>
-<td width="57%" valign="bottom"></td>
-<td width="43%">
-<p>
+<td  width="60%" valign="bottom"></td>
+<td width="40%">
+<p class="lw" >
 
                 %if o.partner_id.parent_id.id:
-                ${o.partner_id.parent_id.name or ''}<br/>
-                ${o.partner_id.title and o.partner_id.title.name or ''} ${o.partner_id.name }<br/>
+                ${o.partner_id.parent_id.name or ''| entity }<br/>
+                ${o.partner_id.title and o.partner_id.title.name or ''| entity } ${o.partner_id.name | entity }<br/>
                 %else:
-                ${o.partner_id.title and o.partner_id.title.name or ''} ${o.partner_id.name }<br/>
+                ${o.partner_id.title and o.partner_id.title.name or ''| entity } ${o.partner_id.name | entity }<br/>
                 %endif
 		${ "".join([s for s in display_address(o.partner_id).splitlines(True) if s.strip("\r\n")]).replace('\n', '<br />') }
 </p>
@@ -89,11 +88,11 @@ chgCollab=False
 %>
 %if t[0] != oldProject:
 <p>
-<table style="height: 50px; border-color: #dcdadb;" border="1" width="1000">
+<table class="gridtable" width="100%">
 <tbody>
 <tr>
-<td>Projet</td>
-<td>Date</td>
+<th>Projet</th>
+<th>Date</th>
 </tr>
 <tr>
 <td>${t[0]}</td>
@@ -134,8 +133,8 @@ chgCollab=True
 <h5>${t[5]} - ${t[8]}</h5>
 <table class="gridtable" width="100%">
 <tr>
-<th align="left" width="10%">Date</th>
-<th align="left" width="70%">Description</th>
+<th align="left" width="12%">Date</th>
+<th align="left" width="68%">Description</th>
 <th align="right" width="10%">Total</th>
 <th align="right" width="10%">CHF</th>
 </tr>

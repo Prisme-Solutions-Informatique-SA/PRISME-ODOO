@@ -28,7 +28,7 @@ table.gridtable td {
 <body>
 %for o in objects :
     <h1>
-        ${ o.name } -  ${ o.employee_id.name } 
+        ${ o.name | entity } -  ${ o.employee_id.name | entity } 
     </h1>
 
 
@@ -68,9 +68,9 @@ else:
 oDate=t[3]
 %>
 <tr>
-<td>${ t[0] }</td>
-<td>${ t[1] }</td>
-<td>${ t[2] }</td>
+<td>${ t[0] | entity }</td>
+<td>${ t[1] | entity }</td>
+<td>${ t[2] | entity }</td>
 <td>${ cDate }</td>
 <td>${ t[4] }</td>
 <td>${ t[5] }</td>

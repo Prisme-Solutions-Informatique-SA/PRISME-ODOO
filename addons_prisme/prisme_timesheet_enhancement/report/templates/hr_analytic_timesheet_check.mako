@@ -67,10 +67,10 @@ old = ["","","","",""]
       old[1]=t[1]
 %>
 <tr>
-<td>${ tmp0 }</td>
-<td>${ tmp1 }</td>
-<td>${ t[9] }</td>
-<td>${ t[2] }</td>
+<td>${ tmp0 | entity }</td>
+<td>${ tmp1 | entity }</td>
+<td>${ t[9] | entity }</td>
+<td>${ t[2] | entity }</td>
 <td>${ t[3] }</td>
 <td>${ t[4] }</td>
 <td>${ t[5] }</td>
