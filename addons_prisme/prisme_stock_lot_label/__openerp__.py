@@ -18,6 +18,7 @@ www.prisme.ch
 'depends': [
         'product',
         'stock',
+	'purchase',
         ],
 'init_xml': [],
     'update_xml': [

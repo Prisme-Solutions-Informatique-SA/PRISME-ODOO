@@ -23,6 +23,7 @@ class stock_production_lot_cplg(osv.osv):
 
 stock_production_lot_cplg()
 
+
 class stock_picking_cplg(osv.osv):
     _name = "stock.picking"
     _inherit = "stock.picking"

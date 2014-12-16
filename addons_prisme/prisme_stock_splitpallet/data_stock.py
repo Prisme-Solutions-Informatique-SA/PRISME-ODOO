@@ -4,6 +4,7 @@ import hr_timesheet_invoice
 from datetime import datetime
 import openerp.addons.decimal_precision as dp
 from math import fmod
+import time
 
 class purchase_order_cplg(osv.osv):
     _name = "purchase.order"
@@ -64,7 +65,7 @@ class purchase_order_cplg(osv.osv):
                 #Calcul du nombre de ligne a creer et du rest pour la derniere ligne
                 qty_pallet=order_line.product_id.qty_pallet
 		if (qty_pallet==0):				#Si qty_pallet est 0 ou non rempli
-		   qty_pallet=1
+		   qty_pallet=99999999
 		product_qty=order_line.product_qty              #Calcul du modulo et reste
                 rest=fmod(product_qty,qty_pallet)
                 nbr_pallet=0
@@ -73,14 +74,14 @@ class purchase_order_cplg(osv.osv):
                 else:
                    nbr_pallet=product_qty/qty_pallet
                 while (nbr_pallet!=0):                          #Creation des mouvements de stock pour chaque palette avec un lot
-                  newlot=stock_lot.create(cr, uid,{'product_id':order_line.product_id.id,'entry_stock':order_line.move_dest_id.id,})
+                  newlot=stock_lot.create(cr, uid,{'product_id':order_line.product_id.id,'entry_stock':order_line.move_dest_id.id,'no_lot':order_line.no_lot,'no_lot_supplier':order_line.no_lot_supplier,'life_date':order_line.limit_date,'date':order_line.lot_create_date,})
 		  move = stock_move.create(cr, uid, self._prepare_order_line_move_qty(cr, uid, order, order_line, picking_id,qty_pallet,newlot, context=context))
                   if order_line.move_dest_id and order_line.move_dest_id.state != 'done':
                     order_line.move_dest_id.write({'location_id': order.location_id.id})
                   todo_moves.append(move)
                   nbr_pallet=nbr_pallet-1
                 if (rest!=0):					#Creation du mouvement de stock pour le reste avec un lot
-                  newlot=stock_lot.create(cr, uid,{'product_id':order_line.product_id.id,'entry_stock':order_line.move_dest_id.id,})
+                  newlot=stock_lot.create(cr, uid,{'product_id':order_line.product_id.id,'entry_stock':order_line.move_dest_id.id,'no_lot':order_line.no_lot,'no_lot_supplier':order_line.no_lot_supplier,'life_date':order_line.limit_date,'date':order_line.lot_create_date,})
                   move = stock_move.create(cr, uid, self._prepare_order_line_move_qty(cr, uid, order, order_line, picking_id,rest,newlot, context=context))
                   if order_line.move_dest_id and order_line.move_dest_id.state != 'done':
                     order_line.move_dest_id.write({'location_id': order.location_id.id})
@@ -92,4 +93,20 @@ class purchase_order_cplg(osv.osv):
 
 purchase_order_cplg()
 
+
+class purchase_order_line_cplg(osv.osv):
+    _name = "purchase.order.line"
+    _inherit = "purchase.order.line"
+    _columns = {
+        'no_lot': fields.char('No Lot', size=64, required=False, translate=False),
+        'no_lot_supplier': fields.char('No Lot Supplier', size=64, required=False, translate=False),
+        'limit_date':fields.datetime('Limit Date', select=True),
+        'lot_create_date': fields.datetime('Lot creation Date', required=True),
+    }
+
+    _defaults = {
+        'lot_create_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+    }
+
+purchase_order_line_cplg()
 

@@ -23,6 +23,7 @@ www.prisme.ch
 'init_xml': [],
     'update_xml': [
         'view_product_product.xml',
+	'view_purchase_order.xml',
     ],
     'demo_xml': [],
     'test': [],

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <report
+        id="report_opportunity"
+        model="crm.lead"
+        string="Opportunity qweb"
+        name="prisme_output_opportunity.report_opportunity_view"
+        file="prisme_output_opportunity.report_opportunity"
+        report_type="qweb-pdf" />
+
+    <template id="report_opportunity_view">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <h2> test </h2>
+                        <h2 t-field="doc.name"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</openerp>

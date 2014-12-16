@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+                <record model="ir.ui.view" id="purchase_order_form_editable_list_prisme">
+                        <field name="name">purchase.order.form.editable.list.prisme</field>
+                        <field name="model">purchase.order</field>
+                        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+                        <field name="priority">5</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                              <attribute name="editable"/>
+                            </xpath>
+                        </field>
+                </record>	
+
+                <record model="ir.ui.view" id="purchase_order_line_form_prisme">
+                        <field name="name">purchase.order.line.form.prisme</field>
+                        <field name="model">purchase.order.line</field>
+                        <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+                        <field name="priority">5</field>
+                        <field name="type">form</field>
+                        <field name="arch" type="xml">
+                                <field name="product_id" position="before">
+                                        <field name="no_lot" string="No lot"/>
+					<field name="no_lot_supplier" string="No lot supplier"/>
+					<field name="limit_date" string="Limit date"/>
+					<field name="lot_create_date" string="Lot creation date"/>
+                                </field>
+			</field>
+                </record>
+
+
+        </data>
+</openerp>

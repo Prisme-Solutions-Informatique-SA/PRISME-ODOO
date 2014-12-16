@@ -132,12 +132,12 @@
             
           <para style="main_address">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
           <!--
-          <para style="main_address">[[ (o.partner_address_id and o.partner_address_id.title and o.partner_address_id.title.name) or '' ]] [[ (o.partner_address_id and o.partner_address_id.name) or '' ]]</para>
-          <para style="main_address">[[ (o.partner_address_id and o.partner_address_id.street ) or '']]</para>
-          <para style="main_address">[[ (o.partner_address_id and o.partner_address_id.street2) or removeParentNode('para') ]]</para>
-          <para style="main_address">[[ (o.partner_address_id and o.partner_address_id.zip) or '' ]] [[ (o.partner_address_id and o.partner_address_id.city) or '' ]]</para>
-          <para style="main_address">[[ ((o.partner_address_id and o.partner_address_id.state_id and o.partner_address_id.state_id.name) or removeParentNode('para')) if o.partner_id.country.id!=o.company_id.partner_id.country.id else removeParentNode('para')  ]]</para>
-          <para style="main_address">[[ ((o.partner_address_id and o.partner_address_id.country_id and o.partner_address_id.country_id.name) or '') if o.partner_id.country.id!=o.company_id.partner_id.country.id else removeParentNode('para')  ]]</para>
+          <para style="main_address">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+          <para style="main_address">[[ (o.partner_id and o.partner_id.street ) or '']]</para>
+          <para style="main_address">[[ (o.partner_id and o.partner_id.street2) or removeParentNode('para') ]]</para>
+          <para style="main_address">[[ (o.partner_id and o.partner_id.zip) or '' ]] [[ (o.partner_id and o.partner_id.city) or '' ]]</para>
+          <para style="main_address">[[ ((o.partner_id and o.partner_id.state_id and o.partner_id.state_id.name) or removeParentNode('para')) if o.partner_id.country.id!=o.company_id.partner_id.country.id else removeParentNode('para')  ]]</para>
+          <para style="main_address">[[ ((o.partner_id and o.partner_id.country_id and o.partner_id.country_id.name) or '') if o.partner_id.country.id!=o.company_id.partner_id.country.id else removeParentNode('para')  ]]</para>
           -->
           <!--Show Adress partenr-->
           <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]] </para>

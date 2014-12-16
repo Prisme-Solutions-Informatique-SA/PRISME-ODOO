@@ -64,9 +64,9 @@ class purchase_order_cplg(osv.osv):
     _inherit = "purchase.order"
     def _create_pickings(self, cr, uid, order, order_lines, picking_id=False, context=None):
         result = super(purchase_order_cplg,self)._create_pickings(cr, uid, order, order_lines, picking_id, context)
-        for pick in self.pool.get('stock.picking').browse(cr, uid, result, context=context):
+	for pick in self.pool.get('stock.picking').browse(cr, uid, result, context=context):
           if not(pick.delivery_by_supplier_id):
-            self.pool.get('stock.picking').write(cr,uid,result,{'delivery_by_supplier_id':pick.partner_id.id,})
+            self.pool.get('stock.picking').write(cr,uid,result,{'delivery_by_supplier_id':pick.partner_id.id,})         
         return result
 purchase_order_cplg()
 

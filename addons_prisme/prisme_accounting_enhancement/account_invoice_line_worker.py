@@ -1,22 +1,12 @@
 from osv import osv, fields
 import netsvc
 import decimal_precision as dp
-import time
-from lxml import etree
-import openerp.exceptions
-from openerp import netsvc
-from openerp import pooler
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
-
-
 
 class account_invoice_line_prisme(osv.osv):
     _name = "account.invoice.line"
     _inherit = "account.invoice.line"
-
     
-    def _amount_line(self, cr, uid, ids, prop, unknow_none, unknow_dict):
+    def _amount_line_prisme(self, cr, uid, ids, prop, unknow_none, unknow_dict):
         res = {}
         tax_obj = self.pool.get('account.tax')
         cur_obj = self.pool.get('res.currency')
@@ -49,82 +39,10 @@ class account_invoice_line_prisme(osv.osv):
                 res.update({line.id: new_amount})
     
         return res
-
-    def _price_unit_default(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-        if context.get('check_total', False):
-            t = context['check_total']
-            for l in context.get('invoice_line', {}):
-                if isinstance(l, (list, tuple)) and len(l) >= 3 and l[2]:
-                    tax_obj = self.pool.get('account.tax')
-                    p = 0
-                    if l[2].get('discount_type')=='amount':
-                      p = l[2].get('price_unit', 0) - l[2].get('discount', 0)
-                    else:
-                      p = l[2].get('price_unit', 0) * (1-l[2].get('discount', 0)/100.0)
-                    t = t - (p * l[2].get('quantity'))
-                    taxes = l[2].get('invoice_line_tax_id')
-                    if len(taxes[0]) >= 3 and taxes[0][2]:
-                        taxes = tax_obj.browse(cr, uid, list(taxes[0][2]))
-                        for tax in tax_obj.compute_all(cr, uid, taxes, p,l[2].get('quantity'), l[2].get('product_id', False), context.get('partner_id', False))['taxes']:
-                            t = t - tax['amount']
-            return t
-        return 0
         
-   
-    def move_line_get(self, cr, uid, invoice_id, context=None):
-        res = []
-        tax_obj = self.pool.get('account.tax')
-        cur_obj = self.pool.get('res.currency')
-        if context is None:
-            context = {}
-        inv = self.pool.get('account.invoice').browse(cr, uid, invoice_id, context=context)
-        company_currency = self.pool['res.company'].browse(cr, uid, inv.company_id.id).currency_id.id
-        for line in inv.invoice_line:
-            mres = self.move_line_get_item(cr, uid, line, context)
-            if not mres:
-                continue
-            res.append(mres)
-            tax_code_found= False
-            price = 0
-            # Modification to use the discount_type
-            if line.discount_type == 'amount':
-                price = line.price_unit - (line.discount or 0.0)
-            elif line.discount_type == 'percent':
-                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            else:
-                price = line.price_unit
-
-            for tax in tax_obj.compute_all(cr, uid, line.invoice_line_tax_id,
-                    price,
-                    line.quantity, line.product_id,
-                    inv.partner_id)['taxes']:
-
-                if inv.type in ('out_invoice', 'in_invoice'):
-                    tax_code_id = tax['base_code_id']
-                    tax_amount = line.price_subtotal * tax['base_sign']
-                else:
-                    tax_code_id = tax['ref_base_code_id']
-                    tax_amount = line.price_subtotal * tax['ref_base_sign']
-
-                if tax_code_found:
-                    if not tax_code_id:
-                        continue
-                    res.append(self.move_line_get_item(cr, uid, line, context))
-                    res[-1]['price'] = 0.0
-                    res[-1]['account_analytic_id'] = False
-                elif not tax_code_id:
-                    continue
-                tax_code_found = True
-
-                res[-1]['tax_code_id'] = tax_code_id
-                res[-1]['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, tax_amount, context={'date': inv.date_invoice})
-        return res
-
- 
+    
     _columns = {
-        "price_subtotal": fields.function(_amount_line, method=True, \
+        "price_subtotal": fields.function(_amount_line_prisme, method=True, \
             string="Subtotal", type="float",
             digits_compute=dp.get_precision("Invoice"), store=True),
         
@@ -173,67 +91,3 @@ class account_invoice_line_prisme(osv.osv):
     #import pdb; pdb.set_trace()
 
 account_invoice_line_prisme()
-
-
-class account_invoice_tax(osv.osv):
-    _name = "account.invoice.tax"
-    _inherit = "account.invoice.tax"
-
-    def compute(self, cr, uid, invoice_id, context=None):
-        tax_grouped = {}
-        tax_obj = self.pool.get('account.tax')
-        cur_obj = self.pool.get('res.currency')
-        inv = self.pool.get('account.invoice').browse(cr, uid, invoice_id, context=context)
-        cur = inv.currency_id
-        company_currency = self.pool['res.company'].browse(cr, uid, inv.company_id.id).currency_id.id
-        for line in inv.invoice_line:
-            price = 0
-            # Modification to use the discount_type
-            if line.discount_type == 'amount':
-                price = line.price_unit - (line.discount or 0.0)
-            elif line.discount_type == 'percent':
-                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            else:
-                price = line.price_unit
-
-            for tax in tax_obj.compute_all(cr, uid, line.invoice_line_tax_id, price, line.quantity, line.product_id, inv.partner_id)['taxes']:
-                val={}
-                val['invoice_id'] = inv.id
-                val['name'] = tax['name']
-                val['amount'] = tax['amount']
-                val['manual'] = False
-                val['sequence'] = tax['sequence']
-                val['base'] = cur_obj.round(cr, uid, cur, tax['price_unit'] * line['quantity'])
-                if inv.type in ('out_invoice','in_invoice'):
-                    val['base_code_id'] = tax['base_code_id']
-                    val['tax_code_id'] = tax['tax_code_id']
-                    val['base_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, val['base'] * tax['base_sign'], context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
-                    val['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, val['amount'] * tax['tax_sign'], context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
-                    val['account_id'] = tax['account_collected_id'] or line.account_id.id
-                    val['account_analytic_id'] = tax['account_analytic_collected_id']
-                else:
-                    val['base_code_id'] = tax['ref_base_code_id']
-                    val['tax_code_id'] = tax['ref_tax_code_id']
-                    val['base_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, val['base'] * tax['ref_base_sign'], context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
-                    val['tax_amount'] = cur_obj.compute(cr, uid, inv.currency_id.id, company_currency, val['amount'] * tax['ref_tax_sign'], context={'date': inv.date_invoice or time.strftime('%Y-%m-%d')}, round=False)
-                    val['account_id'] = tax['account_paid_id'] or line.account_id.id
-                    val['account_analytic_id'] = tax['account_analytic_paid_id']
-
-                key = (val['tax_code_id'], val['base_code_id'], val['account_id'], val['account_analytic_id'])
-                if not key in tax_grouped:
-                    tax_grouped[key] = val
-                else:
-                    tax_grouped[key]['amount'] += val['amount']
-                    tax_grouped[key]['base'] += val['base']
-                    tax_grouped[key]['base_amount'] += val['base_amount']
-                    tax_grouped[key]['tax_amount'] += val['tax_amount']
-
-        for t in tax_grouped.values():
-            t['base'] = cur_obj.round(cr, uid, cur, t['base'])
-            t['amount'] = cur_obj.round(cr, uid, cur, t['amount'])
-            t['base_amount'] = cur_obj.round(cr, uid, cur, t['base_amount'])
-            t['tax_amount'] = cur_obj.round(cr, uid, cur, t['tax_amount'])
-        return tax_grouped
-
-account_invoice_tax()
-

@@ -58,7 +58,7 @@ class stock_picking_in_cplg(osv.osv):
     _name = "stock.picking.in"
     _inherit = "stock.picking.in"
     _columns = {
-        'employee_id': fields.many2one('hr.employee', 'Employee',required=True),
+        'employee_id': fields.many2one('hr.employee', 'Employee', required=True),
    }
 
 stock_picking_in_cplg()

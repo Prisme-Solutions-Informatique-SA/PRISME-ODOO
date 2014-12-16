@@ -53,8 +53,7 @@ class prisme_accounting_parser(report_sxw.rml_parse):
         
         list_lines = []
         #sort by name
-        #DO 6.10.14 I changed lines.name per lines.sequence for sequencing issues
-        linesstored = sorted(lines, key=lambda lines: lines.sequence, reverse=False)
+        linesstored = sorted(lines, key=lambda lines: lines.name, reverse=False)
         lasthead =''
         for l in linesstored:
             dic_lines = {}
