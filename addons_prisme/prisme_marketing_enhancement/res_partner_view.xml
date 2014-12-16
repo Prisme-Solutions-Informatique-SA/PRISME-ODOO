@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record model="ir.ui.view" id="res_partner_form_prisme">
+			<field name="name">res.partner.form.prisme</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="type">form</field>
+			<field name="priority">17</field>
+			<field name="arch" type="xml">
+			    <field name="website" position="after">
+			        <field name="marketingauth" />
+			    </field>
+			</field>
+		</record>		
+	</data>
+</openerp>

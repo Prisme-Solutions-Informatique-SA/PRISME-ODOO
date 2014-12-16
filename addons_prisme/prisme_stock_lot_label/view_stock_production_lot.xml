@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="stock_production_lot_form_inherit_prisme_stock_lot_label">
+			<field name="name">stock.production.lot.form.inherit.prisme.stock.lot.label</field>
+			<field name="model">stock.production.lot</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="stock.view_production_lot_form" />
+			<field name="arch" type="xml">
+				<field name="ref" position="after">
+                                        <field name="no_lot" string="No lot"/>
+                                        <field name="no_lot_supplier" string="No lot supplier"/>
+				</field>
+			</field>
+		</record>
+                <record model="ir.ui.view" id="stock_production_lot_tree_inherit_prisme_stock_lot_label">
+                        <field name="name">stock.production.lot.tree.inherit.prisme.stock.lot.label</field>
+                        <field name="model">stock.production.lot</field>
+                        <field name="type">tree</field>
+                        <field name="inherit_id" ref="stock.view_production_lot_tree" />
+                        <field name="arch" type="xml">
+                                <field name="date" position="after">
+                                        <field name="no_lot" string="No lot"/>
+                                        <field name="no_lot_supplier" string="No lot supplier"/>
+                                </field>
+                        </field>
+                </record>
+	</data>
+</openerp>

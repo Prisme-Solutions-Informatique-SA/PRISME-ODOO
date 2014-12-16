@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record model="ir.ui.view" id="purchase_order_form_prisme2">
+			<field name="name">purchase.order.form.prisme2</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="origin" position="replace">
+					<field name="origin" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>
