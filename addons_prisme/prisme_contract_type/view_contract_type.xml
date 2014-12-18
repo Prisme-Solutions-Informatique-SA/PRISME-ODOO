@@ -36,9 +36,8 @@
                <menuitem id="menu_analytic_contract_type" 
                   name="Contract type" 
                   action="action_analytic_contract_type"
-                  parent="account.menu_analytic_accounting" 
-                  groups="analytic.group_analytic_accounting" 
-                sequence="39"/>
+                  parent="base.menu_sales" 
+                sequence="999"/>
 
             	<record id="view_account_analytic_account_contract_list" model="ir.ui.view">
             	  <field name="name">account.analytic.account.contract.list</field>
@@ -154,7 +153,10 @@
                                         <field name="stored_sum_purchase" string="Sum purchase lines"/>
                                         <field name="stored_sum_advance" string="Sum advance lines"/>
                                         <field name="stored_sum_timesheet" string="Sum timesheet lines"/>
-  
+                                        <field name="stored_sum_sale_public" string="Public Sum sale lines"/>
+                                        <field name="stored_sum_purchase_public" string="Public Sum purchase lines"/>
+					<field name="stored_sum_advance_public" string="Public Sum advance lines"/>
+                                        <field name="stored_sum_timesheet_public" string="Public Sum timesheet lines"/>
                                 </field>
                         </field>
                 </record>
@@ -192,6 +194,19 @@
 			</search>
 			</field>
 		</record>
+
+		<record model="ir.ui.view" id="account_analytic_line_tree_contract">
+		        <field name="name">account.analytic.line.tree.contract</field>
+			<field name="model">account.analytic.line</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="account.view_account_analytic_line_tree" />
+			<field name="arch" type="xml">
+				<field name="amount" position="before">
+					<field name="amount_public" string="Public Amount"/>
+				</field>
+			</field>
+		 </record>
+
 
 	</data>
 </openerp>
