@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <t t-name="ContractsWizard">
+        <div class="oe_account_reconciliation">
+                <div>
+                    	<div>
+                        	<button class="oe_contracts_compute oe_button" href="javascript:void(0)">Compute</button>
+			</div>
+		</div>
+	</div>
+    </t>
+</templates>

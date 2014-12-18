@@ -1,0 +1,25 @@
+Copy the content of header_footer.rml into the Header/Footer Tab 
+of your Company (Menu / Settings / Companies / Companies) 
+
+Into the General Information of your Company 
+(Menu / Settings / Companies / Companies), add the following informations:
+"Rte de Montagny 11 - 1772 Ponthaux - 
+Tel. 026 475 26 70 - E-mail: info@prisme.ch - www.prisme.ch"
+Under General Information Footer
+Put Your logo under Logo
+
+Copy in header / foot for RML :
+<header>
+    <pageTemplate>
+        <frame id="first" x1="34.0" y1="3cm" width="530" height="21.7cm"/>
+        <pageGraphics>
+            <image x="7.75cm" y="27cm" width="5.5cm" >[[ company.logo or removeParentNode('image') ]]</image>
+            <setFont name="DejaVu Sans" size="10"/>
+            <stroke color="#EE7744"/>
+
+            <!--page bottom-->
+            <lines>1cm 1cm 19.9cm 1cm</lines>
+            <drawCentredString x="10.5cm" y="0.4cm">[[ company.rml_footer ]]</drawCentredString>
+        </pageGraphics>
+    </pageTemplate>
+</header>
