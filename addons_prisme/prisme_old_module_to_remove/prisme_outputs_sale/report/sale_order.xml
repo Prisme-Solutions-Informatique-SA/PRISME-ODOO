@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<report id="report_prisme_so_paper"
+		    name="sale.order.paper.prisme" 
+		    string="Prisme Quotation/SO for Paper"
+			model="sale.order" 
+			rml="addons/prisme_outputs_sale/report/sale_order.rml" 
+			header="False"
+			auto="True" />
+			
+		<report id="report_prisme_so_email"
+		    name="sale.order.email.prisme" 
+		    string="Prisme Quotation/SO for E-Mail"
+			model="sale.order" 
+			rml="addons/prisme_outputs_sale/report/sale_order.rml" 
+			header="True"
+			auto="True" />
+	</data>
+</openerp>
