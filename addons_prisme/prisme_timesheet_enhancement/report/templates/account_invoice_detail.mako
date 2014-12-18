@@ -1,6 +1,5 @@
 <html>
 <head>
-  <div align="center">${helper.embed_logo_by_name('prisme_logo')|n}</div>
 <style type="text/css">
 table.gridtable {
 	font-family: verdana,arial,sans-serif;
@@ -25,6 +24,7 @@ table.gridtable td {
 	border-color: #666666;
 	background-color: #ffffff;
 }
+h1 {page-break-before: always;}
 </style>
 </head>
 <body>
@@ -32,18 +32,12 @@ table.gridtable td {
 </br>
 </br>
 </br>
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
 <%
 i=0
 %>
-    %for o in objects :
+%for o in objects :
       %if i!=0:
-<p style="page-break-before: always;"></p>
+         <p style="page-break-before: always;"></p>
       %endif
     <%
         i=i+1
@@ -52,7 +46,7 @@ i=0
     %>
 <table width="100%">
 <tr>
-<td width="57%" valign="bottom">Date facture: ${o.date_invoice}</td>
+<td width="57%" valign="bottom"></td>
 <td width="43%">
 <p>
 
@@ -71,7 +65,8 @@ i=0
 <p>&nbsp;<br/>&nbsp;</p>
 <h3>Prestations facture ${o.number}</h3>
 <%
-    o._cr.execute("select acc.name, ptr.name, line.date, line.name, line.unit_amount, prd.default_code, tmpl.list_price,fact.factor,fact.name,prd.id,acc.pricelist_id,acc.partner_id   from account_analytic_line line, account_analytic_account acc, res_users usr, res_partner ptr, product_product prd, product_template tmpl,hr_timesheet_invoice_factor fact where fact.id=line.to_invoice and prd.product_tmpl_id=tmpl.id and line.product_id=prd.id and usr.partner_id=ptr.id and line.user_id=usr.id and acc.id=line.account_id and line.move_id is null and line.invoice_id="+str(o.id) )
+    o._cr.execute("select acc.name, ptr.name, line.date, line.name, line.unit_amount, prd.default_code, tmpl.list_price,fact.factor,fact.name,prd.id,acc.pricelist_id,acc.partner_id from hr_analytic_timesheet t,account_analytic_line line, account_analytic_account acc, res_users usr, res_partner ptr, product_product prd, product_template tmpl,hr_timesheet_invoice_factor fact where t.line_id = line.id and fact.id=line.to_invoice and prd.product_tmpl_id=tmpl.id and line.product_id=prd.id and usr.partner_id=ptr.id and line.user_id=usr.id and acc.id=line.account_id and line.move_id is null and line.invoice_id="+str(o.id)+" order by date, t.time_beginning")
+
     res = o._cr.fetchall()
 %>
 <%
@@ -99,20 +94,15 @@ chgCollab=False
 <tr>
 <td>Projet</td>
 <td>Date</td>
-<td>Ray</td>
 </tr>
 <tr>
 <td>${t[0]}</td>
-<td></td>
-<td></td>
+<td>${o.date_invoice}</td>
 </tr>
 </tbody>
 </table>
 </p>
 
-
-
-<hr/> 
 %endif
 %if t[1] != oldCollab: 
 %if oldCollab!="":
