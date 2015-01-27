@@ -56,6 +56,7 @@ class contracts_compute_wizard(osv.TransientModel):
                 except:
                  print('Pricelist exception')
                 if price:
+                 price = price * line.unit_amount 
                  cr.execute('update account_analytic_line set amount_public=%s where id=%s',(price,line.id,))
 
 
