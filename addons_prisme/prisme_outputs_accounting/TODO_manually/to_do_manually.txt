@@ -1,0 +1,9 @@
+Copy the content of header_footer.rml into the Header/Footer Tab 
+of your Company (Menu / Settings / Companies / Companies) 
+
+Into the General Information of your Company 
+(Menu / Settings / Companies / Companies), add the following informations:
+"Rte de Montagny 11 - 1772 Ponthaux - 
+Tel. 026 475 26 70 - E-mail: info@prisme.ch - www.prisme.ch"
+Under General Information Footer
+Put Your logo under Logo

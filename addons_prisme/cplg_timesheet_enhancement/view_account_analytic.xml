@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="analytic_analytic_account_form_cplg">
+			<field name="name">analytic.analytic.account.form.cplg</field>
+			<field name="model">account.analytic.account</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="analytic.view_account_analytic_account_form" />
+			<field name="arch" type="xml">
+                          <xpath expr="/form/sheet/notebook/page[@name='contract_page']"
+                              position="attributes">
+                            <attribute name="attrs"></attribute>
+                          </xpath>
+			</field>
+		</record>
+                <record model="ir.ui.view" id="analytic_analytic_account_form_cplg2">
+                        <field name="name">analytic.analytic.account.form.cplg2</field>
+                        <field name="model">account.analytic.account</field>
+                        <field name="type">form</field>
+                        <field name="priority" eval="71"/>
+                        <field name="inherit_id" ref="account_analytic_analysis.account_analytic_account_form_form" />
+                        <field name="arch" type="xml">
+				 <group name="invoice_on_timesheets" position="replace">
+                                    <group name="invoice_on_timesheets" >
+                        <p class="oe_grey oe_edit_only" colspan="2">
+                            When reinvoicing costs, OpenERP uses the
+                            pricelist of the contract which uses the price
+                            defined on the product related (e.g timesheet 
+                            products are defined on each employee). 
+                        </p>
+                                    <group>
+                                     <field name="pricelist_id" class="oe_inline" />
+                                     <field name="to_invoice" class="oe_inline" widget="selection" />
+                                   </group>
+                                   </group>
+				 </group>
+                        </field>
+                </record>
+                <record model="ir.ui.view" id="hr_timesheet_line_search_cplg">
+                        <field name="name">hr.analytic.timesheet.search.cplg</field>
+                        <field name="model">hr.analytic.timesheet</field>
+                        <field name="type">search</field>
+                        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+                        <field name="arch" type="xml">
+                                <field name="account_id" position="before">
+                                        <field name="employee_id" string="Employe" />
+                                </field>
+                                <xpath expr="/search/group/filter[@string='Analytic account']"
+                                        position="before">
+                                        <filter string="Employee" icon="terp-partner" name="group_by_employee"
+                                                context="{'group_by':'employee_id'}" />
+                                </xpath>
+                        </field>
+                </record>
+                <record model="ir.ui.view" id="hr_timesheet_line_tree_cplg">
+                        <field name="name">hr.analytic.timesheet.tree.cplg</field>
+                        <field name="model">hr.analytic.timesheet</field>
+                        <field name="type">tree</field>
+                        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+                        <field name="priority">20</field>
+                        <field name="arch" type="xml">
+                                <field name="user_id" position="before">
+                                        <field name="employee_id" string="Employee" />
+                                </field>
+                        </field>
+                </record>
+
+	</data>
+</openerp>

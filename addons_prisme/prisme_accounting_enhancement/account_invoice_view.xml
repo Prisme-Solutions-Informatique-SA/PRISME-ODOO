@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account_invoice_rounding_form_prisme">
+			<field name="name">account.invoice.rounding.form.prisme</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+			    <field name="payment_term" position="after">
+			        <field name="rounding_on_subtotal"/>
+			    </field>
+			</field>
+		</record>
+
+                <record model="ir.ui.view" id="account_invoice_supplier_rounding_form_prisme">
+                        <field name="name">account.invoice.supplier.rounding.form.prisme</field>
+                        <field name="model">account.invoice</field>
+                        <field name="type">form</field>
+                        <field name="inherit_id" ref="account.invoice_supplier_form" />
+                        <field name="arch" type="xml">
+                            <field name="check_total" position="before">
+                                <field name="rounding_on_subtotal"/>
+                            </field>
+                        </field>
+                </record>
+
+
+		
+		<record model="ir.ui.view" id="account_invoice_description_tree_prisme">
+			<field name="name">account.invoice.description.tree.prisme</field>
+			<field name="model">account.invoice</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="account.invoice_tree" />
+			<field name="arch" type="xml">
+				<field name="name" position="replace">
+					<field name="name"/>
+			    </field>
+			    <field name="reference" position="replace"/>
+			</field>
+		</record>
+	</data>
+</openerp>

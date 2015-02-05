@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record model="ir.ui.view" id="purchase_order_line_output_form_prisme">
+			<field name="name">purchase.order.line.output.form.prisme</field>
+			<field name="model">purchase.order.line</field>
+			<field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="company_id" position="after">
+					<newline />
+					<field name="sequence" />
+					<field name="page_break" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>
