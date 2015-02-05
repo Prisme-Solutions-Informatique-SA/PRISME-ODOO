@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="sale_order_form_bug_margin_prisme">
+			<field name="name">sale.order.form.bug.margin.prisme</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale_layout.view_order_form_inherit_1" />
+			<field name="type">form</field>
+			<field name="priority">36</field>
+			<field name="arch" type="xml">
+				<field name="price_unit" position="after">
+					<field name="purchase_price" select="2"
+						attrs="{'readonly':[('layout_type','!=','article')],'required':[('layout_type','not in',['title','text','subtotal','line','break'])]}" />
+				</field>
+			</field>
+		</record>
+	</data>
+
+</openerp>

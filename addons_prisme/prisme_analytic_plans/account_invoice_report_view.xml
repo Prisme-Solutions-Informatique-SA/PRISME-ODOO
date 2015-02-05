@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account_invoice_report_search_prisme">
+			<field name="name">account.invoice.report.search.prisme</field>
+			<field name="model">account.invoice.report</field>
+			<field name="inherit_id" ref="account.view_account_invoice_report_search" />
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<xpath expr="/search/group/filter[@string='Invoiced']"
+					position="after">
+					<filter name="filter_offered" string="Offered" icon="terp-dolar"
+						domain="[('price_total','=',0)]" />
+				</xpath>
+
+				<xpath
+					expr="/search/group[@string='Group By...']/filter[@string='Category of Product']"
+					position="after">
+					<filter name="group_by_analytic_distribution" string="Analytic Distribution"
+						icon="terp-stock_symbol-selection" context="{'group_by':'analytic_distribution'}" />
+				</xpath>
+
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="account_invoice_report_tree_prisme">
+			<field name="name">account.invoice.report.tree.prisme</field>
+			<field name="model">account.invoice.report</field>
+			<field name="inherit_id" ref="account.view_account_invoice_report_tree" />
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<field name="price_total" position="after">
+					<field name="analytic_distribution" invisible="True" />
+					<field name="cost_price" sum="Total Cost Price" />
+				</field>
+
+				<field name="price_total_tax" position="replace">
+					<field name="price_total_tax" invisible="True" />
+				</field>
+				<field name="residual" position="replace">
+					<field name="residual" invisible="True" />
+				</field>
+				<field name="due_delay" position="replace">
+					<field name="due_delay" invisible="True" />
+				</field>
+				<field name="delay_to_pay" position="replace">
+					<field name="delay_to_pay" invisible="True" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

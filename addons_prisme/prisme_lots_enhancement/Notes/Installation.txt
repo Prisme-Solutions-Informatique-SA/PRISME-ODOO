@@ -1,0 +1,20 @@
+Pour installer le module par dessus une ancienne version (pose des problèmes
+de clés), ouvrir la table ir_model_data et supprimer l'enregistrement portant
+la res_id correspondant à la PK de prisme.warranty_type dans ir_model.
+Supprimer l'enregistrement dans ir_model également.
+
+Supprimer les colonnes concernant la garantie dans stock_production_lot.
+A savoir:
+assigned_by
+warranty_end_date
+warranty_recall_date
+warranty_internal_notes
+warranty_description
+warranty_contact_notes
+war_last_suppl_invoice
+copy_to
+warranty_start_date
+war_last_cust_invoice
+warranty_status
+assigned_to
+warranty_type_id

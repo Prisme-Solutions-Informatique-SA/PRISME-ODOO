@@ -1,0 +1,10 @@
+import res_partner_worker
+import account_journal_worker
+import sale_order_line_worker
+import account_invoice_line_worker
+import stock_picking_worker
+import hr_analytic_timesheet_worker
+import account_analytic_line_worker
+import account_move_line_worker
+import account_voucher_worker
+import product_product

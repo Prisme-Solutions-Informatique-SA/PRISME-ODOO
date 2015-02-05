@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="hr_timesheet_line_search_prisme">
+			<field name="name">hr.analytic.timesheet.search.prisme</field>
+			<field name="model">hr.analytic.timesheet</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+			<field name="arch" type="xml">
+				<xpath expr="/search/group/filter[@string='Today']" position="after">
+					<filter icon="terp-go-month" string="This Month" name="this_month"
+						domain="[('working_month','=',(datetime.date.today()).strftime('%%Y-%%m'))]" />
+				</xpath>
+				<field name="account_id" position="before">
+					<field name="partner_id" string="Customer" />
+				</field>
+				<xpath expr="/search/group/filter[@string='Analytic account']"
+					position="before">
+					<filter string="Customer" icon="terp-partner" name="group_by_customer"
+						context="{'group_by':'partner_id'}" />
+				</xpath>
+				<xpath expr="/search/group/filter[@string='Date']" position="replace">
+					<filter name="group_by_month" string="Month" icon="terp-go-month"
+						context="{'group_by':'working_month'}" />
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="hr_timesheet_line_tree_prisme">
+			<field name="name">hr.analytic.timesheet.tree.prisme</field>
+			<field name="model">hr.analytic.timesheet</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+			<field name="priority">20</field>
+			<field name="arch" type="xml">
+				<field name="account_id" position="replace" />
+				<field name="amount" position="replace" />
+				<field name="general_account_id" position="replace" />
+				<field name="name" position="before">
+					<field name="partner_id" string="Customer" readonly="1" />
+					<field domain="[('type','=','normal')]" name="account_id" />
+				</field>
+				<field name="unit_amount" position="before">
+					<field name="time_beginning" widget="float_time" />
+					<field name="time_end" widget="float_time" />
+				</field>
+				<xpath expr="/tree/field[last()]" position="after">
+					<field name="amount" invisible="0" />
+					<field name="general_account_id" invisible="0" />
+					<field name="working_month" invisible="1" string="Month" />
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="hr_timesheet_line_form_prisme">
+			<field name="name">hr.analytic.timesheet.form.prisme</field>
+			<field name="model">hr.analytic.timesheet</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+			<field name="arch" type="xml">
+				<field name="unit_amount" position="before">
+					<field name="time_beginning" widget="float_time"
+						on_change="onchange_times(time_beginning, time_end)" />
+					<field name="time_end" widget="float_time"
+						on_change="onchange_times(time_beginning, time_end)" />
+				</field>
+				<field name="account_id" position="after">
+					<field name="partner_id" string="Customer" />
+				</field>
+				<xpath expr="/form/notebook/page/group[last()]" position="after">
+					<group colspan="2" col="2">
+						<separator string="Internal Description" colspan="2" />
+						<field name="internal_description" nolabel="1" colspan="2" />
+					</group>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="hr_timesheet_sheet_tree_prisme">
+			<field name="name">hr.timesheet.sheet.tree.prisme</field>
+			<field name="model">hr_timesheet_sheet.sheet</field>
+			<field name="type">tree</field>
+			<field name="inherit_id"
+				ref="hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified" />
+			<field name="arch" type="xml">
+				<field name="department_id" position="replace">
+					<field name="department_id" invisible="1" />
+				</field>
+				<field name="total_attendance" position="replace">
+					<field name="total_attendance" invisible="1" />
+				</field>
+				<field name="total_difference" position="replace">
+					<field name="total_difference" invisible="1" />
+				</field>
+				<field name="employee_id" position="before">
+					<field name="name" />
+				</field>
+				<field name="total_timesheet" position="after">
+					<field name="period_hours" widget="float_time" />
+					<field name="bonus_malus" widget="float_time" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="hr_timesheet_sheet_form_prisme">
+			<field name="name">hr.timesheet.sheet.form.prisme</field>
+			<field name="model">hr_timesheet_sheet.sheet</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form" />
+			<field name="arch" type="xml">
+				<field name="date_to" position="after">
+					<field name="period_hours" widget="float_time" />
+				</field>
+				<field name="total_difference_day" position="replace" />
+				<field name="total_attendance" position="replace" />
+				<field name="total_difference" position="replace" />
+				<xpath expr="/form/notebook/page/group/field[@name='total_attendance']"
+					position="replace" />
+				<xpath expr="/form/notebook/page/group/field[@name='total_difference']"
+					position="replace">
+					<field name="bonus_malus" widget="float_time" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

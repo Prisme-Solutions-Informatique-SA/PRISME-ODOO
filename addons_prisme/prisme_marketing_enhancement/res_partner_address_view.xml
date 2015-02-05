@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record model="ir.ui.view" id="res_partner_address_form1_prisme_mark">
+			<field name="name">res.partner.address.form1.prisme.mark</field>
+			<field name="model">res.partner.address</field>
+			<field name="inherit_id" ref="base.view_partner_address_form1"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			    <field name="email" position="after">
+			        <field name="marketingauth" />
+			    </field>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="res_partner_address_form2_prisme_mark">
+			<field name="name">res.partner.address.form2.prisme.mark</field>
+			<field name="model">res.partner.address</field>
+			<field name="inherit_id" ref="base.view_partner_address_form2"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			    <field name="email" position="after">
+			        <field name="marketingauth" />
+			    </field>
+			</field>
+		</record>		
+		
+		<record model="ir.ui.view" id="res_partner_address_form_partner_prisme_mark">
+			<field name="name">res.partner.address.form.partner.prisme.mark</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			    <field name="email" position="after">
+			        <field name="marketingauth" />
+			    </field>
+			</field>
+		</record>		
+	</data>
+</openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record model="ir.ui.view" id="account_invoice_line_output_form_prisme">
+			<field name="name">account.invoice.line.output.form.prisme</field>
+			<field name="model">account.invoice.line</field>
+			<field name="inherit_id" ref="account_invoice_layout.view_invoice_line_form_inherit_1"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="sequence" position="after">
+					<field name="page_break" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

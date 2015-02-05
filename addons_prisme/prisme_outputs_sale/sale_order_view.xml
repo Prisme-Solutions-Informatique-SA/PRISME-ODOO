@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="sale_order_output_form_prisme">
+			<field name="name">sale.order.output.form.prisme</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale_layout.view_order_form_inherit_1" />
+			<field name="type">form</field>
+			<field name="priority">40</field>
+			<field name="arch" type="xml">
+				<field name="project_id" position="after">
+					<field name="print_totals" />
+					<field name="print_vat" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="product_product_stock_rotation_search">
+			<field name="name">product.product.stock.rotation.search</field>
+			<field name="model">product.product</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Product">
+					<field name="analytic_distribution" widget="selection"/>
+					<field name="default_code" />
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="product_product_stock_rotation_list">
+			<field name="name">product.product.stock.rotation.list</field>
+			<field name="model">product.product</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Products Stock Rotation">
+					<field name="default_code" />
+					<field name="name" />
+					<field name="sold_quantity" />
+					<field name="average_stock" />
+					<field name="stock_rotation" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="product_product_stock_rotation_action" model="ir.actions.act_window">
+			<field name="name">Stock Rotation Analysis</field>
+			<field name="res_model">product.product</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="product_product_stock_rotation_list" />
+			<field name="search_view_id" ref="product_product_stock_rotation_search" />
+		</record>
+	</data>
+</openerp>

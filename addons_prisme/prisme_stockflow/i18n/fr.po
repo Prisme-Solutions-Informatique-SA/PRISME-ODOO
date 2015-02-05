@@ -1,0 +1,173 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* prisme_stockflow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-11-26 13:06+0000\n"
+"PO-Revision-Date: 2012-11-26 13:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Item Shopfloor Entry"
+msgstr "Entrée atelier de l'article"
+
+#. module: prisme_stockflow
+#: constraint:stock.move:0
+msgid "You must assign a production lot for this product"
+msgstr "Vous devez affecter un lot de fabrication pour ce produit."
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_mrp_production
+msgid "Production"
+msgstr "Production"
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Entrepôt"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Issue"
+msgstr "Sortie"
+
+#. module: prisme_stockflow
+#: code:addons/prisme_stockflow/mrp.py:163
+#, python-format
+msgid "Manufacturing order '%s' is scheduled for the %s."
+msgstr "L'ordre de fabrication '%s' est prévu pour le %s."
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Stock"
+msgstr "Stock"
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: prisme_stockflow
+#: sql_constraint:purchase.order:0
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr "La référence de la commande doit être unique !"
+
+#. module: prisme_stockflow
+#: constraint:stock.move:0
+msgid "You try to assign a lot which is not from the same product"
+msgstr "Vous essayez d'affecter un lot qui n'est pas pour ce produit."
+
+#. module: prisme_stockflow
+#: field:stock.warehouse,lot_output_id_2:0
+#: field:stock.warehouse,lot_output_id_3:0
+#: field:stock.warehouse,mo_cons_location:0
+#: field:stock.warehouse,mo_cons_location_2:0
+#: field:stock.warehouse,so_picking_dest:0
+msgid "unknown"
+msgstr "inconnu"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Item Virtual Prod Location"
+msgstr "Emplacement virtuel de production de l'article"
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_purchase_order
+msgid "Purchase order"
+msgstr "Commande fournisseur"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Delivery"
+msgstr "Livraison"
+
+#. module: prisme_stockflow
+#: view:product.product:0
+msgid "Item process properties"
+msgstr "Propriété des emplacements de flux de stock"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "MO Finished Product"
+msgstr "OF produits finis"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Picking"
+msgstr "Préparation"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Target Location"
+msgstr "Emplacement cible"
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_sale_order
+msgid "Sale Order"
+msgstr "Commande client"
+
+#. module: prisme_stockflow
+#: model:ir.model,name:prisme_stockflow.model_procurement_order
+msgid "Procurement"
+msgstr "Approvisionnement"
+
+#. module: prisme_stockflow
+#: field:product.product,shopfloor_location:0
+msgid "Shopfloor Location"
+msgstr "Emplacement d'atelier"
+
+#. module: prisme_stockflow
+#: field:product.product,storage_location:0
+msgid "Storage Location"
+msgstr "Emplacement de stock"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Production Entry"
+msgstr "Entrée de production"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "MO Component"
+msgstr "OF composants"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Source Location"
+msgstr "Emplacement source"
+
+#. module: prisme_stockflow
+#: constraint:product.product:0
+msgid "Error: Invalid ean code"
+msgstr "Erreur: code EAN invalide"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Item Storage Location"
+msgstr "Emplacement de stockage de l'article"
+
+#. module: prisme_stockflow
+#: constraint:mrp.production:0
+msgid "Order quantity cannot be negative or zero !"
+msgstr "La quantité à produire ne peut être ni négative ni nulle !"
+
+#. module: prisme_stockflow
+#: view:stock.warehouse:0
+msgid "Sales Order"
+msgstr "Commande de vente"
+

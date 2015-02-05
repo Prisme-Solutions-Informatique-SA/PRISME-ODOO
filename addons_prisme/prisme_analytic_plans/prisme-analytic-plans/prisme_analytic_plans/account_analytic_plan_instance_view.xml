@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.actions.act_window" id="account_analytic_plan_instance_action">
+			<field name="name">Analytic Distributions</field>
+			<field name="res_model">account.analytic.plan.instance</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="account_analytic_plan_instance_menu" parent="account.menu_analytic_accounting"
+			name="Analytic Distributions" icon="STOCK_JUSTIFY_FILL"
+			action="account_analytic_plan_instance_action" sequence="10" />
+	</data>
+</openerp>
