@@ -96,6 +96,9 @@
     <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="Index" fontName="Helvetica"/>
     <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    
+    <paraStyle name="white_space" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="0.0"/>
+
     <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_header" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="12.0" spaceAfter="0.0"/>
     <paraStyle name="main_address" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="10.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
@@ -139,9 +142,11 @@
           <para style="terp_default_9">[[ (o.partner_shipping_id and o.partner_shipping_id.zip) or '' ]] [[ (o.partner_shipping_id and o.partner_shipping_id.city) or '' ]]</para>
           <para style="terp_default_9">[[ ((o.partner_shipping_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id and o.partner_shipping_id.state_id.name) or removeParentNode('para') ]] </para>
           <para style="terp_default_9">[[ ((o.partner_shipping_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id and o.partner_shipping_id.country_id and o.partner_shipping_id.country_id.name) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">
+
+        <para style="white_space">
             <font color="white"> </font>
           </para>
+          
           <para style="terp_default_Bold_9">Invoice address :</para>
           <para style="terp_default_9">[[ (o.partner_invoice_id.parent_id and o.partner_invoice_id.parent_id.name) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">[[ (o.partner_invoice_id and o.partner_invoice_id.title and o.partner_invoice_id.title.name) or '' ]] [[ (o.partner_invoice_id and o.partner_invoice_id.name) or '' ]]</para>
@@ -152,7 +157,7 @@
           <para style="terp_default_9">[[ ((o.partner_invoice_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_invoice_id and o.partner_invoice_id.country_id and o.partner_invoice_id.country_id.name) or removeParentNode('para') ]]</para>
         </td>
         <td>
-          <para style="terp_default_8">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -171,18 +176,18 @@
       </tr>
     </blockTable>
     <para style="terp_default_header">[[ o.header_comment]] </para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <para style="terp_header">[[ o.state&lt;&gt;'draft' and  o.state&lt;&gt;'sent' and removeParentNode('para') ]] Quotation N° [[ o.name ]]</para>
     <para style="terp_header">[[ (o.state=='draft' or o.state=='sent') and removeParentNode('para') ]] Order N° [[ o.name ]]</para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     
@@ -278,10 +283,10 @@
     </blockTable>
     
     
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="189.0,90.0,75.0,60.0,60.0,63.0" repeatRows="1" style="Table4">
+    <blockTable colWidths="189.0,80.0,85.0,60.0,60.0,63.0" repeatRows="1" style="Table4">
       <tr>
         <td>
           <para style="terp_tblheader_Details">Description</para>
@@ -309,18 +314,18 @@
         [[ a['layout_type'] == 'line' or removeParentNode('blockTable') ]]
         <tr>
           <td>
-            <para style="terp_default_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
         </tr>
       </blockTable>
             
-      <blockTable colWidths="189.0,90.0,45.0,30.0,60.0,50.0,10.0,63.0" style="Table5">
+      <blockTable colWidths="189.0,80.0,45.0,40.0,60.0,50.0,10.0,63.0" style="Table5">
         [[ a['layout_type'] == 'break' and removeParentNode('blockTable') ]]
         <tr>
           <td>
-            <para style="terp_default_9"><font face="Helvetica" size="8.0">[[ (a['layout_type']=='title' or a['layout_type']=='subtotal') and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) or removeParentNode('font') ]] </font><font>[[ a['layout_type'] != 'subtotal' and a['name'] or removeParentNode('font') ]]</font><font>[[ a['layout_type'] == 'subtotal' and ' ' or removeParentNode('font') ]]Sub Total</font></para>
+            <para style="terp_default_9"><font face="Helvetica" size="8.0">[[ a['layout_type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) or removeParentNode('font') ]]</font>[[ a['name'] ]]</para>
           </td>
           <td>
             <para style="terp_default_Centre_9"><font face="Helvetica" size="8.0">[[ a['layout_type']=='subtotal' and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) or removeParentNode('font') ]]</font>[[ a['tax_id'] ]]</para>
@@ -349,32 +354,32 @@
             <para style="terp_default_Italic">[[ a['notes'] and format(a['notes']) or removeParentNode('tr') ]]</para>
           </td>
           <td>
-            <para style="terp_default_Centre_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
@@ -407,7 +412,7 @@
     <blockTable colWidths="357.0,106.0,73.0" style="Table6">
       <tr>
         <td>
-          <para style="terp_default_9">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -420,7 +425,7 @@
       </tr>
       <tr>
         <td>
-          <para style="terp_default_9">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -433,7 +438,7 @@
       </tr>
       <tr>
         <td>
-          <para style="terp_default_9">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -445,7 +450,7 @@
         </td>
       </tr>
     </blockTable>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="533.0" style="Table7">
@@ -456,7 +461,7 @@
         </td>
       </tr>
     </blockTable>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <para style="terp_default_8">[[ o.footer_comment]] </para>

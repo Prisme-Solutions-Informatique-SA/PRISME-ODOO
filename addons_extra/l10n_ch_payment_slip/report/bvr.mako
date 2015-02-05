@@ -29,6 +29,7 @@
 
            .slip_address_b {
             position:absolute;
+            width: 60mm;
             top:${str(215 + (company.bvr_delta_vert or 0.0)).replace(',','.')}mm;
             left:${str(5 + (company.bvr_delta_horz or 0.0)).replace(',','.')}mm;
 
@@ -89,7 +90,7 @@
              font-family:Helvetica;
              position:absolute;
              top:${str(203 + (company.bvr_delta_vert or 0.0)).replace(',','.')}mm;
-             left:${str(7 + (company.bvr_delta_horz or 0.0)).replace(',','.')}mm;
+             left:${str(5 + (company.bvr_delta_horz or 0.0)).replace(',','.')}mm;
            }
 
            /*

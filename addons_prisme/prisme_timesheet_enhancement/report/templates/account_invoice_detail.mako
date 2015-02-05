@@ -8,7 +8,6 @@ table.gridtable {
 	border-width: 1px;
 	border-color: #666666;
 	border-collapse: collapse;
-        page-break-inside: avoid;
 }
 table.gridtable th {
 	border-width: 1px;
@@ -23,14 +22,18 @@ table.gridtable td {
 	border-style: solid;
 	border-color: #666666;
 	background-color: #ffffff;
+  
 }
+
+.dontsplit {
+  page-break-inside: avoid; 
+}
+.lw { font-size: 15px; }
 h1 {page-break-before: always;}
 </style>
 </head>
 <body>
   <div align="center">${helper.embed_logo_by_name('prisme_logo')|n}</div>
-</br>
-</br>
 </br>
 <%
 i=0
@@ -46,15 +49,15 @@ i=0
     %>
 <table width="100%">
 <tr>
-<td width="57%" valign="bottom"></td>
-<td width="43%">
-<p>
+<td  width="60%" valign="bottom"></td>
+<td width="40%">
+<p class="lw" >
 
                 %if o.partner_id.parent_id.id:
-                ${o.partner_id.parent_id.name or ''}<br/>
-                ${o.partner_id.title and o.partner_id.title.name or ''} ${o.partner_id.name }<br/>
+                ${o.partner_id.parent_id.name or ''| entity }<br/>
+                ${o.partner_id.title and o.partner_id.title.name or ''| entity } ${o.partner_id.name | entity }<br/>
                 %else:
-                ${o.partner_id.title and o.partner_id.title.name or ''} ${o.partner_id.name }<br/>
+                ${o.partner_id.title and o.partner_id.title.name or ''| entity } ${o.partner_id.name | entity }<br/>
                 %endif
 		${ "".join([s for s in display_address(o.partner_id).splitlines(True) if s.strip("\r\n")]).replace('\n', '<br />') }
 </p>
@@ -89,17 +92,15 @@ chgCollab=False
 %>
 %if t[0] != oldProject:
 <p>
-<table style="height: 50px; border-color: #dcdadb;" border="1" width="1000">
-<tbody>
+<table class="gridtable" width="100%">
 <tr>
-<td>Projet</td>
-<td>Date</td>
+<th align="left">Projet</th>
+<th align="left">Date</th>
 </tr>
 <tr>
 <td>${t[0]}</td>
 <td>${o.date_invoice}</td>
 </tr>
-</tbody>
 </table>
 </p>
 
@@ -117,7 +118,7 @@ chgCollab=True
 </tr>
 </table>
 %endif
-<br/><h4 > Collaborateur: ${t[1]}</h4>
+<br/><h4 > Collaborateur: ${t[1]| entity}</h4>
 %endif
 %if (t[5]!=oldProduct) or (t[8]!=oldFactor) or chgCollab:
 %if (oldProduct!="") or (oldFactor!=""):
@@ -131,11 +132,11 @@ chgCollab=True
 </table>
 %endif
 %endif
-<h5>${t[5]} - ${t[8]}</h5>
+<h5>${t[5]| entity} - ${t[8]| entity}</h5>
 <table class="gridtable" width="100%">
 <tr>
-<th align="left" width="10%">Date</th>
-<th align="left" width="70%">Description</th>
+<th align="left" width="12%">Date</th>
+<th align="left" width="68%">Description</th>
 <th align="right" width="10%">Total</th>
 <th align="right" width="10%">CHF</th>
 </tr>
@@ -160,12 +161,16 @@ amt=(price*qty)-((price*qty)*t[7]/100)
 if t[7]==100:
    amt=price*qty
 %>
+<div class="dontsplit">
 <tr>
+  
 <td valign="top" width="10%">${  formatLang(t[2],date=True) }</td> 
-<td width="70%">${ t[3] }</td> 
+<td width="70%">${ t[3] | entity}</td> 
 <td valign="top" align="right" width="10%">${  formatLang(t[4]) }</td> 
 <td valign="top" align="right" width="10%">${  formatLang(amt) }</td>
+  
 </tr>
+</div>
 <%
 colTotal=colTotal+t[4]
 colAmount=colAmount+amt

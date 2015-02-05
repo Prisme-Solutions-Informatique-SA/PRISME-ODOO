@@ -133,6 +133,7 @@
     <paraStyle name="Table" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="User Index 10" rightIndent="0.0" leftIndent="127.0" fontName="Helvetica"/>
     <paraStyle name="Preformatted Text" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="white_space" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="0.0"/>
     <images/>
   </stylesheet>
   <story>
@@ -159,7 +160,7 @@
         </td>
       </tr>
     </blockTable>
-    <para style="terp_default_8">
+    <para style="white_space">
             <font color="white"> </font>
     </para>
     <para style="terp_header">Invoice [[ ((o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')) or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
@@ -172,10 +173,10 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="133.75,133.75,133.75,133.75" style="Table_Invoice_General_Header">
@@ -210,7 +211,7 @@
         </td>
       </tr>
     </blockTable>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="209.0,71.0,78.0,56.0,56.0,62.0" style="Table7">
@@ -238,7 +239,7 @@
     <section>
       <para style="terp_default_2">[[ repeatIn(sorts_lines(o.invoice_line),'l') ]]</para>
       <pageBreak>[[ l['page_break'] != True and removeParentNode('pageBreak')]]</pageBreak>
-      <blockTable colWidths="209.0,71.0,78.0,56.0,46.0,10.0,62.0" style="Table8">
+      <blockTable colWidths="209.0,71.0,78.0,52.0,54,65.0" style="Table8">
         <tr>
           <td>
               <para style="terp_default_9">[[ l['name'] or removeParentNode('tr')]]</para>
@@ -253,10 +254,7 @@
             <para style="terp_default_Right_9">[[ formatLang(l['price_unit']) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ (l['discount'] > 0.0 and l['discount_type'] != 'none') and formatLang(l['discount'], digits=get_digits(dp='Account')) ]]</para>
-          </td>
-          <td>
-          	<para style="terp_default_Right_9">[[ l['discount'] > 0.0 and l['discount_type'] == 'percent' and ' %' ]][[ l['discount'] > 0.0 and l['discount_type'] == 'amount' and ' -' ]]</para>
+            <para style="terp_default_Right_9">[[ (l['discount'] > 0.0 and l['discount_type'] != 'none') and formatLang(l['discount'], digits=get_digits(dp='Account')) ]][[ l['discount'] > 0.0 and l['discount_type'] == 'percent' and '%' ]][[ l['discount'] > 0.0 and l['discount_type'] == 'amount' and '-' ]]</para>
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(l['price_subtotal'], digits=get_digits(dp='Account')) ]]</para>
@@ -293,27 +291,27 @@
            <para style="terp_default_Note"></para>
           </td>
           <td>
-            <para style="terp_default_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
@@ -323,7 +321,7 @@
     <blockTable colWidths="377.0,84.0,69.0" style="Table10">
       <tr>
         <td>
-          <para style="terp_default_8">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -336,7 +334,7 @@
       </tr>
       <tr>
         <td>
-          <para style="terp_default_8">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -349,7 +347,7 @@
       </tr>
       <tr>
         <td>
-          <para style="terp_default_8">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -364,7 +362,7 @@
     <para style="Text body">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="206.0,51.0,49.0,225.0" style="Table9">
+    <blockTable colWidths="206.0,51.0,55.0,225.0" style="Table9">
       <tr>
         <td>
           <para style="terp_tblheader_Details">Tax [[ o.tax_line==[] and removeParentNode('blockTable') ]]</para>
@@ -376,7 +374,7 @@
           <para style="terp_tblheader_Details_Right">Amount </para>
         </td>
         <td>
-          <para style="terp_default_8">
+          <para style="white_space">
             <font color="white"> </font>
           </para>
         </td>
@@ -396,17 +394,17 @@
             <para style="terp_default_Right_8">[[ (t.tax_code_id and t.tax_code_id.notprintable) and removeParentNode('blockTable') or '' ]] [[ formatLang(t.amount, digits=get_digits(dp='Account')) ]]</para>
           </td>
           <td>
-            <para style="terp_default_8">
+            <para style="white_space">
               <font color="white"> </font>
             </para>
           </td>
         </tr>
       </blockTable>
     </section>
-    <para style="terp_default_9">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
-    <para style="terp_default_9">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="120.0,410.0" style="Table1">
@@ -419,11 +417,11 @@
         </td>
       </tr>
     </blockTable>
-    <para style="terp_default_2">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
     <para style="terp_default_9_left">[[ (o.comment and format(o.comment )) or removeParentNode('para') ]]</para>
-    <para style="terp_default_8">
+    <para style="white_space">
       <font color="white"> </font>
     </para>
   </story>
