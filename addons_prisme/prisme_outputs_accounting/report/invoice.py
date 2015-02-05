@@ -53,7 +53,7 @@ class prisme_accounting_parser(report_sxw.rml_parse):
         
         list_lines = []
         #sort by name
-        linesstored = sorted(lines, key=lambda lines: lines.name, reverse=False)
+        linesstored = sorted(lines, key=lambda lines: lines.sequence, reverse=False)
         lasthead =''
         for l in linesstored:
             dic_lines = {}
