@@ -1,0 +1,61 @@
+<openerp>
+    <data>
+        <record model="workflow" id="wkf_postit">
+            <field name="name">Prisme postit workflow</field>
+            <field name="osv">prisme.postit</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="active">
+            <field name="name">Active</field>
+            <field name="wkf_id" ref="wkf_postit"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_active()</field>
+        </record>
+        <record model="workflow.activity" id="start">
+            <field name="name">Start</field>
+            <field name="wkf_id" ref="wkf_postit"/>
+            <field name="kind">function</field>
+            <field name="action">action_start()</field>
+        </record>
+        <record model="workflow.activity" id="in_process">
+            <field name="name">In_process</field>
+            <field name="wkf_id" ref="wkf_postit"/>
+            <field name="kind">function</field>
+            <field name="action">action_in_process()</field>
+        </record>
+        <record model="workflow.activity" id="closed">
+            <field name="name">Closed</field>
+            <field name="wkf_id" ref="wkf_postit"/>
+            <field name="kind">function</field>
+            <field name="action">action_close()</field>
+        </record>
+
+        <record model="workflow.transition" id="postit_active_to_start">
+            <field name="act_from" ref="active"/>
+            <field name="act_to" ref="start"/>
+            <field name="signal">start</field>
+        </record>
+        <record model="workflow.transition" id="postit_start_to_in_process">
+            <field name="act_from" ref="start"/>
+            <field name="act_to" ref="in_process"/>
+            <field name="signal">in_process</field>
+        </record>
+        <record model="workflow.transition" id="postit_in_process_to_closed">
+            <field name="act_from" ref="in_process"/>
+            <field name="act_to" ref="closed"/>
+            <field name="signal">closed</field>
+        </record>
+        <record model="workflow.transition" id="postit_closed_to_active">
+            <field name="act_from" ref="closed"/>
+            <field name="act_to" ref="active"/>
+            <field name="signal">active</field>
+        </record>
+        <record model="workflow.transition" id="postit_in_process_to_active">
+            <field name="act_from" ref="in_process"/>
+            <field name="act_to" ref="active"/>
+            <field name="signal">active</field>
+        </record>
+    </data>
+</openerp>
