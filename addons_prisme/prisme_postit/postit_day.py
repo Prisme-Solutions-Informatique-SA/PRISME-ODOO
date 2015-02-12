@@ -10,7 +10,7 @@ class prisme_postit_day(osv.osv):
     _name = "prisme.postit.day"
     _description = "Postit Day"
     _columns = {
-        'name' : fields.char('Day Name', required=True),
+        'name' : fields.char('Day Name', required=True, translate=True),
         'nbr' : fields.integer('Day number', required=True),
     }
 prisme_postit_day()

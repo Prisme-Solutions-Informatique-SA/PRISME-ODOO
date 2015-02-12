@@ -183,3 +183,37 @@ msgstr "Non terminé"
 msgid "Termine"
 msgstr "Terminé"
 
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.1
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.5
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.2
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.4
+msgid "Friday"
+msgstr "Vendredi"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.0
+msgid "Monday"
+msgstr "Lundi"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.6
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.3
+msgid "Thursday"
+msgstr "Jeudi"

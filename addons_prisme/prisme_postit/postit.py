@@ -179,7 +179,7 @@ class prisme_postit(osv.osv):
             body = body + "Client: " + partner_id.name + "\n"
         if priority:
             self._log('Priority trouve')
-            body = body + "Priority: " + priority + "\n" 
+           # body = body + "Priority: " + priority + "\n" 
         if date_start:
             self._log('Date de debut trouvee')
             body = body + "Date de debut: " + date_start + "\n"
@@ -210,7 +210,7 @@ class prisme_postit(osv.osv):
             body = body + "Type: "
             self._log('Type trouve')
             for type_name in tag_list:
-                body = body + type_name.name
+                body = body +" "+ type_name.name
             body = body + "\n"
         return body
     

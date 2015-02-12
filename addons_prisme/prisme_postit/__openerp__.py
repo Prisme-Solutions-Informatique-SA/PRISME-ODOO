@@ -53,6 +53,9 @@ This module allows users to create their own postit inside OpenERP
     'init_scheduler.xml',
 
     ],
+    'update_xml': [
+    'security/ir.model.access.csv',
+    ],
     'css': [
       #  'static/src/css/note.css',
     ],
