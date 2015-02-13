@@ -31,7 +31,7 @@ This module allows users to create their own postit inside OpenERP
 """,
     'author': 'Prisme Solutions informatique SA',
     'website': 'http://openerp.com',
-    'summary': 'Sticky notes, Collaborative, Memos',
+    'summary': 'Managing tasks and reminders',
     'sequence': 9,
     'depends': [
         'mail',
