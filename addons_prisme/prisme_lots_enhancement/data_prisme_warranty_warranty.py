@@ -73,7 +73,7 @@ class prisme_warranty_warranty(osv.osv):
                     '/var/log/prisme/vm_on-warranty/', 7)
         logger.log(current_date + ', ' + current_time + ' : ON')
     
-    def scheduled_action(self, cr, uid, automatic=False, use_new_cursor=False, \
+    def scheduled_action(self, uid, automatic=False, use_new_cursor=False, \
                        context=None):
         import time
         self._log('Lancement du planificateur (' + \
