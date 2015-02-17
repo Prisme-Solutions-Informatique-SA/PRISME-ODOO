@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <!-- prisme postit Form View -->
+    <record model="ir.ui.view" id="view_prisme_postit_form">
+      <field name="name">prisme.postit.form</field>
+      <field name="model">prisme.postit</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Postit" version="7.0">
+          <header>
+              <button name="active" 
+                      type="workflow"
+                      string="active" 
+                      states="closed,in_process"/>
+
+              <button name="start" 
+                      type="workflow"
+                      string="Start"
+                      states="active"/>
+
+              <button name="in_process" 
+                      type="workflow"
+                      string="In process" 
+                      states="start"/>
+
+              <button name="closed" 
+                      type="workflow"
+                      string="Close" 
+                      states="in_process"
+                      class="oe_highlight"/>
+
+              <field name="state" widget="statusbar"/>
+          </header>
+          <group>
+            <field name="name"/>
+            <field name="tags" widget="many2many_tags" placeholder="Tags..."/>
+            <field name="assigned_to" widget="many2many_tags" placeholder="To..."/>
+            <field name="copy_to" widget="many2many_tags" placeholder="To..."/>
+            <field name="assigned_by"/>
+            <field name="partner_id"/>
+            <field name="days" widget="many2many_tags" placeholder="Days..."/>
+            <field name="priority"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="recall_date"/>
+            <field name="duration"/>
+            <!--<field name="status"/>-->
+          </group>
+          <group>
+            <notebook>
+              <page string="Description">
+                <field name="description"/>
+              </page>
+            </notebook>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- Postit Tag Tree View -->
+    <record model="ir.ui.view" id="view_prisme_postit_tree">
+      <field name="name">prisme.postit.tree</field>
+      <field name="model">prisme.postit</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Postit">
+          <field name="assigned_to"/>
+          <field name="priority"/>
+          <field name="tags"/>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="date_end"/>
+          <field name="assigned_by"/>
+        </tree>
+      </field>
+    </record>
+
+<!-- prisme postit Tag Form View -->
+    <record model="ir.ui.view" id="view_prisme_postit_tag_form">
+      <field name="name">prisme.postit.tag.form</field>
+      <field name="model">prisme.postit.tag</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Postit tag" version="7.0">
+          <group>
+            <field name="name"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+
+        <!-- note Stage Tree View -->
+    <record model="ir.ui.view" id="view_prisme_postit_tag_tree">
+      <field name="name">prisme.postit.tag.tree</field>
+      <field name="model">prisme.postit.tag</field>
+      <field name="field_parent"></field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Postit tag" editable="bottom">
+            <field name="name"/>
+        </tree>
+      </field>
+    </record>
+    
+
+    <!-- Prisme postit -->
+    <record model="ir.actions.act_window" id="action_prisme_postit">
+        <field name="name">Postit</field>
+        <field name="res_model">prisme.postit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!-- Prisme postit tag -->
+    <record model="ir.actions.act_window" id="action_prisme_postit_tag">
+        <field name="name">Postit Tag</field>
+        <field name="res_model">prisme.postit.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="PostIt" id="menu_prisme_postit" parent="mail.mail_my_stuff" sequence="22" action="prisme_postit.action_prisme_postit"/>
+    <menuitem name="PostIt Tag" id="menu_prisme_postit_tag" parent="mail.mail_my_stuff" sequence="23" action="prisme_postit.action_prisme_postit_tag"/>
+
+
+    <record model="prisme.postit.day" id="0">
+        <field name="name">Monday</field>
+        <field name="nbr">0</field>
+    </record>
+    <record model="prisme.postit.day" id="1">
+        <field name="name">Tuesday</field>
+        <field name="nbr">1</field>
+    </record>
+    <record model="prisme.postit.day" id="2">
+        <field name="name">Wednesday</field>
+        <field name="nbr">2</field>
+    </record>
+    <record model="prisme.postit.day" id="3">
+        <field name="name">Thursday</field>
+        <field name="nbr">3</field>
+    </record>
+    <record model="prisme.postit.day" id="4">
+        <field name="name">Friday</field>
+        <field name="nbr">4</field>
+    </record>
+    <record model="prisme.postit.day" id="5">
+        <field name="name">Saturday</field>
+        <field name="nbr">5</field>
+    </record>
+    <record model="prisme.postit.day" id="6">
+        <field name="name">Sunday</field>
+        <field name="nbr">6</field>
+    </record>
+
+  </data>
+</openerp>
