@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+<!--
+		<record model="ir.ui.view" id="sale_report_search_prisme">
+			<field name="name">sale.report.search.prisme</field>
+			<field name="model">sale.report</field>
+			<field name="inherit_id" ref="sale.view_order_product_search" />
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				
+				<field name="partner_id" position="before">
+					<field name="so_name" />
+				</field>
+			
+				<xpath expr="/search/group[2]/filter[@string='Partner']"
+					position="before">
+					<filter string="Sale Order" icon="terp-gtk-jump-to-rtl"
+						name="so_name_group" context="{'group_by':'so_name'}" />
+				</xpath>
+			
+
+			</field>
+		</record>
+-->
+		<record model="ir.ui.view" id="sale_report_graph_prisme">
+			<field name="name">sale.report.graph.prisme</field>
+			<field name="model">sale.report</field>
+			<field name="inherit_id" ref="sale.view_order_product_graph" />
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+
+				<field name="price_total" position="after">
+					<field name="discount_total" type="measure" />
+					<field name="net_price_total"  type="measure" />
+					<field name="purchase_total" type="measure" />
+					<field name="margin_total"  type="measure" />
+				</field>
+<!--
+				<field name="delay" position="replace">
+					<field name="delay" invisible="1" />
+				</field>
+
+				<field name="partner_id" position="before">
+					<field name="so_name" invisible="1" />
+				</field>
+-->
+			
+			</field>
+		</record>
+
+	</data>
+</openerp>
