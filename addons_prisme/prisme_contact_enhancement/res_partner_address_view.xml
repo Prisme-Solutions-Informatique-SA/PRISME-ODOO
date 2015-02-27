@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>	
+	    <!--
+		<record model="ir.ui.view" id="res_partner_form2_prisme">
+			<field name="name">res.partner.address.form2.prisme</field>
+			<field name="model">res.partner.address</field>
+			<field name="inherit_id" ref="base.view_partner_address_form2"/>
+			<field name="type">form</field>
+			<field name="priority">17</field>
+			<field name="arch" type="xml">
+			    <field name="name" position="before">
+			        <field name="active" />
+			        <newline/>
+			    </field>
+			</field>
+		</record>	
+		-->	
+	</data>
+</openerp>
