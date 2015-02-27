@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_prisme_warranty_warranty","prisme.warranty.warranty","model_prisme_warranty_warranty","base.group_user",1,1,1,1
+"access_prisme_warranty_type","prisme.warranty.type","model_prisme_warranty_type","base.group_user",1,1,1,1
