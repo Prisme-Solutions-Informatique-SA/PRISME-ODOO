@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record model="ir.ui.view" id="email_template_form_prisme">
+			<field name="name">email.template.form.prisme</field>
+			<field name="model">email.template</field>
+			<field name="inherit_id" ref="email.template.form"/>
+			<field name="type">form</field>
+			<field name="priority">17</field>
+			<field name="arch" type="xml">
+				<field name="body_html" position="replace">
+			        <field name="body_html"  width="250" height="450" nolabel="1" colspan="2" widget="html" placeholder="Email contents (in raw HTML format)"/>
+			    </field>
+			</field>
+		</record>		
+	</data>
+</openerp>
