@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Reporting for Accounting',
-'version': '7.0',
+'version': '8.0',
 'category': 'Finance',
 'description': """
 Adds specific reports (for paper or e-mail) and features needed to these reports related to accounting.

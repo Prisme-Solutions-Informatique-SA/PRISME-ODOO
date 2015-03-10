@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <report auto="False"
+            id="opportunity_detail"
+            model="crm.lead"
+            name="opportunity_detail"
+            file="prisme_opportunity_enhancement/opportunity_detail.mako"
+            string="Opportunity"
+            report_type="webkit"
+            webkit_header="prisme_opportunity_enhancement.prisme_portrait_header"
+            />
+    </data>
+</openerp>
+

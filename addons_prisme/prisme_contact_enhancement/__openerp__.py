@@ -1,7 +1,7 @@
 
 {
 'name': 'Prisme Contact Enhancement',
-'version': '6.1',
+'version': '8',
 'category': 'Tools',
 'description': """
 Add features to manage old contacts:
