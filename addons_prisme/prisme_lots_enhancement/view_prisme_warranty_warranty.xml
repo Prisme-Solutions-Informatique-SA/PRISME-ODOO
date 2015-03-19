@@ -13,6 +13,7 @@
 					<field name="copy_to" />
 					<field name="warranty_type_id" />
 					<field name="state" />
+					<field name="partner"/>
 					<newline />
 					<field name="recall_date" />
 					<field name="end_date" />
@@ -27,6 +28,8 @@
 							context="{'group_by':'assigned_by'}" />
 						<filter string="Assigned to" icon="terp-personal" domain="[]"
 							context="{'group_by':'assigned_to'}" />
+						<filter string="Partner" icon="terp-personal" domain="[]"
+							context="{'group_by':'partner'}" />
 					</group>
 				</search>
 			</field>
@@ -42,6 +45,7 @@
 					<field name="assigned_by" />
 					<field name="assigned_to" />
 					<field name="copy_to" />
+					<field name="partner"/>
 					<field name="warranty_type_id" />
 					<field name="state" />
 					<field name="recall_date" />
@@ -64,6 +68,7 @@
 						<field name="assigned_by" />
 						<field name="assigned_to" />
 						<field name="copy_to" />
+						<field name="partner"/>
 						<separator string="Informations" colspan="2" />
 						<field name="lot_id"/>
 						<field name="warranty_type_id" />

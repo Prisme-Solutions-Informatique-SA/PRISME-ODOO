@@ -52,8 +52,33 @@ class stock_production_lot(osv.osv):
                 value_to_return['warranty_description'] = \
                     product.product_tmpl_id.description
         return {'value': value_to_return}
-    
-    #Line for live debugging:
-    #import pdb; pdb.set_trace()
+
+    def onchange_customer(self, cr, uid, ids, warranties_ids, customer):
+        print "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1"
+        value_to_return = {}
+        print (warranties_ids)
+        for w in warranties_ids:
+            print (w[1])
+            print (customer)
+            self.pool.get('prisme.warranty.warranty').write(cr, uid, [w[1]], {'partner': customer})
+
+        print "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2"
+        return True
+
+
+    def write(self, cr, uid, ids, vals, context=None):
+        print "Write fonction !"
+        res = super(stock_production_lot,self).write(cr, uid, ids, vals, context=context)
+        lots = self.pool.get('stock.production.lot').browse(cr, uid, ids)
+        if(lots):
+            for lot in lots:
+                if (lot):
+                    for w in lot.warranties_ids:
+                        #toprint = "Lot id:"+ + "set new customer : "+ (lot.customer.name)
+                        print (w.id)
+                        print (lot.customer.name)
+                        self.pool.get('prisme.warranty.warranty').write(cr, uid, [w.id], {'partner': lot.customer.id})
+        return res
+
 
 stock_production_lot()
