@@ -2,3 +2,5 @@ UPDATE prisme_warranty_warranty
 SET partner=subquery.partner_id
 FROM (select s.customer as partner_id, w.id as w_id from prisme_warranty_warranty w, stock_production_lot s, res_partner p where w.lot_id = s.id and s.customer = p.id) AS subquery
 WHERE prisme_warranty_warranty.id=subquery.w_id;
+
+select p.name, s.name, s.customer as partner_id from stock_production_lot s, res_partner p where s.customer = p.id;tner p

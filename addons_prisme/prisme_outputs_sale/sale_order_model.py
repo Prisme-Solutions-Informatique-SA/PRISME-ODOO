@@ -47,7 +47,7 @@ class sale_order_line_prisme(osv.osv):
     
     _columns = {
                 'refused': fields.boolean('Refused',help=''),
-				'notes': fields.text('Notes'),
+			         	'notes': fields.text('Notes'),
     }
     
     _defaults = {

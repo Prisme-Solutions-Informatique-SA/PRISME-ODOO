@@ -32,8 +32,6 @@ class account_invoice(orm.Model):
         invoices = self.read(cr, uid, ids, ['state','internal_number'], context=context)
         unlink_ids = []
 
-        print "Goodbye, World!"
-
         for t in invoices:
             if t['state'] not in ('draft', 'cancel'):
                 raise openerp.exceptions.Warning(_('You cannot delete an invoice which is not draft or cancelled. You should refund it instead.'))
