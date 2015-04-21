@@ -56,6 +56,7 @@ class prisme_warranty_warranty(osv.osv):
                                   # ne remplira ce champ que lors de la 
                                   # sauvegarde du lot (ce qui empeche
                                   # l'enregistrement de la garantie)
+        'partner' : fields.many2one('res.partner', string='Partner',readonly=True),
     }
     
     # Launched each minute, this scheduled action write the date and hour
