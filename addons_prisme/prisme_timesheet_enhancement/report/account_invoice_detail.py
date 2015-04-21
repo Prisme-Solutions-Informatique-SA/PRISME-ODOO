@@ -1,12 +1,11 @@
 import re
 import time
+import openerp
 from openerp import addons
 from openerp.report import report_sxw
 from openerp.osv.osv import except_osv
 from openerp.tools import mod10r
 from openerp.tools.translate import _
-from webkit_report import WebKitParser
-
 
 class AccountInvoiceDetails(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
