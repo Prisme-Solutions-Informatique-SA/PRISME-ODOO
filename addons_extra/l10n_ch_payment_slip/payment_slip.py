@@ -49,7 +49,7 @@ class PaymentSlip(models.Model):
     and revalidate the related invoice
     """
     _fill_color = (0, 0, 0)
-    _default_font_size = 11
+    _default_font_size = 9
     _default_scan_font_size = 11
     _default_amount_font_size = 16
     _compile_get_ref = re.compile(r'[^0-9]')
