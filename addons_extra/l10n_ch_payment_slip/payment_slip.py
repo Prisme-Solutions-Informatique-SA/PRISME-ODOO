@@ -354,7 +354,7 @@ class PaymentSlip(models.Model):
                                    'static',
                                    'src',
                                    'font',
-                                   'ocrbb.ttf')
+                                   'arial_2.ttf')
         return path
 
     @api.model
