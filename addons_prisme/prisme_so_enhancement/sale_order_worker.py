@@ -304,9 +304,9 @@ class sale_order_prisme(osv.osv):
         # But:                  Consider the date delivery field in a
         #                       sale order line (added by this module)
         if line.date_delivery:
-            date_planned = datetime.strptime(line.date_delivery, DEFAULT_SERVER_DATE_FORMAT)
+            date_planned = datetime.strptime(line.date_delivery, tools.DEFAULT_SERVER_DATE_FORMAT)
         else:
-            date_planned = datetime.strptime(start_date, DEFAULT_SERVER_DATE_FORMAT) + relativedelta(days=line.delay or 0.0)
+            date_planned = datetime.strptime(start_date, tools.DEFAULT_SERVER_DATE_FORMAT) + relativedelta(days=line.delay or 0.0)
         #Modification 1 end
         
         date_planned = (date_planned - timedelta(days=order.company_id.security_lead)).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
