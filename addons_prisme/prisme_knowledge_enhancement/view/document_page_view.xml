@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="document_page_form_prisme" model="ir.ui.view">
+            <field name="name">document.page.form.prisme</field>
+            <field name="model">document.page</field>
+            <field name="inherit_id" ref="document_page.view_wiki_form"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="/form//field[@name='content']"
+                position="attributes">
+                    <attribute name="widget">ckeditor</attribute>
+                </xpath>-->
+	        <field name="content" position="replace">
+ 			<field name="content_pad" class="oe_edit_only" widget="pad" />
+                </field>	
+                <xpath expr="/form/group/group//field[@name='parent_id']" position="after">
+                    <field name="numbering" sum="numbering"></field>
+                </xpath>
+		<xpath expr="/form/group/group//field[@name='parent_id']" position="after">
+                    <field name="state" sum="state"></field>
+                </xpath>
+            </field>
+        </record>
+		<record id="document_page_list_prisme" model="ir.ui.view">
+            <field name="name">document.page.list.prisme</field>
+            <field name="model">document.page</field>
+            <field name="inherit_id" ref="document_page.view_wiki_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree//field[@name='name']" position="before">
+                    <field name="numbering" sum="numbering"></field>
+                </xpath>
+		<xpath expr="/tree//field[@name='parent_id']" position="after">
+                    <field name="state" sum="state"></field>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_toplevel" model="ir.actions.act_window">
+            <field name="name">Top Level</field>
+            <field name="res_model">document.page</field>
+            <field name="domain">[('type','=','category'), ('parent_id','=',None)]</field>
+            <field name="context">{'default_type': 'category'}</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="document_page.view_wiki_tree"/>
+            <field name="search_view_id" ref="document_page.view_wiki_filter"/>
+        </record>
+        <menuitem id="menu_toplevel" parent="document_page.menu_wiki" name="Top Level" action="action_toplevel" sequence="21"/>
+    </data>
+</openerp>

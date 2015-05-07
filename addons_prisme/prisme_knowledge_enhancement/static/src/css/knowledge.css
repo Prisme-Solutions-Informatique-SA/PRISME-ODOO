@@ -1,0 +1,9 @@
+/*.openerp .oe_form .oe_form_embedded_html { */
+.oe_document_page .oe_view_only {
+    margin-left: 0px !important;
+}
+
+.openerp .oe_form .oe_form_embedded_html {
+	width: 100% !important;
+}
+
