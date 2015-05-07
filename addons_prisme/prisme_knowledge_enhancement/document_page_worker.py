@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from osv import osv, fields
+from openerp.osv import fields, osv, expression
 
 class document_page(osv.Model):
     _name = 'document.page'

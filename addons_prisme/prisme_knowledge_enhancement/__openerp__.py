@@ -2,7 +2,7 @@
 
 {
     'name' : 'Prisme Knowledge Enhancement',
-    'version' : '0.1',
+    'version' : 'v8',
     'depends' : ['web', 'document_page', 'document', 'knowledge'],
     'author' : 'Prisme Solution Informatique',
     'description' : 'Default editor for pages changed to CKEditor',
