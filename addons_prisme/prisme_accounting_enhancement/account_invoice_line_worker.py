@@ -62,11 +62,9 @@ class account_invoice_line_prisme(osv.osv):
     # Methode appelee lorsqu'on change le produit dans une ligne d'une facture
     def product_id_change(self, cr, uid, ids, product, uom_id, qty=0, name='', \
                            type='out_invoice', partner_id=False, fposition_id=False, \
-                            price_unit=False, currency_id=False, context=None, company_id=None):
+                            price_unit=False, currency_id=False, company_id=None, context=None, ):
         # Execution de la commande originale (faite par OpenERP)
-        res = super(account_invoice_line_prisme, self).product_id_change(cr, \
-                    uid, ids, product, uom_id, qty, name, type, partner_id, fposition_id, \
-                     price_unit, currency_id, context=context, company_id=company_id)
+        res = super(account_invoice_line_prisme, self).product_id_change(cr,uid, ids, product, uom_id, qty, name, type, partner_id, fposition_id,price_unit, currency_id,context=context, company_id=company_id)
         # Si la facture est de type out (facture client)
         if (type == "out_invoice"):
             # Si un produit est definit
