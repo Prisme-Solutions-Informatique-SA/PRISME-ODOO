@@ -68,6 +68,7 @@
           <field name="assigned_to"/>
           <field name="priority"/>
           <field name="tags"/>
+          <field name="state"/>
           <field name="name"/>
           <field name="partner_id"/>
           <field name="date_end"/>
