@@ -67,6 +67,7 @@
         <tree string="Postit">
           <field name="assigned_to"/>
           <field name="priority"/>
+          <field name="state"/>
           <field name="tags"/>
           <field name="name"/>
           <field name="partner_id"/>
