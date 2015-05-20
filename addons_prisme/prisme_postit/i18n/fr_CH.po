@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 08:09+0000\n"
-"PO-Revision-Date: 2015-02-11 08:09+0000\n"
+"POT-Creation-Date: 2015-05-20 09:55+0000\n"
+"PO-Revision-Date: 2015-05-20 09:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,10 +21,14 @@ msgid "PostIt"
 msgstr "PostIt"
 
 #. module: prisme_postit
-#: model:ir.actions.act_window,name:prisme_postit.action_prisme_postit_tag
-#: model:ir.model,name:prisme_postit.model_prisme_postit_tag
-msgid "Postit Tag"
-msgstr "Postit - Type"
+#: model:prisme.postit.day,name:prisme_postit.1
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. module: prisme_postit
+#: selection:prisme.postit,state:0
+msgid "Demarre"
+msgstr "Démarré"
 
 #. module: prisme_postit
 #: view:prisme.postit:0
@@ -37,6 +41,11 @@ msgid "Prisme postit"
 msgstr "Prisme postit"
 
 #. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.3
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. module: prisme_postit
 #: field:prisme.postit,priority:0
 msgid "Priority"
 msgstr "Priorité"
@@ -45,6 +54,11 @@ msgstr "Priorité"
 #: view:prisme.postit:0
 msgid "Start"
 msgstr "Début"
+
+#. module: prisme_postit
+#: field:prisme.postit,state:0
+msgid "State"
+msgstr "Statuts"
 
 #. module: prisme_postit
 #: view:prisme.postit:0
@@ -57,14 +71,19 @@ msgid "En cours"
 msgstr "En cours"
 
 #. module: prisme_postit
-#: field:prisme.postit,name:0
-msgid "Name"
-msgstr "Tâche"
+#: model:ir.model,name:prisme_postit.model_prisme_postit_day
+msgid "Postit Day"
+msgstr "Postit - Jours"
 
 #. module: prisme_postit
 #: view:prisme.postit:0
 msgid "Description"
 msgstr "Notes"
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.0
+msgid "Monday"
+msgstr "Lundi"
 
 #. module: prisme_postit
 #: field:prisme.postit,tags:0
@@ -73,7 +92,6 @@ msgstr "Type"
 
 #. module: prisme_postit
 #: field:prisme.postit,description:0
-#: field:prisme.postit,state:0
 msgid "unknown"
 msgstr "unknown"
 
@@ -81,6 +99,11 @@ msgstr "unknown"
 #: view:prisme.postit:0
 msgid "To..."
 msgstr "à..."
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.4
+msgid "Friday"
+msgstr "Vendredi"
 
 #. module: prisme_postit
 #: view:prisme.postit.tag:0
@@ -108,9 +131,9 @@ msgid "Date end"
 msgstr "Date fin"
 
 #. module: prisme_postit
-#: model:ir.model,name:prisme_postit.model_prisme_postit_day
-msgid "Postit Day"
-msgstr "Postit - Jours"
+#: field:prisme.postit,name:0
+msgid "Name"
+msgstr "Tâche"
 
 #. module: prisme_postit
 #: field:prisme.postit.day,name:0
@@ -129,9 +152,19 @@ msgid "Days"
 msgstr "Jours"
 
 #. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.2
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: prisme_postit
 #: field:prisme.postit,partner_id:0
 msgid "Client"
 msgstr "Client"
+
+#. module: prisme_postit
+#: view:prisme.postit:0
+msgid "active"
+msgstr "active"
 
 #. module: prisme_postit
 #: field:prisme.postit,date_start:0
@@ -149,6 +182,12 @@ msgid "Assigned to"
 msgstr "Assignée à"
 
 #. module: prisme_postit
+#: model:ir.actions.act_window,name:prisme_postit.action_prisme_postit_tag
+#: model:ir.model,name:prisme_postit.model_prisme_postit_tag
+msgid "Postit Tag"
+msgstr "Postit - Type"
+
+#. module: prisme_postit
 #: field:prisme.postit,recall_date:0
 msgid "Recall Date"
 msgstr "Date échéance"
@@ -159,9 +198,14 @@ msgid "PostIt Tag"
 msgstr "PostIt - Type"
 
 #. module: prisme_postit
-#: selection:prisme.postit,state:0
-msgid "Demarre"
-msgstr "Démarré"
+#: model:prisme.postit.day,name:prisme_postit.6
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. module: prisme_postit
+#: field:prisme.postit.day,nbr:0
+msgid "Day number"
+msgstr "Day number"
 
 #. module: prisme_postit
 #: field:prisme.postit,duration:0
@@ -174,6 +218,11 @@ msgid "Close"
 msgstr "Fermé"
 
 #. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.5
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: prisme_postit
 #: selection:prisme.postit,state:0
 msgid "Non termine"
 msgstr "Non terminé"
@@ -183,37 +232,3 @@ msgstr "Non terminé"
 msgid "Termine"
 msgstr "Terminé"
 
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.1
-msgid "Tuesday"
-msgstr "Mardi"
-
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.5
-msgid "Saturday"
-msgstr "Samedi"
-
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.2
-msgid "Wednesday"
-msgstr "Mercredi"
-
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.4
-msgid "Friday"
-msgstr "Vendredi"
-
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.0
-msgid "Monday"
-msgstr "Lundi"
-
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.6
-msgid "Sunday"
-msgstr "Dimanche"
-
-#. module: prisme_postit
-#: model:prisme.postit.day,name:prisme_postit.3
-msgid "Thursday"
-msgstr "Jeudi"

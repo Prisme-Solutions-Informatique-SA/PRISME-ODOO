@@ -26,7 +26,7 @@ class prisme_postit(osv.osv):
         'date_end' : fields.date(string="Date end"),
         'recall_date' : fields.date(string="Recall Date"),
         'duration' : fields.char(string='Duration'),
-        'state': fields.selection([('active', 'Non termine'),
+        'state': fields.selection(string="State", [('active', 'Non termine'),
                                    ('start','Demarre'),
                                    ('in_process','En cours'),
                                    ('closed', 'Termine'),
