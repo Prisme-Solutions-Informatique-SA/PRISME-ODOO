@@ -6,42 +6,31 @@
     </style>
 </head>
 <body>
-<%!
-def filter(text):
-	return text
-def getdate(text):
-	tmp = text+''
-	tmp2 = tmp[:10]
-	return tmp2
-def gettype(text):
-	if text=='notification':
-		return 0
-	else:
-		return 1
-%>
+
 <h1>Suivi d'opportunite</h1>
 %for opp in objects :
 <p><b>Opportunity</b><br>
-${opp.name or ''|entity}</p>
+${opp.name}</p>
 <p><b>Societe</b><br>
-${opp.partner_id.name or ''|entity}</p>
+${opp.partner_id.name}</p>
 <p><b>Contact</b><br>
-${opp.partner_id.name or ''|entity}<br>
-${opp.email_from or ''|entity}<br>
-${opp.phone or ''|entity}</p>
+${opp.partner_id.name}<br>
+${opp.email_from}<br>
+${opp.phone}</p>
 <p><b>Description</b><br>
-${opp.description or ''|entity}</p>
+${opp.description}</p>
 <p><b>Action suivante</b><br>
-${opp.title_action or ''|entity}<br>
-${opp.date_action or ''|entity}</p>
+${opp.title_action}<br>
+${opp.date_action}</p>
 <p><b>Reference</b><br>
-${opp.ref.name or ''|entity}<br>
-${opp.ref2.name or ''|entity}</>
+${opp.ref.name}<br>
+${opp.ref2.name}</>
 <p><b>Historique</b><br>
 <ul>
+
 %for mess in opp.message_ids:
-% if gettype(mess.type):
-	${mess.author_id.name or ''|entity} - ${getdate(mess.date)}:<br> ${filter(mess.body)}<hr/>
+% if mess.type!='notification':
+	${mess.author_id.name} - ${mess.date[:10]}:<br> ${mess.body}<hr/>
 % endif
 
 %endfor
