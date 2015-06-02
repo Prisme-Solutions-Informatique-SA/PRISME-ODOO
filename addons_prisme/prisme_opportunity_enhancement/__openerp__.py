@@ -5,7 +5,7 @@
 'description': """
 Prisme specific developments
 
-Add print report for Opportunity:
+Add print report for Opportunity using Webkit Mako:
     * Creat PDF with all need informations
     
 For more informations:
