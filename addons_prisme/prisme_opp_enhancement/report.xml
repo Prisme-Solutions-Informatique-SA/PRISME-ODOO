@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <report
+        id="report_opp"
+        model="crm.lead"
+        string="Opportunity Report"
+        name="prisme_opp_enhancement.report_opp_view"
+        file="prisme_opp_enhancement.report_opp"
+        report_type="qweb-pdf" />
+
+    <template id="report_opp_view">
+        <t t-name="prisme_opp_enhancement.report_opp_view">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <h1>Suivi d'opportunite</h1>
+                        <p><b>Opportunity</b><br/>
+                        <span t-field="doc.name"/></p>
+                        <p><b>Societe</b><br/>
+                        <span t-field="doc.partner_id.name"/></p>
+                        <p><b>Contact</b><br/>
+                        <span t-field="doc.partner_id.name"/><br/>
+                        <span t-field="doc.email_from"/><br/>
+                        <span t-field="doc.phone"/></p>
+                        <p><b>Description</b><br/>
+                        <span t-field="doc.description"/></p>
+                        <p><b>Action suivante</b><br/>
+                        <span t-field="doc.title_action"/><br/>
+                        <span t-field="doc.date_action"/></p>
+                        <p><b>Reference</b><br/>
+                        <span t-field="doc.ref.name"/><br/>
+                        <span t-field="doc.ref2.name"/></p>
+                        <p><b>Historique</b></p>
+                        <ul style="padding-left: 10pt;">
+                        <t t-foreach="doc.message_ids" t-as="mess">
+                            <t t-if="mess.type != 'notification' ">
+                                <span t-field="mess.author_id.name"/> - <span t-field="mess.date" t-field-options='{"format": "DD.MM.YYYY"}'/><br/>
+                                <span t-field="mess.body"/>
+                                <hr/>
+                            </t>
+                        </t>
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </t>
+    </template>
+</data>
+</openerp>
+
