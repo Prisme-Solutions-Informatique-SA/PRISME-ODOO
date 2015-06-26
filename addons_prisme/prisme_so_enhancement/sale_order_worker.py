@@ -123,7 +123,7 @@ class sale_order_prisme(osv.osv):
                     multi='sums', help="The total amount."),
 				'shipped': fields.boolean("Shipped"),
                 'order_line': fields.one2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, 
-                    states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'manual': [('readonly', False)]}),
+                    states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'manual': [('readonly', False)]}, copy=True),
 
     }
     
