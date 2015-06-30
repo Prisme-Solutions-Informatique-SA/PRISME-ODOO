@@ -5,7 +5,7 @@
 'description': """
 Prisme specific developments
 
-Add print report for Opportunity using QWEB:
+Add print report for Opportunity:
     * Creat PDF with all need informations
     
 For more informations:
