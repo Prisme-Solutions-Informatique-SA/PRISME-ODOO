@@ -3,6 +3,8 @@ from dateutil.relativedelta import relativedelta
 from openerp import tools
 from openerp.osv import fields, osv, expression
 import openerp.addons.decimal_precision as dp
+from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT
+from datetime import timedelta
 
 class sale_order_prisme(osv.osv):
     _name = 'sale.order'
@@ -87,7 +89,7 @@ class sale_order_prisme(osv.osv):
                 'quotation_validity': fields.date('Quotation Validity',
                     readonly=True,
                     states={'draft': [('readonly', False)],
-   				'sent': [('readonly', False)]
+                'sent': [('readonly', False)]
 }),
                 'quotation_comment': fields.char('Quotation Comment', 255,
                     translate=True, readonly=False,
@@ -121,7 +123,7 @@ class sale_order_prisme(osv.osv):
                         'sale.order.line': (_get_order, ['price_unit', 'tax_id', 'discount', 'product_uom_qty'], 10),
                     },
                     multi='sums', help="The total amount."),
-				'shipped': fields.boolean("Shipped"),
+                'shipped': fields.boolean("Shipped"),
                 'order_line': fields.one2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, 
                     states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'manual': [('readonly', False)]}, copy=True),
 
@@ -304,9 +306,9 @@ class sale_order_prisme(osv.osv):
         # But:                  Consider the date delivery field in a
         #                       sale order line (added by this module)
         if line.date_delivery:
-            date_planned = datetime.strptime(line.date_delivery, tools.DEFAULT_SERVER_DATE_FORMAT)
+            date_planned = datetime.strptime(line.date_delivery, DEFAULT_SERVER_DATETIME_FORMAT)
         else:
-            date_planned = datetime.strptime(start_date, tools.DEFAULT_SERVER_DATE_FORMAT) + relativedelta(days=line.delay or 0.0)
+            date_planned = datetime.strptime(start_date, DEFAULT_SERVER_DATETIME_FORMAT) + relativedelta(days=line.delay or 0.0)
         #Modification 1 end
         
         date_planned = (date_planned - timedelta(days=order.company_id.security_lead)).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
