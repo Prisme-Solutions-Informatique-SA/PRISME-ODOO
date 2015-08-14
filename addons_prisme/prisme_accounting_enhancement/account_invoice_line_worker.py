@@ -6,49 +6,28 @@ class account_invoice_line_prisme(osv.osv):
     _name = "account.invoice.line"
     _inherit = "account.invoice.line"
     
-    def _amount_line_prisme(self, cr, uid, ids, prop, unknow_none, unknow_dict):
-        res = {}
-        tax_obj = self.pool.get('account.tax')
-        cur_obj = self.pool.get('res.currency')
-        for line in self.browse(cr, uid, ids):
-            
-            # Modification to use the discount_type
-            if line.discount_type == 'amount':
-                price = line.price_unit - (line.discount or 0.0)
-            elif line.discount_type == 'percent':
-                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            else:
-                price = line.price_unit
-            
-            taxes = tax_obj.compute_all(cr, uid, line.invoice_line_tax_id,
-                                        price, line.quantity,
-                                        product=line.product_id,
-                                        partner=line.invoice_id.partner_id)
-            res[line.id] = taxes['total']
-            if line.invoice_id:
-                cur = line.invoice_id.currency_id
-                res[line.id] = cur_obj.round(cr, uid, cur, res[line.id])
-        
-        # Modification to compute the subtotal using rounding_on_subtotal
-        for line in self.browse(cr, uid, ids):
-            if line.invoice_id.rounding_on_subtotal > 0:
-                old_amount = res[line.id]
-                new_amount = round(old_amount / \
-                                   line.invoice_id.rounding_on_subtotal) * \
-                                   line.invoice_id.rounding_on_subtotal
-                res.update({line.id: new_amount})
-    
-        return res
-        
+
+    # def copied to add control of amount discount
+    def _compute_price(self):
+        if self.discount_type == 'amount':
+            price = self.price_unit - (self.discount or 0.0)
+        elif self.discount_type == 'percent':
+            price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        else:
+            price = self.price_unit
+        taxes = self.invoice_line_tax_id.compute_all(price, self.quantity, product=self.product_id, partner=self.invoice_id.partner_id)
+        self.price_subtotal = taxes['total']
+        if self.invoice_id:
+            self.price_subtotal = self.invoice_id.currency_id.round(self.price_subtotal)
+
+       
     
     _columns = {
-        "price_subtotal": fields.function(_amount_line_prisme, method=True, \
-            string="Subtotal", type="float",
-            digits_compute=dp.get_precision("Invoice"), store=True),
         
         # Field copied to remove the '%' in the label        
-        'discount': fields.float('Discount',
-                                 digits_compute=dp.get_precision('Account')),
+        'discount': fields.float(string='Discount'   ,digits=dp.get_precision('Discount'),default=0.0),
+
+        # Field add to allow amount discount
         'discount_type': fields.selection([('none', ''),
                                            ('amount', 'Amount'),
                                            ('percent', 'Percent')],
