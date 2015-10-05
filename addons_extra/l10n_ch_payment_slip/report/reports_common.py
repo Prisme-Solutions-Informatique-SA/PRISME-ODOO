@@ -35,10 +35,7 @@ class CommonSlipReport(models.Model):
         for doc in docs:
             current_buff = StringIO.StringIO()
             streams.append(current_buff)
-            current_buff.write(
-                doc._draw_payment_slip(a4=True, b64=False,
-                                       out_format='PDF')
-            )
+            current_buff.write(doc)
             current_buff.seek(0)
             reader = pyPdf.PdfFileReader(current_buff)
             for page in xrange(reader.getNumPages()):
@@ -65,17 +62,14 @@ class CommonSlipReport(models.Model):
             current_buff = os.fdopen(current_buff, 'w+b')
             current_buff.seek(0)
             streams.append(current_buff)
-            current_buff.write(
-                doc._draw_payment_slip(a4=True, b64=False,
-                                       out_format='PDF')
-            )
+            current_buff.write(doc)
             current_buff.seek(0)
             reader = pyPdf.PdfFileReader(current_buff)
             for page in xrange(reader.getNumPages()):
                 writer.addPage(reader.getPage(page))
-            buff = tempfile.mkstemp(
-                suffix='.pdf',
-                prefix='credit_control_slip_merged')[0]
+        buff = tempfile.mkstemp(
+            suffix='.pdf',
+            prefix='credit_control_slip_merged')[0]
         try:
             buff = os.fdopen(buff, 'w+b')
             # The writer close the reader file here

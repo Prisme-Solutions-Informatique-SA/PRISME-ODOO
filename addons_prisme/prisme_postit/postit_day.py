@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models
 
-class prisme_postit_day(models.Model):
-    _name = 'prisme.postit.day'
+import datetime
+import tools
+from osv import osv, fields
+import prisme_file_logger
+import logging
+
+class prisme_postit_day(osv.osv):
+    _name = "prisme.postit.day"
     _description = "Postit Day"
-
-    name = fields.Char(string="Day name", required=True, translate=True)
-    nbr = fields.Integer('Day number', required=True)
-
+    _columns = {
+        'name' : fields.char('Day Name', required=True, translate=True),
+        'nbr' : fields.integer('Day number', required=True),
+    }
 prisme_postit_day()
