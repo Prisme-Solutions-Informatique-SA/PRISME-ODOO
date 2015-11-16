@@ -5,6 +5,15 @@ from openerp.osv import fields, osv, expression
 class sale_order_line_prisme(osv.osv):
     _name = 'sale.order.line' 
     _inherit = 'sale.order.line'
+
+    def _calc_line_base_price(self, cr, uid, line, context=None):
+        if line.discount_type == 'amount':
+            price = line.price_unit - (line.discount or 0.0)
+        elif line.discount_type == 'percent':
+            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+        else:
+            price = line.price_unit
+        return price * (1 - (line.discount or 0.0) / 100.0)
     
     def invoice_line_create(self, cr, uid, ids, context=None):
         res = super(sale_order_line_prisme, self).invoice_line_create(cr,\

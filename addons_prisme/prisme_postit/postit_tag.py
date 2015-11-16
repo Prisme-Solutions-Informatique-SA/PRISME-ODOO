@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
+from openerp import fields, models
 
-import datetime
-import tools
-from osv import osv, fields
-import prisme_file_logger
-import logging
 
-class prisme_postit_tag(osv.osv):
-    _name = "prisme.postit.tag"
+class prisme_postit_tag(models.Model):
+    _name = 'prisme.postit.tag'
     _description = "Postit Tag"
-    _columns = {
-        'name' : fields.char('Tag Name', required=True),
-    }
+    name = fields.Char(string="Tag name", required=True)
+
 prisme_postit_tag()

@@ -29,9 +29,16 @@
                         <p><b>Action suivante</b><br/>
                         <span t-field="doc.title_action"/><br/>
                         <span t-field="doc.date_action"/></p>
-                        <p><b>Reference</b><br/>
-                        <span t-field="doc.ref.name"/><br/>
-                        <span t-field="doc.ref2.name"/></p>
+                        <p>
+                        <b>Reference</b><br/>
+                        <t t-if="doc.ref">
+                            <span t-field="doc.ref.name"/><br/>
+                        </t>
+                        <t t-if="doc.ref2">
+                            <span t-field="doc.ref2.name"/><br/>
+                        </t>
+                        <hr/>
+                        </p>
                         <p><b>Historique</b></p>
                         <ul style="padding-left: 10pt;">
                         <t t-foreach="doc.message_ids" t-as="mess">
@@ -50,4 +57,3 @@
     </template>
 </data>
 </openerp>
-

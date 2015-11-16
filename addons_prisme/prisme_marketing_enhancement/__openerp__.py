@@ -21,7 +21,7 @@ For more informations:
 'init_xml': [],
 'update_xml': [
     'res_partner_view.xml',
-    'email_template_view.xml',
+    #'email_template_view.xml',
     #'res_partner_address_view.xml',
 ],
 'demo_xml': [],

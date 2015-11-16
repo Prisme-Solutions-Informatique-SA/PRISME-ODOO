@@ -7,6 +7,9 @@
 			<field name="type">form</field>
 			<field name="inherit_id" ref="account.invoice_form" />
 			<field name="arch" type="xml">
+                                            <field name="discount" position="replace">
+				           
+				</field>
 				<xpath expr="/form/sheet/notebook/page[1]/field/tree/field[last()]" position="after">
 					<field name="discount"/>	
 					<field name="discount_type"/>	

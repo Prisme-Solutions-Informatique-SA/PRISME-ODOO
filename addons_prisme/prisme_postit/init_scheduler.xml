@@ -12,16 +12,5 @@
             <field eval="True" name="active"/>
             <field eval="True" name="doall"/>
         </record>
-        <record model="ir.cron" id="postit_management_scheduler_log">
-            <field name="name">Postit Management Scheduler log</field>
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="model">prisme.postit</field>
-            <field name="function">log_vm_on</field>
-            <field name="args">()</field>
-            <field eval="True" name="active"/>
-            <field eval="True" name="doall"/>
-        </record>
     </data>
 </openerp>

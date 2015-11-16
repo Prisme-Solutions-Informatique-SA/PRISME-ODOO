@@ -19,17 +19,11 @@ class stock_picking_prisme(osv.osv):
         obj_line = self.pool.get('account.invoice.line')
         # Pour chaque ligne du resultat (chaque facture creee par la methode
         # originale
-        for picking_id, invoice_id in res.items():
-            # Recuperation de la facture avec son ID
-            invoice = obj_invoice.browse(cr, uid, invoice_id)
-            # Si la facture est de type out (facture client)
-            if invoice.type == 'out_invoice':
-                # Recuperation des lignes de la facture
-                lines_ids = invoice.invoice_line
-                # Pour chaque ligne recuperee
-                for line in lines_ids:
+        for inv in self.pool.get('account.invoice').browse(cr, uid, res, context=context):
+            if inv.type == 'out_invoice':
+                for ol in inv.invoice_line:
                     # Recuperation de l'id du produit de la ligne
-                    product_id = line.product_id.id
+                    product_id = ol.product_id.id
                     # Si le produit est definit
                     if product_id:
                         # Recuperation du produit depuis son ID
@@ -43,17 +37,16 @@ class stock_picking_prisme(osv.osv):
                             # ID) pour avoir le compte analytique correspondant
                             # au compte analytique du produit
                             obj_line.write(cr, uid, line.id,\
-                                {'account_analytic_id': prod_analytic_acc.id})
-                            
+                                {'account_analytic_id': prod_analytic_acc.id})                            
         # Discount type from sale order line to invoice line
-        obj_invoice_line = self.pool.get('account.invoice.line')
-        for picking in self.browse(cr, uid, ids):
-            for move in picking.move_lines:
-                if move.sale_line_id:
-                    discount_type = move.sale_line_id.discount_type
-                    for inv_line in move.sale_line_id.invoice_lines:
-                        obj_invoice_line.write(cr, uid, inv_line.id,\
-                                               {'discount_type': discount_type})
+        #obj_invoice_line = self.pool.get('account.invoice.line')
+        #for picking in self.browse(cr, uid, ids):
+         #   for move in picking.move_lines:
+          #      if move.sale_line_id:
+           #         discount_type = move.sale_line_id.discount_type
+            #        for inv_line in move.sale_line_id.invoice_lines:
+             #           obj_invoice_line.write(cr, uid, inv_line.id,\
+              #                                 {'discount_type': discount_type})
                 
         return res
     

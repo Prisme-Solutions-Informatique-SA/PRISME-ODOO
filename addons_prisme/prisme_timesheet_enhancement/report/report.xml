@@ -35,8 +35,8 @@
             <field name="model">hr.analytic.timesheet</field>
             <field name="type">ir.actions.report.xml</field>
             <field name="name">Prisme Checklist heures</field>
-            <field name="report_rml">prisme_timesheet_enhancemenet/report/templates/hr_analytic_timesheet_check.mako</field>
-            <field name="report_file">prisme_timesheet_enhancemenet/report/templates/hr_analytic_timesheet_check.mako</field>
+            <field name="report_rml">prisme_timesheet_enhancement/report/templates/hr_analytic_timesheet_check.mako</field>
+            <field name="report_file">prisme_timesheet_enhancement/report/templates/hr_analytic_timesheet_check.mako</field>
         </record>-->
 
        <report auto="False"
@@ -48,6 +48,10 @@
             report_type="webkit"
             webkit_header="prisme_timesheet_enhancement.prisme_paysage_header"
             />
+			
+
+
+			
 
 
        <!--<record id="account_invoice_detail" model="ir.actions.report.xml">

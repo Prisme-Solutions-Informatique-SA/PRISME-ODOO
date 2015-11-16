@@ -89,7 +89,7 @@ class sale_order_prisme(osv.osv):
                 'quotation_validity': fields.date('Quotation Validity',
                     readonly=True,
                     states={'draft': [('readonly', False)],
-                'sent': [('readonly', False)]
+   				'sent': [('readonly', False)]
 }),
                 'quotation_comment': fields.char('Quotation Comment', 255,
                     translate=True, readonly=False,
@@ -123,7 +123,7 @@ class sale_order_prisme(osv.osv):
                         'sale.order.line': (_get_order, ['price_unit', 'tax_id', 'discount', 'product_uom_qty'], 10),
                     },
                     multi='sums', help="The total amount."),
-                'shipped': fields.boolean("Shipped"),
+				'shipped': fields.boolean("Shipped"),
                 'order_line': fields.one2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, 
                     states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'manual': [('readonly', False)]}, copy=True),
 
@@ -306,7 +306,7 @@ class sale_order_prisme(osv.osv):
         # But:                  Consider the date delivery field in a
         #                       sale order line (added by this module)
         if line.date_delivery:
-            date_planned = datetime.strptime(line.date_delivery, DEFAULT_SERVER_DATETIME_FORMAT)
+            date_planned = datetime.strptime(line.date_delivery, "%Y-%m-%d")
         else:
             date_planned = datetime.strptime(start_date, DEFAULT_SERVER_DATETIME_FORMAT) + relativedelta(days=line.delay or 0.0)
         #Modification 1 end

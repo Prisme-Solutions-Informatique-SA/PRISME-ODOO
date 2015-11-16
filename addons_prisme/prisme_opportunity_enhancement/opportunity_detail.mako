@@ -1,4 +1,4 @@
-﻿## -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*-
 <html>
 <head>
     <style type="text/css">
@@ -7,7 +7,11 @@
 </head>
 <body>
 
+<<<<<<< HEAD
+<h1>Suivi d'opportunites</h1>
+=======
 <h1>Suivi d'opportunite</h1>
+>>>>>>> 86b92ebcdce7aebbe83756ef2bfbab80dd824c46
 %for opp in objects :
 <p><b>Opportunity</b><br>
 ${opp.name}</p>
@@ -30,10 +34,16 @@ ${opp.ref2.name}</>
 
 %for mess in opp.message_ids:
 % if mess.type!='notification':
+<<<<<<< HEAD
+	text = ${mess.body}
+	${mess.author_id.name} - ${mess.date[:10]}:<br> {text} <hr/>
+=======
 	${mess.author_id.name} - ${mess.date[:10]}:<br> ${mess.body}<hr/>
+>>>>>>> 86b92ebcdce7aebbe83756ef2bfbab80dd824c46
 % endif
 
 %endfor
+
 </ul>
 %endfor
 </body>

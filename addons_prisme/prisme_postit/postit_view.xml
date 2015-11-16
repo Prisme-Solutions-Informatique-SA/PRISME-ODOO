@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
   <data>
     <!-- prisme postit Form View -->
@@ -45,53 +45,20 @@
             <field name="date_end"/>
             <field name="recall_date"/>
             <field name="duration"/>
-            <field name="state"/>
+            <!--<field name="status"/>-->
           </group>
           <group>
             <notebook>
-              <page string="Description 2">
+              <page string="Description">
                 <field name="description"/>
               </page>
             </notebook>
           </group>
-        <div class="oe_chatter">
-            <field name="message_follower_ids" widget="mail_followers"/>
-            <field name="message_ids" widget="mail_thread"/>
-        </div>
         </form>
       </field>
     </record>
 
-    <!-- Postit Lead Kanban View  -->
-    <record model="ir.ui.view" id="prisme_postit_kanban_view">
-        <field name="name">Postit - Leads Kanban</field>
-        <field name="model">prisme.postit</field>
-        <field name="arch" type="xml">
-	 <kanban default_group_by="state">
-                  <field name="name"/>
-                  <field name="state" groups="base.group_no_one"/>
-                  <templates>
-                    <t t-name="kanban-box">
-                     <div t-attf-class="oe_kanban_color_#{kanban_getcolor(color)} oe_kanban_card oe_kanban_global_click">
-		   <field name="name"/> <field name="date_end"/>
-                         <div class="oe_module_vignette">
-                           <div class="oe_module_desc">
-		   	<field name="partner_id"/>
-                             <p class="oe_module_name">
-			   <field name="assigned_to"/>
-                             </p>
-                           </div>
-                         </div>
-                      </div>
-                    </t>
-                  </templates>
-                </kanban>
-        </field>
-    </record>
-
-
-
-    <!-- Postit Tree View -->
+    <!-- Postit Tag Tree View -->
     <record model="ir.ui.view" id="view_prisme_postit_tree">
       <field name="name">prisme.postit.tree</field>
       <field name="model">prisme.postit</field>
@@ -100,34 +67,14 @@
         <tree string="Postit">
           <field name="assigned_to"/>
           <field name="priority"/>
-          <field name="tags"/>
           <field name="state"/>
+          <field name="tags"/>
           <field name="name"/>
           <field name="partner_id"/>
           <field name="date_end"/>
           <field name="assigned_by"/>
         </tree>
       </field>
-    </record>
-
-    <record model="ir.ui.view" id="view_prisme_postit_filter">
-        <field name="name">prisme.postit.select</field>
-        <field name="model">prisme.postit</field>
-        <field name="arch" type="xml">
-            <search string="Search Postit">
-                <field name="name" string="Postit"/>
-                <filter icon="terp-dolar_ok!" string="Termine" domain="[('state','=','done')]" help="Post It done"/>
-                <filter icon="terp-dolar_ok!" string="En cours" domain="[('state','=','in_process')]" help="Post It in process"/>
-                <separator/>
-                <group expand="0" string="Group By...">
-                    <filter string="State" icon="terp-personal" domain="[]" context="{'group_by':'state'}"/>
-                    <filter string="Assigned to" icon="terp-personal" domain="[]" context="{'group_by':'assigned_to'}"/>
-                    <filter string="Assigned by" icon="terp-personal" domain="[]" context="{'group_by':'assigned_by'}"/>
-                    <filter string="Tags" icon="terp-personal" domain="[]" context="{'group_by':'tags'}"/>
-                    <filter string="Client" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
-                </group>
-            </search>
-        </field>
     </record>
 
 <!-- prisme postit Tag Form View -->
@@ -146,7 +93,7 @@
 
 
 
-        <!-- prisme postit Tag Tree View -->
+        <!-- note Stage Tree View -->
     <record model="ir.ui.view" id="view_prisme_postit_tag_tree">
       <field name="name">prisme.postit.tag.tree</field>
       <field name="model">prisme.postit.tag</field>
@@ -164,12 +111,8 @@
     <record model="ir.actions.act_window" id="action_prisme_postit">
         <field name="name">Postit</field>
         <field name="res_model">prisme.postit</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form,kanban</field>
-        <field name="search_view_id" ref="view_prisme_postit_filter"/>
-        <field name="context">{'search_default_Current': 1}</field>
+        <field name="view_mode">tree,form</field>
     </record>
-
 
         <!-- Prisme postit tag -->
     <record model="ir.actions.act_window" id="action_prisme_postit_tag">
@@ -210,7 +153,6 @@
         <field name="name">Sunday</field>
         <field name="nbr">6</field>
     </record>
-
 
   </data>
 </openerp>

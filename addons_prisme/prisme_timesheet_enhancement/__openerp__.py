@@ -19,8 +19,8 @@ www.prisme.ch
 'depends': [
         'hr_timesheet',
         'hr_timesheet_sheet',
-        'hr_timesheet_invoice',        
-        ],
+        'hr_timesheet_invoice',
+		'report_webkit'],
 'init_xml': [],
     'update_xml': [
         'view_hr_timesheet_line.xml',
@@ -33,4 +33,5 @@ www.prisme.ch
     'test': [],
     'installable': True,
     'active': False,
+	'application': True,
 }
