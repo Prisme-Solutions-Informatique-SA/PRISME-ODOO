@@ -49,16 +49,16 @@ class AccountAgedTrialBalance(orm.TransientModel):
             return fyear_ids[0]
 
     _columns = {
-        'filter': fields.selection(
-            [('filter_period', 'Periods')],
-            "Filter by",
-            required=True),
+      #  'filter': fields.selection(
+      #      [('filter_period', 'Periods')],
+      #      "Filter by",
+      #      required=True),
         'fiscalyear_id': fields.many2one(
             'account.fiscalyear',
             'Fiscal Year',
-            required=True),
+            required=False),
         'period_to': fields.many2one('account.period', 'End Period',
-                                     required=True),
+                                     required=False),
     }
 
     _defaults = {

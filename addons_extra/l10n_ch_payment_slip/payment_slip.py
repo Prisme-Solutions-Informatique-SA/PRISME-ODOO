@@ -64,9 +64,13 @@ class PaymentSlip(models.Model):
     and revalidate the related invoice
     """
     _fill_color = (0, 0, 0)
-    _default_font_size = 11
+    _default_font_size = 8
     _default_scan_font_size = 11
-    _default_amount_font_size = 16
+    _default_amount_font_size = 11
+    
+    _default_max_width = 34
+    _right_add_max_width = 50
+    
     _compile_get_ref = re.compile(r'[^0-9]')
     _compile_check_bvr = re.compile(r'[0-9][0-9]-[0-9]{3,6}-[0-9]')
 
@@ -417,7 +421,7 @@ class PaymentSlip(models.Model):
         :return: a :py:class:`FontMeta` with font name and size
         :rtype: :py:class:`FontMeta`
         """
-        font_identifier = 'ocrb_font'
+        font_identifier = 'Helvetica'
         return FontMeta(name=font_identifier,
                         size=self._default_font_size)
 
@@ -428,7 +432,7 @@ class PaymentSlip(models.Model):
         :return: a :py:class:`FontMeta` with font name and size
         :rtype: :py:class:`FontMeta`
         """
-        font_identifier = 'ocrb_font'
+        font_identifier = 'Helvetica'
         return FontMeta(name=font_identifier,
                         size=self._default_amount_font_size)
 
@@ -451,6 +455,26 @@ class PaymentSlip(models.Model):
         return FontMeta(name=font_identifier,
                         size=size)
 
+        
+    @api.model  
+    def _get_ref_text_font(self):
+        """Register a :py:class:`reportlab.pdfbase.ttfonts.TTFont`
+        for scan line
+
+        :param print_settings: layouts print setting
+        :type print_settings: :py:class:`PaymentSlipSettings` or subclass
+
+        :return: a :py:class:`FontMeta` with font name and size
+        :rtype: :py:class:`FontMeta`
+        """
+        font_identifier = 'Helvetica'
+        # pdfmetrics.registerFont(TTFont(font_identifier,
+        #                                self.font_absolute_path()))
+        size = 11
+        return FontMeta(name=font_identifier,
+                        size=size)
+
+    
     @api.model
     def _draw_address(self, canvas, print_settings, initial_position, font,
                       com_partner):
@@ -473,19 +497,36 @@ class PaymentSlip(models.Model):
 
         """
         x, y = initial_position
+        
+        """ corrections for right address """
+        max_width = self._default_max_width
+        if x > 4:
+            max_width = self._right_add_max_width
+        
         x += print_settings.bvr_add_horz * inch
         y += print_settings.bvr_add_vert * inch
         text = canvas.beginText()
         text.setTextOrigin(x, y)
         text.setFont(font.name, font.size)
-        text.textOut(com_partner.name)
+        
+        partner_name = textwrap.fill(com_partner.name, max_width)
+        partner_name_lines = partner_name.split("\n")
+        
+        text.textOut(partner_name_lines.pop(0))
         text.moveCursor(0.0, font.size)
+        
+        for line in partner_name_lines:
+            if not line:
+                continue
+            text.textLine(line)
+        
+
         for line in com_partner.contact_address.split("\n"):
             if not line:
                 continue
             text.textLine(line)
         canvas.drawText(text)
-
+    
     @api.multi
     def _draw_description_line(self, canvas, print_settings, initial_position,
                                font):
@@ -548,7 +589,7 @@ class PaymentSlip(models.Model):
         text = canvas.beginText()
         text.setTextOrigin(x, y)
         text.setFont(font.name, font.size)
-        bank_name = textwrap.fill(bank.name, 26)
+        bank_name = textwrap.fill(bank.name, self._default_max_width)
         lines = bank_name.split("\n")
         text.textOut(lines.pop(0))
         text.moveCursor(0.0, font.size)
@@ -556,6 +597,7 @@ class PaymentSlip(models.Model):
             if not line:
                 continue
             text.textLine(line)
+        text.textLine(bank.zip+" "+bank.city)
         canvas.drawText(text)
 
     @api.model
@@ -672,9 +714,9 @@ class PaymentSlip(models.Model):
             width = canvas.stringWidth(car, font.name, font.size)
             if indice:
                 # some font type return non numerical
-                x -= float(width) / 2.0
+                x -= float(width) / 1.2
             canvas.drawString(x, y, car)
-            x -= 0.06 * inch + float(width) / 2.0
+            x -= 0.06 * inch + float(width) / 1.2
             indice += 1
 
     @api.model
@@ -767,6 +809,15 @@ class PaymentSlip(models.Model):
         invoice = self.move_line_id.invoice
         scan_font = self._get_scan_line_text_font(company)
         bank_acc = self.move_line_id.invoice.partner_bank_id
+        
+        
+        x_amount_cor = -0.25
+        y_amount_cor = 0.02 
+        y_bank_account_cor = 0.05
+        y_ref_cor = 0.00
+        
+        ref_font = self._get_ref_text_font()
+        
         if a4:
             canvas_size = (595.27, 841.89)
         else:
@@ -807,16 +858,16 @@ class PaymentSlip(models.Model):
                                default_font, com_partner)
             num_car, frac_car = ("%.2f" % self.amount_total).split('.')
             self._draw_amount(canvas, print_settings,
-                              (1.48 * inch, 2.0 * inch),
+                              ((1.48+x_amount_cor) * inch, (2.0+y_amount_cor) * inch),
                               amount_font, num_car)
             self._draw_amount(canvas, print_settings,
-                              (2.14 * inch, 2.0 * inch),
+                              ((2.14+x_amount_cor) * inch, (2.0+y_amount_cor) * inch),
                               amount_font, frac_car)
             self._draw_amount(canvas, print_settings,
-                              (3.88 * inch, 2.0 * inch),
+                              ((3.88+x_amount_cor) * inch, (2.0+y_amount_cor) * inch),
                               amount_font, num_car)
             self._draw_amount(canvas, print_settings,
-                              (4.50 * inch, 2.0 * inch),
+                              ((4.50+x_amount_cor) * inch, (2.0+y_amount_cor) * inch),
                               amount_font, frac_car)
             if invoice.partner_bank_id.print_bank:
                 self._draw_bank(canvas,
@@ -832,24 +883,24 @@ class PaymentSlip(models.Model):
             if invoice.partner_bank_id.print_account:
                 self._draw_bank_account(canvas,
                                         print_settings,
-                                        (1 * inch, 2.35 * inch),
+                                        (1 * inch, (2.35+y_bank_account_cor) * inch),
                                         default_font,
                                         bank_acc.get_account_number())
                 self._draw_bank_account(canvas,
                                         print_settings,
-                                        (3.4 * inch, 2.35 * inch),
+                                        (3.4 * inch, (2.35+y_bank_account_cor) * inch),
                                         default_font,
                                         bank_acc.get_account_number())
 
             self._draw_ref(canvas,
                            print_settings,
-                           (4.9 * inch, 2.70 * inch),
-                           default_font,
+                           (4.9 * inch, (2.70+y_ref_cor) * inch),
+                           ref_font,
                            self.reference)
             self._draw_recipe_ref(canvas,
                                   print_settings,
                                   (0.05 * inch, 1.6 * inch),
-                                  small_font,
+                                  default_font,
                                   self.reference)
             self._draw_scan_line(canvas,
                                  print_settings,

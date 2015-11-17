@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <report string="Report on reports"
             id="webkit_demo_report"
             model="ir.actions.report.xml"

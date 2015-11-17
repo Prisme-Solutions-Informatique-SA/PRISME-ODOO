@@ -43,7 +43,7 @@
             <attribute name="on_change">onchange_fiscalyear(fiscalyear_id, period_to, date_to, until_date)</attribute>
           </field>
           <field name="filter" position="attributes">
-            <attribute name="invisible">True</attribute>
+            <attribute name="invisible">False</attribute>
           </field>
           <field name="period_from" position="attributes">
             <attribute name="invisible">True</attribute>
