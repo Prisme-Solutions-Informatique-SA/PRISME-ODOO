@@ -45,6 +45,7 @@ Temporary Items
 # old file
 
 *_old
+!ckeditor_old
 
 # swap file
 
