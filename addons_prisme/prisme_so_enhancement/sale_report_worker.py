@@ -3,6 +3,7 @@ from dateutil.relativedelta import relativedelta
 from openerp import tools
 from openerp.osv import fields, osv, expression
 import openerp.addons.decimal_precision as dp
+import pdb
 
 class sale_report(osv.osv):
     _name = 'sale.report'
@@ -25,16 +26,37 @@ class sale_report(osv.osv):
                 'margin_total': fields.float('Total Margin', digits=(16, 2)),
                 }
 
-   
+    def _select2(self):
+        select_str = super(sale_report, self)._select() + """,
+                    sum((l.product_uom_qty * l.price_unit) - l.price_subtotal) as discount_total,
+                    sum(l.price_subtotal) as net_price_total,
+                    sum(l.product_uom_qty * l.purchase_price) as purchase_total, 
+                    sum(l.margin) as margin_total,
+                    s.name as so_name
+        """
+
+        return select_str
+
+
     def _select(self):
-        return  super(sale_report, self)._select() + """, sum((l.product_uom_qty * l.price_unit) - l.price_subtotal) as discount_total, 
-        sum(l.price_subtotal) as net_price_total, 
-        sum(l.product_uom_qty * l.purchase_price) as purchase_total, 
-        sum(l.margin) as margin_total,
-        s.name as so_name"""
+        select_str = super(sale_report, self)._select() + """,
+                    sum((l.product_uom_qty * l.price_unit) - l.price_subtotal) as discount_total,
+                    sum(l.price_subtotal) as net_price_total,
+                    sum(l.product_uom_qty * l.purchase_price) as purchase_total, 
+                    sum(l.margin) as margin_total,
+                    s.name as so_name
+        """
+        return select_str.replace("""sum(l.product_uom_qty * l.price_unit * (100.0-l.discount) / 100.0) as price_total,""", 
+
+            """
+            l.discount_type,
+            CASE WHEN l.discount_type = 'percent' THEN sum(l.product_uom_qty * l.price_unit * (100.0 - l.discount) / 100.0) 
+                WHEN l.discount_type = 'amount' THEN sum((l.product_uom_qty * l.price_unit) - l.discount) 
+                ELSE sum(l.product_uom_qty * l.price_unit)
+            END AS price_total,""")
 
     def _group_by(self):
-        return super(sale_report, self)._group_by() + ", s.name"
+        return super(sale_report, self)._group_by() + ", s.name,l.discount_type"
 
 
 sale_report()

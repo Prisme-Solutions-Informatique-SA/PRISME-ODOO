@@ -145,7 +145,7 @@
           <para style="prisme_1">VAT: [[ (o.company_id.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
         <td>
-<!--<para style="main_address">[[ (o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name) or '' ]] </para>-->
+<para style="main_address">[[ (o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name) or '' ]] </para>
 <para style="main_address">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
           <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]] </para>
           <!--

@@ -35,6 +35,7 @@
 			<field name="arch" type="xml">
 				<field name="name" position="replace">
 					<field name="name"/>
+                                        <field name="supplier_invoice_number"/>
 			    </field>
 			    <field name="reference" position="replace"/>
 			</field>

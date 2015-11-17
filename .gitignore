@@ -45,3 +45,7 @@ Temporary Items
 # old file
 
 *_old
+
+# swap file
+
+*.swp

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="product_product_search_prisme">
+			<field name="name">product.product.search.prisme.analytic</field>
+			<field name="model">product.product</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="product.product_search_form_view" />
+			<field name="arch" type="xml">
+				<field name="categ_id" position="replace">
+					<field name="analytic_distribution" widget="selection" />
+					<field groups="base.group_extended" name="categ_id" operator="child_of"
+						widget="selection" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="product_product_form_prisme_analytic">
+			<field name="name">product.product.form.prisme.analytic</field>
+			<field name="model">product.product</field>
+			<field name="type">form</field>
+			<field name="inherit_id"
+				ref="prisme_accounting_enhancement.product_product_form_prisme" />
+			<field name="arch" type="xml">
+				<field name="sale_analytic_account_id" position="replace">
+					<field name="analytic_distribution" colspan="4" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -117,7 +117,7 @@ class sale_order_line(osv.Model):
         
         # Method overriden to use the method in this class
         'margin': fields.function(_product_margin, method=True, string='Margin', store=True),
-		'shipped': fields.boolean('Shipped'),
+        'shipped': fields.boolean('Shipped'),
         
         #Make field 'dely' a optional
         'delay' : fields.float('delay', readonly=True, states={'draft': [('readonly', False)]})
@@ -130,13 +130,6 @@ class sale_order_line(osv.Model):
     def _check_refusal_reason(self, cr, uid, ids):
         ok = True
         for line in self.browse(cr, uid, ids):
-            # TODO Demander a David s'il a une idee d'ou ca vient:
-            # Si on enleve ces 2 lignes, quand on confirme SO avec des lignes 
-            # non valides (refusee sans raison), le programme annule les
-            # modifications faites depuis la derniers sauvegarde, puis confirme
-            # quand meme la SO
-            if line.state == 'draft':
-                continue
             if line.refused:
                 if not line.refusal_reason:
                     ok = False

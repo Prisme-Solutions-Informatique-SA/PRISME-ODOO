@@ -89,7 +89,7 @@ class sale_order_prisme(osv.osv):
                 'quotation_validity': fields.date('Quotation Validity',
                     readonly=True,
                     states={'draft': [('readonly', False)],
-   				'sent': [('readonly', False)]
+                'sent': [('readonly', False)]
 }),
                 'quotation_comment': fields.char('Quotation Comment', 255,
                     translate=True, readonly=False,
@@ -123,7 +123,7 @@ class sale_order_prisme(osv.osv):
                         'sale.order.line': (_get_order, ['price_unit', 'tax_id', 'discount', 'product_uom_qty'], 10),
                     },
                     multi='sums', help="The total amount."),
-				'shipped': fields.boolean("Shipped"),
+                'shipped': fields.boolean("Shipped"),
                 'order_line': fields.one2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, 
                     states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'manual': [('readonly', False)]}, copy=True),
 
@@ -314,85 +314,150 @@ class sale_order_prisme(osv.osv):
         date_planned = (date_planned - timedelta(days=order.company_id.security_lead)).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         return date_planned
     
+    
     # Method copied the 28.08.2012 from OpenERP 6.1. addons/sale/sale.py
     # (sale_order._create_pickings_and_procurement). 
     # Contains modifications formerly made on the action_ship_create method.
     # Modified the 12.07.2011 by Damien Raemy to manage the refused line
-    def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
-        """Create the required procurements to supply sale order lines, also connecting
+    #
+    # OLD METHOD USE IN ODOO 7.0 (see action_ship_create for odoo 8.0)
+    # def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
+        # """Create the required procurements to supply sale order lines, also connecting
+        # the procurements to appropriate stock moves in order to bring the goods to the
+        # sale order's requested location.
+
+        # If ``picking_id`` is provided, the stock moves will be added to it, otherwise
+        # a standard outgoing picking will be created to wrap the stock moves, as returned
+        # by :meth:`~._prepare_order_picking`.
+
+        # Modules that wish to customize the procurements or partition the stock moves over
+        # multiple stock pickings may override this method and call ``super()`` with
+        # different subsets of ``order_lines`` and/or preset ``picking_id`` values.
+
+        # :param browse_record order: sale order to which the order lines belong
+        # :param list(browse_record) order_lines: sale order line records to procure
+        # :param int picking_id: optional ID of a stock picking to which the created stock moves
+                               # will be added. A new picking will be created if ommitted.
+        # :return: True
+        # """
+        # move_obj = self.pool.get('stock.move')
+        # picking_obj = self.pool.get('stock.picking')
+        # procurement_obj = self.pool.get('procurement.order')
+        # proc_ids = []
+
+        # for line in order_lines:
+            # if line.state == 'done':
+                # continue
+            
+            # #Modification begin
+            # # Modification no       1
+            # # Author(s):            Damien Raemy
+            # # Date:                 12.07.2011
+            # # Last modification:    12.07.2011
+            # # Description:          Don't treat a line if it is refused
+            # # But:                  Manage the refused boolean in the lines
+            
+            # if line.refused:
+                # continue
+            
+            # # Modification 1 end
+
+            # date_planned = self._get_date_planned(cr, uid, order, line, order.date_order, context=context)
+
+            # if line.product_id:
+                # if line.product_id.product_tmpl_id.type in ('product', 'consu'):
+                    # if not picking_id:
+                        # picking_id = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                    # move_id = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, context=context))
+                # else:
+                    # # a service has no stock move
+                    # move_id = False
+
+                # proc_id = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id, date_planned, context=context))
+                # proc_ids.append(proc_id)
+                # line.write({'procurement_id': proc_id})
+                # self.ship_recreate(cr, uid, order, line, move_id, proc_id)
+
+        # wf_service = netsvc.LocalService("workflow")
+        # if picking_id:
+            # wf_service.trg_validate(uid, 'stock.picking', picking_id, 'button_confirm', cr)
+
+        # for proc_id in proc_ids:
+            # wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
+
+        # val = {}
+        # if order.state == 'shipping_except':
+            # val['state'] = 'progress'
+            # val['shipped'] = False
+
+            # if (order.order_policy == 'manual'):
+                # for line in order.order_line:
+                    # if (not line.invoiced) and (line.state not in ('cancel', 'draft')):
+                        # val['state'] = 'manual'
+                        # break
+        # order.write(val)
+        # return True
+        
+    # Method copied the 17.11.2015 from Odoo 8.0 addons/sale/sale.py
+    # Modified to manage the refused line
+    def action_ship_create(self, cr, uid, ids, context=None):
+        """Create the required procurements to supply sales order lines, also connecting
         the procurements to appropriate stock moves in order to bring the goods to the
-        sale order's requested location.
+        sales order's requested location.
 
-        If ``picking_id`` is provided, the stock moves will be added to it, otherwise
-        a standard outgoing picking will be created to wrap the stock moves, as returned
-        by :meth:`~._prepare_order_picking`.
-
-        Modules that wish to customize the procurements or partition the stock moves over
-        multiple stock pickings may override this method and call ``super()`` with
-        different subsets of ``order_lines`` and/or preset ``picking_id`` values.
-
-        :param browse_record order: sale order to which the order lines belong
-        :param list(browse_record) order_lines: sale order line records to procure
-        :param int picking_id: optional ID of a stock picking to which the created stock moves
-                               will be added. A new picking will be created if ommitted.
         :return: True
         """
-        move_obj = self.pool.get('stock.move')
-        picking_obj = self.pool.get('stock.picking')
+        context = context or {}
+        context['lang'] = self.pool['res.users'].browse(cr, uid, uid).lang
         procurement_obj = self.pool.get('procurement.order')
-        proc_ids = []
+        sale_line_obj = self.pool.get('sale.order.line')
+        for order in self.browse(cr, uid, ids, context=context):
+            proc_ids = []
+            vals = self._prepare_procurement_group(cr, uid, order, context=context)
+            if not order.procurement_group_id:
+                group_id = self.pool.get("procurement.group").create(cr, uid, vals, context=context)
+                order.write({'procurement_group_id': group_id})
 
-        for line in order_lines:
-            if line.state == 'done':
-                continue
+            for line in order.order_line:
             
-            #Modification begin
-            # Modification no       1
-            # Author(s):            Damien Raemy
-            # Date:                 12.07.2011
-            # Last modification:    12.07.2011
-            # Description:          Don't treat a line if it is refused
-            # But:                  Manage the refused boolean in the lines
+                # Modification begin
+                if line.refused:
+                    continue
+                # Modification end
             
-            if line.refused:
-                continue
-            
-            # Modification 1 end
+                if line.state == 'cancel':
+                    continue
+                #Try to fix exception procurement (possible when after a shipping exception the user choose to recreate)
+                if line.procurement_ids:
+                    #first check them to see if they are in exception or not (one of the related moves is cancelled)
+                    procurement_obj.check(cr, uid, [x.id for x in line.procurement_ids if x.state not in ['cancel', 'done']])
+                    line.refresh()
+                    #run again procurement that are in exception in order to trigger another move
+                    except_proc_ids = [x.id for x in line.procurement_ids if x.state in ('exception', 'cancel')]
+                    procurement_obj.reset_to_confirmed(cr, uid, except_proc_ids, context=context)
+                    proc_ids += except_proc_ids
+                elif sale_line_obj.need_procurement(cr, uid, [line.id], context=context):
+                    if (line.state == 'done') or not line.product_id:
+                        continue
+                    vals = self._prepare_order_line_procurement(cr, uid, order, line, group_id=order.procurement_group_id.id, context=context)
+                    ctx = context.copy()
+                    ctx['procurement_autorun_defer'] = True
+                    proc_id = procurement_obj.create(cr, uid, vals, context=ctx)
+                    proc_ids.append(proc_id)
+            #Confirm procurement order such that rules will be applied on it
+            #note that the workflow normally ensure proc_ids isn't an empty list
+            procurement_obj.run(cr, uid, proc_ids, context=context)
 
-            date_planned = self._get_date_planned(cr, uid, order, line, order.date_order, context=context)
+            #if shipping was in exception and the user choose to recreate the delivery order, write the new status of SO
+            if order.state == 'shipping_except':
+                val = {'state': 'progress', 'shipped': False}
 
-            if line.product_id:
-                if line.product_id.product_tmpl_id.type in ('product', 'consu'):
-                    if not picking_id:
-                        picking_id = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                    move_id = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, context=context))
-                else:
-                    # a service has no stock move
-                    move_id = False
-
-                proc_id = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id, date_planned, context=context))
-                proc_ids.append(proc_id)
-                line.write({'procurement_id': proc_id})
-                self.ship_recreate(cr, uid, order, line, move_id, proc_id)
-
-        wf_service = netsvc.LocalService("workflow")
-        if picking_id:
-            wf_service.trg_validate(uid, 'stock.picking', picking_id, 'button_confirm', cr)
-
-        for proc_id in proc_ids:
-            wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
-
-        val = {}
-        if order.state == 'shipping_except':
-            val['state'] = 'progress'
-            val['shipped'] = False
-
-            if (order.order_policy == 'manual'):
-                for line in order.order_line:
-                    if (not line.invoiced) and (line.state not in ('cancel', 'draft')):
-                        val['state'] = 'manual'
-                        break
-        order.write(val)
+                if (order.order_policy == 'manual'):
+                    for line in order.order_line:
+                        if (not line.invoiced) and (line.state not in ('cancel', 'draft')):
+                            val['state'] = 'manual'
+                            break
+                order.write(val)
         return True
 
 sale_order_prisme()
