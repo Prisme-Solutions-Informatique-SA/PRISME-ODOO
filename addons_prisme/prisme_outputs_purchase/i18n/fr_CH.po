@@ -58,6 +58,12 @@ msgstr "Commande d'achat"
 #. module: prisme_outputs_purchase
 #: report:purchase.order.email.prisme:0
 #: report:purchase.order.paper.prisme:0
+msgid "Requests for Quotation"
+msgstr "Devis"
+
+#. module: prisme_outputs_purchase
+#: report:purchase.order.email.prisme:0
+#: report:purchase.order.paper.prisme:0
 msgid "VAT"
 msgstr "TVA"
 

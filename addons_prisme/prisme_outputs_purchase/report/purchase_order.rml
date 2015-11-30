@@ -157,7 +157,8 @@
     <para style="white_space">
       <font color="white"> </font>
     </para>
-    <para style="terp_header">Purchase Order N° [[ o.name ]]</para>
+    <para style="terp_header">[[o.state=='draft' and removeParentNode('para') ]] Purchase Order N° [[ o.name ]]</para>
+	<para style="terp_header">[[o.state!='draft' and removeParentNode('para') ]] Requests for Quotation [[ o.name ]]</para>
     <para style="white_space">
       <font color="white"> </font>
     </para>
