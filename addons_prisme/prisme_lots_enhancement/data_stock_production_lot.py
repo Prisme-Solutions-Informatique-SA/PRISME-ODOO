@@ -36,6 +36,7 @@ class stock_production_lot(osv.osv):
                 # depuis le lot de production.
                 'warranties_ids': fields.one2many('prisme.warranty.warranty',
                                     'lot_id', 'Warranties'),
+                "end_life_date": fields.date("Delivery Date"),
     }
     
     def onchange_product(self, cr, uid, ids, product_id):

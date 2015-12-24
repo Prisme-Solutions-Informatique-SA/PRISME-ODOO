@@ -7,6 +7,11 @@
 			<field name="type">search</field>
 			<field name="inherit_id" ref="stock.search_product_lot_filter" />
 			<field name="arch" type="xml">
+				<!-- set new filter to display only available S/N, available S/N = SN:end_life_date > today's date -->
+				<search>
+					<filter icon="terp-dialog-close" string="Available" name="available" domain="['|',('end_life_date','=',False),('end_life_date','&gt;=',datetime.datetime.now())]" help="lots whose end life date is valid"/>
+                    <separator/>
+				</search>
 				<!--
 				<field name="prefix" position="replace" />
 				<field name="ref" position="replace" />
@@ -20,6 +25,7 @@
 				</field>
 				<xpath expr="/search/group/filter[@string='Product']"
 					position="before">
+
 					<filter string="Customer" icon="terp-partner" context="{'group_by':'customer'}" />
 				</xpath>
 			</field>
@@ -82,6 +88,8 @@
 							<field name="delivery_date" />
 							<separator string="Remarks" colspan="2" />
 							<field name="remarks" colspan="2" nolabel="1" />
+							<separator string="End life date" colspan="2" />
+							<field name="end_life_date" colspan="2" nolabel="1" />
 						</group>
 					</page>
 					<page string="Warranties">
@@ -128,5 +136,16 @@
 				</xpath>
 			</field>
 		</record>
+		
+		<!-- set filter 'available' by default -->
+		<record model="ir.actions.act_window" id="stock.action_production_lot_form">
+			<field name="name">Serial Numbers Prisme</field>
+			<field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.production.lot</field>
+			<field name="inherit_id" ref="stock.action_production_lot_form" />
+			<field name="context">{"search_default_available":1}</field>
+		</record>
+		
+		
 	</data>
 </openerp>
