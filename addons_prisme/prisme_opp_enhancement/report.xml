@@ -19,7 +19,7 @@
                         <p><b>Opportunity</b><br/>
                         <span t-field="doc.name"/></p>
                         <p><b>Compagny</b><br/>
-                        <span t-field="doc.partner_id.name"/></p>
+                        <span t-field="doc.partner_id.parent_id.name"/></p>
                         <p><b>Contact</b><br/>
                         <span t-field="doc.partner_id.name"/><br/>
                         <span t-field="doc.email_from"/><br/>
