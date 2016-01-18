@@ -71,9 +71,6 @@ class stock_production_lot(osv.osv):
             for lot in lots:
                 if (lot):
                     for w in lot.warranties_ids:
-                        #toprint = "Lot id:"+ + "set new customer : "+ (lot.customer.name)
-                        print (w.id)
-                        print (lot.customer.name)
                         self.pool.get('prisme.warranty.warranty').write(cr, uid, [w.id], {'partner': lot.customer.id})
         return res
 
