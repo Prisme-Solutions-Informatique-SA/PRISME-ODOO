@@ -59,7 +59,7 @@ table.gridtable td {
 		<td>${ t[5] }</td>
 		<td>${ t[6] }</td>
 		<td>${ t[7] }</td>
-		<td>${ t[6]-(t[8]*t[6]/100) }</td>
+		<td>${ t[6]-((t[8]*t[6])/100) }</td>
 		</tr>
 	<% endfor %>
 	
