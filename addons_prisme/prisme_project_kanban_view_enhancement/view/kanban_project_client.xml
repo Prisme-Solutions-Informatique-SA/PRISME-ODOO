@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="project.view_project_kanban"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@class='text-center oe_kanban_alias']" position="after">
-                    <p><field name="client_id"/></p>
+                    <p> <field name="client_id"/> - <field name="code"/></p>
                 </xpath>
             </field>
         </record>
