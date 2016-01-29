@@ -1,0 +1,5 @@
+<openerp>
+  <data>
+    <function model="prisme.shortage.all" name="createSQL"/>
+  </data>
+</openerp>
