@@ -6,16 +6,21 @@ class product_product_stock_rotation(osv.osv):
     _inherit = 'product.product'
     
     def _get_stock_at_date(self, cr, uid, product_id, date_str, context):
-        try:
-            date = datetime.strptime(date_str, '%Y-%m-%d').date()   
-            datetime_from = datetime(date.year, date.month, date.day, 0, 0, 0)
-            datetime_to = datetime(date.year, date.month, date.day, 23, 59, 59)
-            context['from_date'] = str(datetime_from)
-            context['to_date'] = str(datetime_to)
-            product = self.browse(cr, uid, product_id, context=context)
-            return product.qty_available
-        except:   #Catch error in duplication function because dat_str is not available
-            return 0
+        
+        date = datetime.strptime(date_str, '%Y-%m-%d').date()   
+        datetime_max = datetime(date.year, date.month, date.day, 23, 59, 59)
+        
+        obj_stock_history = self.pool.get('stock.history')
+        stock_history_ids = obj_stock_history.search(cr, uid,
+                            [('date', '<=', str(datetime_max)),
+                             ('product_id', '=', product_id),
+                                ])
+        quantity = 0.0
+        for stock_history in obj_stock_history.browse(cr, uid, stock_history_ids):
+            quantity += stock_history.quantity
+        return quantity
+        
+
     
     def _get_average_stock(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
@@ -46,8 +51,8 @@ class product_product_stock_rotation(osv.osv):
                                             [('date', '>', str(period_begin)),
                                              ('date', '<', str(period_end)),
                                              ('product_id.id', '=', product.id),
-                                             ('picking_id.type', '=', 'out'),
-                                             ('picking_id.state', '=', 'done'),
+                                             ('picking_type_id.code', '=', 'outgoing'),
+                                             ('state', '=', 'done'),
                                              ])
                 quantity = 0.0
                 for stock_move in obj_stock_move.browse(cr, uid, stock_move_ids):
@@ -69,6 +74,35 @@ class product_product_stock_rotation(osv.osv):
                 res[product.id] = 0.0
         return res
     
+    def _get_analytic_distribution(self, cr, uid, ids, field_name, arg, context=None):
+        
+        res = {}
+        
+        for product in self.browse(cr, uid, ids, context=context):
+        
+            obj_account_invoice_line = self.pool.get('account.invoice.line')
+            account_invoice_line_ids = obj_account_invoice_line.search(cr, uid,
+                                            [('product_id.id', '=', product.id),
+                                            ])
+            
+            res[product.id] = []
+            res[product.id].extend([account_invoice_line.analytics_id.id for account_invoice_line in obj_account_invoice_line.browse(cr, uid, account_invoice_line_ids)])
+            
+        
+        return res
+    
+    def _search_analytic_distribution_name(self, cr, uid, model_again, field_name, criterion, context=None):
+        
+        ids = []
+        obj_account_invoice_line = self.pool.get('account.invoice.line')
+        account_invoice_line_ids = obj_account_invoice_line.search(cr, uid,
+                                            [('analytics_id.name', 'ilike', criterion[0][2]),
+                                            ])
+        ids.extend([account_invoice_line.product_id.id for account_invoice_line in obj_account_invoice_line.browse(cr, uid, account_invoice_line_ids)])
+            
+        
+        return [('id','in', ids)]
+    
     _columns = {
                 'average_stock': fields.function(_get_average_stock,
                     type='float', digits=(16, 2), string='Average Stock',
@@ -79,6 +113,9 @@ class product_product_stock_rotation(osv.osv):
                 'stock_rotation': fields.function(_compute_stock_rotation,
                     type='float', digits=(16, 8), string='Stock Rotation',
                     method=True),
+                'analytic_distribution': fields.function(_get_analytic_distribution,
+                    type='one2many', obj="account.analytic.plan.instance", string='Analytic distribution',
+                    method=True, fnct_search=_search_analytic_distribution_name),
                } 
     
 product_product_stock_rotation()
