@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
-                    <button class="oe_inline oe_stat_button" icon="fa-hourglass-end" string="Product shortage" name="action_view_product_shortage" type="object">
+                    <button class="oe_inline oe_stat_button" string="Product shortage" name="action_view_product_shortage" type="object">
                         
                     </button>
                 </xpath>
@@ -21,7 +21,7 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='buttons']" position="inside">
-                    <button class="oe_inline oe_stat_button" icon="fa-glass" string="Product shortage" name="action_view_product_shortage" type="object">
+                    <button class="oe_inline oe_stat_button" string="Product shortage" name="action_view_product_shortage" type="object">
                         
                     </button>
                 </xpath>
