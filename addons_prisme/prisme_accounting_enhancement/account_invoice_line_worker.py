@@ -91,8 +91,7 @@ class account_invoice_line_prisme(osv.osv):
                 price = line.price_unit
             # end
 
-            taxes = line.invoice_line_tax_id.compute_all(
-                (price * (1.0 - (line.discount or 0.0) / 100.0)),
+            taxes = line.invoice_line_tax_id.compute_all(price,
                 line.quantity, line.product_id, inv.partner_id)['taxes']
             for tax in taxes:
                 if inv.type in ('out_invoice', 'in_invoice'):
