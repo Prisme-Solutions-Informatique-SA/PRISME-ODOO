@@ -29,8 +29,8 @@ This module allows users to create their own postit inside OpenERP
 
 
 """,
-    'author': 'Prisme Solutions informatique SA',
-    'website': 'http://openerp.com',
+    'author': 'Prisme Solutions Informatique SA',
+    'website': 'https://www.prisme.ch',
     'summary': 'Managing tasks and reminders',
     'sequence': 9,
     'depends': [

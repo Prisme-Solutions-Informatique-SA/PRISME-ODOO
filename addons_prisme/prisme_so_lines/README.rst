@@ -1,4 +1,4 @@
-Account Invoice Line Currency
+Prisme Sale Order Lines
 =============================
 
 TODO: Add module description

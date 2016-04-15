@@ -4,7 +4,7 @@
     'name' : 'Prisme Knowledge Enhancement',
     'version' : 'v8',
     'depends' : ['web','pad', 'document_page', 'document', 'knowledge'],
-    'author' : 'Prisme Solution Informatique',
+    'author' : 'Prisme Solutions Informatique SA',
     'description' : 'Default editor for pages changed to CKEditor',
     'website' : 'http://www.prisme.ch',
     'installable' : True,

@@ -1,4 +1,4 @@
-Account Invoice Line Currency
+Prisme Project Kanban View Enhancement
 =============================
 
 TODO: Add module description
