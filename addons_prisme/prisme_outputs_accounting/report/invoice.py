@@ -1,4 +1,4 @@
-﻿from macpath import split
+﻿from os.path import split
 from datetime import datetime
 from openerp.report import report_sxw
 from openerp.osv import fields, osv, expression

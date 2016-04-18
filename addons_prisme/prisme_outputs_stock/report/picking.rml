@@ -297,10 +297,10 @@
       <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" style="Move_Line_Contect_Assign_State">
         <tr>
           <td>
-            <para style="terp_default_9">[[  move_lines.purchase_line_id.sequence or move_lines.sale_line_id.sequence or '']]</para>
+            <para style="terp_default_9">[[  move_lines.purchase_line_id.sequence or move_lines.procurement_id.sale_line_id.sequence or '']]</para>
           </td>
           <td>
-			<para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.sale_line_id.name or '' ]]</para>
+			<para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.procurement_id.sale_line_id.name or '' ]]</para>
           </td>
           <td>
             <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
@@ -320,10 +320,10 @@
       <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" style="Move_Line_Content_Other_State">
         <tr>
           <td>
-            <para style="terp_default_9">[[  move_lines.purchase_line_id.sequence or move_lines.sale_line_id.sequence or '']]</para>
+            <para style="terp_default_9">[[  move_lines.purchase_line_id.sequence or move_lines.procurement_id.sale_line_id.sequence or '']]</para>
           </td>
           <td>
-            <para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.sale_line_id.name or '' ]]</para>
+            <para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.procurement_id.sale_line_id.name or '' ]]</para>
           </td>
           <td>
             <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
@@ -343,10 +343,10 @@
       <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" style="Move_Line_Contect_Assign_State">
         <tr>
           <td>
-            <para style="terp_default_9">[[ move_lines.purchase_line_id.sequence or move_lines.sale_line_id.sequence or '']]</para>
+            <para style="terp_default_9">[[ move_lines.purchase_line_id.sequence or move_lines.procurement_id.sale_line_id.sequence or '']]</para>
           </td>
           <td>
-            <para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.sale_line_id.name or '' ]]</para>
+            <para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.procurement_id.sale_line_id.name or '' ]]</para>
           </td>
           <td>
             <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>

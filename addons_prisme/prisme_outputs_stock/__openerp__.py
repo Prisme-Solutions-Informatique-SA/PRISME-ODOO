@@ -22,6 +22,7 @@ For more informations:
 'website': 'http://www.prisme.ch',
 'depends': [
             'stock',
+            'sale_stock',
 ],
 'init_xml': [],
 'update_xml': [
