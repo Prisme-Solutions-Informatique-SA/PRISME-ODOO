@@ -36,7 +36,7 @@ class stock_picking_prisme(osv.osv):
                             # Mise a jour de la ligne de la facture (avec son
                             # ID) pour avoir le compte analytique correspondant
                             # au compte analytique du produit
-                            obj_line.write(cr, uid, line.id,\
+                            obj_line.write(cr, uid, ol.id,\
                                 {'account_analytic_id': prod_analytic_acc.id})                            
         # Discount type from sale order line to invoice line
         #obj_invoice_line = self.pool.get('account.invoice.line')

@@ -20,6 +20,7 @@ class account_invoice_line_prisme(osv.osv):
         taxes = self.invoice_line_tax_id.compute_all(price, self.quantity, product=self.product_id, partner=self.invoice_id.partner_id)
         self.price_subtotal = taxes['total']
         if self.invoice_id:
+            self.price_subtotal = round(self.price_subtotal / self.invoice_id.rounding_on_subtotal) * self.invoice_id.rounding_on_subtotal
             self.price_subtotal = self.invoice_id.currency_id.round(self.price_subtotal)      
     
     _columns = {
@@ -90,8 +91,7 @@ class account_invoice_line_prisme(osv.osv):
                 price = line.price_unit
             # end
 
-            taxes = line.invoice_line_tax_id.compute_all(
-                (price * (1.0 - (line.discount or 0.0) / 100.0)),
+            taxes = line.invoice_line_tax_id.compute_all(price,
                 line.quantity, line.product_id, inv.partner_id)['taxes']
             for tax in taxes:
                 if inv.type in ('out_invoice', 'in_invoice'):

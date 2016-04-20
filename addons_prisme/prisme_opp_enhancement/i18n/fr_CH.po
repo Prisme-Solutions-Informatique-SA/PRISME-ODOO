@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* prisme_timesheet_enhancement
+#	* prisme_opp_enhancement
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-12-07 09:40:03+0000\n"
-"PO-Revision-Date: 2010-12-07 09:40:03+0000\n"
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-20 09:06+0000\n"
+"PO-Revision-Date: 2015-11-20 09:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,81 +15,44 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: prisme_timesheet_enhancement
-#: view:account.analytic.line:0
-#: view:hr.analytic.timesheet:0
-msgid "Customer"
-msgstr "Client"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Compagny"
+msgstr "Société"
 
-#. module: prisme_timesheet_enhancement
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "XML non valide pour l'architecture de la vue"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Contact"
+msgstr "Contact"
 
-#. module: prisme_timesheet_enhancement
-#: field:hr.analytic.timesheet,time_end:0
-msgid "End"
-msgstr "Fin"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Description"
+msgstr "Description"
 
-#. module: prisme_timesheet_enhancement
-#: model:ir.model,name:prisme_timesheet_enhancement.model_hr_analytic_timesheet
-msgid "Timesheet Line"
-msgstr "Ligne de feuille de temps"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "History"
+msgstr "Historique"
 
-#. module: prisme_timesheet_enhancement
-#: view:hr.analytic.timesheet:0
-#: field:hr.analytic.timesheet,internal_description:0
-msgid "Internal Description"
-msgstr "Description Interne"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Next action"
+msgstr "Action suivante"
 
-#. module: prisme_timesheet_enhancement
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "Le nom de l'objet doit commencer par x_ et ne doit pas contenir de caractères spéciaux !"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Opportunity"
+msgstr "Opportunité"
 
-#. module: prisme_timesheet_enhancement
-#: model:ir.model,name:prisme_timesheet_enhancement.model_hr_timesheet_sheet_sheet
-msgid "Timesheet"
-msgstr "Feuille de temps"
+#. module: prisme_opp_enhancement
+#: model:ir.actions.report.xml,name:prisme_opp_enhancement.report_opp
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Opportunity Report"
+msgstr "Suivi d'opportunité"
 
-#. module: prisme_timesheet_enhancement
-#: view:hr.analytic.timesheet:0
-msgid "Month"
-msgstr "Mois"
-
-#. module: prisme_timesheet_enhancement
-#: field:hr_timesheet_sheet.sheet,period_hours:0
-msgid "Period Hours"
-msgstr "Heures de la période"
-
-#. module: prisme_timesheet_enhancement
-#: field:hr.analytic.timesheet,time_quantity:0
-#: field:hr.analytic.timesheet,working_date:0
-msgid "unknown"
-msgstr "inconnu"
-
-#. module: prisme_timesheet_enhancement
-#: model:ir.model,name:prisme_timesheet_enhancement.model_account_analytic_line
-msgid "Analytic Line"
-msgstr "Ligne Analytique"
-
-#. module: prisme_timesheet_enhancement
-#: field:account.analytic.line,account_partner:0
-msgid "Partner Id"
-msgstr "Id Partenaire"
-
-#. module: prisme_timesheet_enhancement
-#: field:hr.analytic.timesheet,time_beginning:0
-msgid "Beginning"
-msgstr "Début"
-
-#. module: prisme_timesheet_enhancement
-#: field:hr_timesheet_sheet.sheet,bonus_malus:0
-msgid "Bonus/malus"
-msgstr "Bonus/malus"
-
-#. module: prisme_timesheet_enhancement
-#: view:hr.analytic.timesheet:0
-msgid "This Month"
-msgstr "Ce Mois"
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Reference"
+msgstr "Référence"
 

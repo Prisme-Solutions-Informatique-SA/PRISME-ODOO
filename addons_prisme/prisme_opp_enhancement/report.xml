@@ -15,18 +15,18 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="report.external_layout">
                     <div class="page">
-                        <h1>Suivi d'opportunite</h1>
+                        <h1>Opportunity Report</h1>
                         <p><b>Opportunity</b><br/>
                         <span t-field="doc.name"/></p>
-                        <p><b>Societe</b><br/>
-                        <span t-field="doc.partner_id.name"/></p>
+                        <p><b>Compagny</b><br/>
+                        <span t-field="doc.partner_id.parent_id.name"/></p>
                         <p><b>Contact</b><br/>
                         <span t-field="doc.partner_id.name"/><br/>
                         <span t-field="doc.email_from"/><br/>
                         <span t-field="doc.phone"/></p>
                         <p><b>Description</b><br/>
                         <span t-field="doc.description"/></p>
-                        <p><b>Action suivante</b><br/>
+                        <p><b>Next action</b><br/>
                         <span t-field="doc.title_action"/><br/>
                         <span t-field="doc.date_action"/></p>
                         <p>
@@ -39,11 +39,11 @@
                         </t>
                         <hr/>
                         </p>
-                        <p><b>Historique</b></p>
+                        <p><b>History</b></p>
                         <ul style="padding-left: 10pt;">
                         <t t-foreach="doc.message_ids" t-as="mess">
                             <t t-if="mess.type != 'notification' ">
-                                <span t-field="mess.author_id.name"/> - <span t-field="mess.date" t-field-options='{"format": "DD.MM.YYYY"}'/><br/>
+                                <span t-field="mess.author_id.name"/> - <span t-field="mess.date" t-field-options='{"format": "dd.MM.YYYY"}'/><br/>
                                 <span t-field="mess.body"/>
                                 <hr/>
                             </t>
