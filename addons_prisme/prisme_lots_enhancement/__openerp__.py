@@ -27,7 +27,6 @@ For more informations:
     'view_prisme_warranty_warranty.xml',
     'view_prisme_warranty_type.xml',
     'security/ir.model.access.csv',
-	'view_stock_transfer_details.xml',
 ],
 'demo_xml': [],
 'test': [],

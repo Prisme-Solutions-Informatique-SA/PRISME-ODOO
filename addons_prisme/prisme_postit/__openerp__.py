@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'prisme_postit',
+    'name': 'Prisme postit',
     'version': '1.0',
     'category': 'Tools',
     'description': """

@@ -1,5 +1,5 @@
 {
-'name': 'Prisme Solutions Informatique SA - tracking partner',
+'name': 'Prisme tracking partner',
 'version': '7.0',
 'category': 'Human Resources',
 'description': """

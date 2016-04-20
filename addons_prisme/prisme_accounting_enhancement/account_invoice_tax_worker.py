@@ -25,7 +25,7 @@ class account_invoice_tax_prisme(models.Model):
                 taxes = line.invoice_line_tax_id.compute_all(
                     (line.price_unit - (line.discount or 0.0)),
                     line.quantity, line.product_id, invoice.partner_id)['taxes']
-            elif line.discount_type == 'percent':
+            else:
                 taxes = line.invoice_line_tax_id.compute_all(
                     (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
                     line.quantity, line.product_id, invoice.partner_id)['taxes']

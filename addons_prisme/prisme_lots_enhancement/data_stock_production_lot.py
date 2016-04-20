@@ -36,7 +36,6 @@ class stock_production_lot(osv.osv):
                 # depuis le lot de production.
                 'warranties_ids': fields.one2many('prisme.warranty.warranty',
                                     'lot_id', 'Warranties'),
-                "end_life_date": fields.date("Delivery Date"),
     }
     
     def onchange_product(self, cr, uid, ids, product_id):
@@ -71,6 +70,9 @@ class stock_production_lot(osv.osv):
             for lot in lots:
                 if (lot):
                     for w in lot.warranties_ids:
+                        #toprint = "Lot id:"+ + "set new customer : "+ (lot.customer.name)
+                        print (w.id)
+                        print (lot.customer.name)
                         self.pool.get('prisme.warranty.warranty').write(cr, uid, [w.id], {'partner': lot.customer.id})
         return res
 

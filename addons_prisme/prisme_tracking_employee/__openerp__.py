@@ -1,5 +1,5 @@
 {
-'name': 'Prisme Solutions Informatique SA - stock tracking employee',
+'name': 'Prisme stock tracking employee',
 'version': '7.0',
 'category': 'Human Resources',
 'description': """

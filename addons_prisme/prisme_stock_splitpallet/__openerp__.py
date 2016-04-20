@@ -1,5 +1,5 @@
 {
-'name': 'Prisme Solutions Informatique SA - stock enhancement - split pallet',
+'name': 'Prisme split pallet',
 'version': '7.0',
 'category': 'Human Resources',
 'description': """

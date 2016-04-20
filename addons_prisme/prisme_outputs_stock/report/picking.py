@@ -47,39 +47,31 @@ class prisme_picking_parser(report_sxw.rml_parse):
     
     def _get_back_order_quantity(self, picking, line):
         quantity = 0.0
-        bo_pickings = []
-        bo_pickings = self._get_back_order_pickings(picking)
-        bo_pickings.append(picking)
-        for bo_picking in bo_pickings:
-            for bo_line in bo_picking.move_lines:
-                if hasattr(bo_line, 'sale_line_id'):
-                    if bo_line.sale_line_id.id == line.sale_line_id.id \
-                        and not bo_line.state == "done":
-                        quantity = quantity + bo_line.product_qty
-                    elif bo_line.procurement_id.sale_line_id.id == line.procurement_id.sale_line_id.id \
-                        and not bo_line.state == "done":
-                        quantity = quantity + bo_line.product_qty
+        #bo_pickings = []
+        #bo_pickings = self._get_back_order_pickings(picking)
+        #bo_pickings.append(picking)
+ 
         return quantity
     
     def _get_back_order_lines(self, picking):
         result = []
-        related_pickings = self._get_back_order_pickings(picking)
-        related_pickings.append(picking)
-        if related_pickings:
-            for related_picking in related_pickings:
-                for related_line in related_picking.move_lines:
-                    if not related_line.state == "done": 
-                        already_managed = False
-                        for picking_line in picking.move_lines:
-                            if hasattr(related_line, 'sale_line_id'):
-                                if related_line.sale_line_id.id == \
-                                    picking_line.sale_line_id.id:
-                                    already_managed = True
-                            elif related_line.procurement_id.sale_line_id.id == \
-                                picking_line.procurement_id.sale_line_id.id:
-                                already_managed = True
-                        if not already_managed:
-                            result.append(related_line)
+        #related_pickings = self._get_back_order_pickings(picking)
+        #related_pickings.append(picking)
+        # if related_pickings:
+        #    for related_picking in related_pickings:
+         #       for related_line in related_picking.move_lines:
+          #          if not related_line.state == "done": 
+           #             already_managed = False
+            #            for picking_line in picking.move_lines:
+             #               if hasattr(related_line, 'sale_line_id'):
+              #                  if related_line.sale_line_id.id == \
+               #                     picking_line.sale_line_id.id:
+                #                    already_managed = True
+                 #           elif related_line.procurement_id.sale_line_id.id == \
+                  #              picking_line.procurement_id.sale_line_id.id:
+                   #             already_managed = True
+                    #    if not already_managed:
+                    #      result.append(related_line)
         return result
                             
         

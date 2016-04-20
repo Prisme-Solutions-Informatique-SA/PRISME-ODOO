@@ -21,7 +21,7 @@
 
 {
     'name': 'Document Page',
-    'version': '1.0.1',
+    'version': '8.0.1.0.1',
     'category': 'Knowledge Management',
     'description': """
 Pages
@@ -33,6 +33,7 @@ Web pages
     'license': 'AGPL-3',
     'depends': [
         'knowledge',
+        'mail',
     ],
     'data': [
         'wizard/document_page_create_menu_view.xml',

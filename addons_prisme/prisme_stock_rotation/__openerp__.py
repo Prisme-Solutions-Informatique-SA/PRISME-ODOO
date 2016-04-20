@@ -22,7 +22,7 @@ For more informations:
 'depends': [
             'stock',
             'product',
-            'account_analytic_plans',
+            'prisme_analytic_plans',
 ],
 'init_xml': [],
 'update_xml': [

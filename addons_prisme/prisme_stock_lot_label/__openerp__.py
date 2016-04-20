@@ -1,5 +1,5 @@
 {
-'name': 'Prisme Solutions Informatique SA - stock lot label',
+'name': 'Prisme stock lot label',
 'version': '7.0',
 'category': 'Human Resources',
 'description': """

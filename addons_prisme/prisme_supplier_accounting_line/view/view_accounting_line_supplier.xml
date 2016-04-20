@@ -29,7 +29,7 @@
 			<field name="res_model">account.invoice.line</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
-			<field name="domain">[('invoice_id.type','=',[('invoice_id.type','=',['in_invoice','in_refund'])])]</field>
+			<field name="domain">[('invoice_id.type','in',['in_invoice','in_refund'])]</field>
 			<field name="view_id" ref="prisme_accountline_supplier_tree"/>
 		</record>
 		

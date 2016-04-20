@@ -1,5 +1,5 @@
 {
-'name': 'Prisme Reporting for Stock',
+'name': 'Prisme Timesheet Enhancement',
 'version': '7.0',
 'category': 'Human Resources',
 'description': """

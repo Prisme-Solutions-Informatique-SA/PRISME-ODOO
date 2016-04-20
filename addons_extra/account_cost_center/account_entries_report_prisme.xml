@@ -1,0 +1,30 @@
+<openerp>
+<data>
+
+    <record id="view_account_entries_report_tree_prisme" model="ir.ui.view">
+        <field name="name">account.entries.report.tree.prisme</field>
+        <field name="model">account.entries.report</field>
+        <field name="inherit_id" ref="account.view_account_entries_report_tree" />
+        <field name="arch" type="xml">
+        	<xpath expr="/tree[1]/field[last()]" position="after">
+        		<field name="cost_center_id" invisible="1"/>
+        	</xpath>
+		</field>
+	</record>
+	
+	<record id="view_account_entries_report_search_prisme" model="ir.ui.view">
+        <field name="name">account.entries.report.search.prisme</field>
+        <field name="model">account.entries.report</field>
+        <field name="inherit_id" ref="account.view_account_entries_report_search" />
+        <field name="arch" type="xml">
+<!--           	<xpath expr="/search/group[1]/field[last()]" position="after"> -->
+<!--           		<filter string="Cost Center" context="{'group_by':'cost_center_id'}"/> -->
+<!--           	</xpath> -->
+          	<xpath expr="/search/group[2]/filter[last()]" position="after">
+          		<filter string="Cost Center" context="{'group_by':'cost_center_id'}"/>
+          	</xpath>
+        </field>
+     </record>
+	
+</data>
+</openerp>

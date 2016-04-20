@@ -336,10 +336,12 @@ class PaymentSlip(models.Model):
         :return: corresponding `res.partner` record
         :rtype: :py:class:`openerp.models.Model`
         """
-        """PRISME modification to have correct address if there is an invoice address"""
         self.ensure_one()
         invoice = self.move_line_id.invoice
-        return invoice.partner_id
+        if hasattr(invoice, 'commercial_partner_id'):
+            return invoice.commercial_partner_id
+        else:
+            return invoice.partner_id
 
     @api.one
     def _validate(self):
@@ -475,7 +477,7 @@ class PaymentSlip(models.Model):
     
     @api.model
     def _draw_address(self, canvas, print_settings, initial_position, font,
-                      com_partner, isCustomer):
+                      com_partner):
         """Draw an address on canvas
 
         :param canvas: payment slip reportlab component to be drawn
@@ -506,13 +508,8 @@ class PaymentSlip(models.Model):
         text = canvas.beginText()
         text.setTextOrigin(x, y)
         text.setFont(font.name, font.size)
-        invoice = self.move_line_id.invoice
-        if isCustomer and hasattr(invoice, 'commercial_partner_id'):
-            #partner_name = textwrap.fill(invoice.commercial_partner_id.name+", "+com_partner.name, max_width)
-            partner_name = textwrap.fill(invoice.commercial_partner_id.name, max_width)
-        else:
-            partner_name = textwrap.fill(com_partner.name, max_width)
-            
+        
+        partner_name = textwrap.fill(com_partner.name, max_width)
         partner_name_lines = partner_name.split("\n")
         
         text.textOut(partner_name_lines.pop(0))
@@ -844,21 +841,21 @@ class PaymentSlip(models.Model):
                 else:
                     initial_position = (0.05 * inch,  3.75 * inch)
                 self._draw_address(canvas, print_settings, initial_position,
-                                   default_font, company.partner_id, False)
+                                   default_font, company.partner_id)
                 if (invoice.partner_bank_id.print_account or
                         invoice.partner_bank_id.bvr_adherent_num):
                     initial_position = (2.45 * inch, 3.30 * inch)
                 else:
                     initial_position = (2.45 * inch, 3.75 * inch)
                 self._draw_address(canvas, print_settings, initial_position,
-                                   default_font, company.partner_id, False)
+                                   default_font, company.partner_id)
             com_partner = self.get_comm_partner()
             initial_position = (0.05 * inch, 1.4 * inch)
             self._draw_address(canvas, print_settings, initial_position,
-                               default_font, com_partner, True)
+                               default_font, com_partner)
             initial_position = (4.86 * inch, 2.2 * inch)
             self._draw_address(canvas, print_settings, initial_position,
-                               default_font, com_partner, True)
+                               default_font, com_partner)
             num_car, frac_car = ("%.2f" % self.amount_total).split('.')
             self._draw_amount(canvas, print_settings,
                               ((1.48+x_amount_cor) * inch, (2.0+y_amount_cor) * inch),

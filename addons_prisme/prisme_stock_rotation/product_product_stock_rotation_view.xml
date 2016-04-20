@@ -2,16 +2,15 @@
 <openerp>
 	<data>
 
-
 		<record model="ir.ui.view" id="product_product_stock_rotation_search">
 			<field name="name">product.product.stock.rotation.search</field>
 			<field name="model">product.product</field>
 			<field name="type">search</field>
 			<field name="arch" type="xml">
 				<search string="Search Product">
+					<field name="analytic_distribution" widget="selection"/>
 					<field name="default_code" />
 					<field name="name" />
-					<field name="analytic_distribution"/>
 				</search>
 			</field>
 		</record>

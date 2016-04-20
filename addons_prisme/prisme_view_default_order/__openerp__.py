@@ -1,5 +1,5 @@
 {
-'name': 'Prisme Solutions Informatique SA - view default order',
+'name': 'Prisme view default order',
 'version': '7.0',
 'category': 'Human Resources',
 'description': """

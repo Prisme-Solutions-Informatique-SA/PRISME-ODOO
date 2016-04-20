@@ -41,7 +41,8 @@ providing an extra dimension for the analysis.
         'costcenter_view.xml',
         'account_view.xml',
         'account_invoice_view.xml',
-        'account_invoice_report_view.xml'
+        'account_invoice_report_view.xml',
+        'account_entries_report_prisme.xml',
     ],
     'demo': [],
     'installable': True,

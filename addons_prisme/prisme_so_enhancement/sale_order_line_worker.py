@@ -146,8 +146,8 @@ class sale_order_line(osv.Model):
     def invoice_line_create(self, cr, uid, ids, context=None):
         # Pour chaque ligne de la SO
         for line in self.browse(cr, uid, ids, context=context):
-            # Si la ligne a ete refusee ou n'est pas de type article
-            if line.refused or line.layout_type != 'article':
+            # Si la ligne a ete refusee
+            if line.refused:
                 # Suppression de l'id de cette ligne de la liste des ids des
                 # lignes de SO sur lesquels creer des lignes de facture
                 ids.remove(line.id)

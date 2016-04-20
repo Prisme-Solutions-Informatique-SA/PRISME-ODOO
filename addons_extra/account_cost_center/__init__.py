@@ -22,3 +22,4 @@ import costcenter
 import account
 import account_invoice
 import account_invoice_report
+import account_entries_report_prisme
