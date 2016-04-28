@@ -1,19 +1,8 @@
 {
 'name': 'Prisme Timesheet Enhancement',
-'version': '7.0',
+'version': '2016-04-25 15:57',
 'category': 'Human Resources',
-'description': """
-Prisme specific developments
-
-Add features to manage human resources:
-    * More information for the working hours (beginning, end, 
-      internal description)
-    * Customer display for the working hours
-    * Period hours in timesheet management
-    
-For more informations:
-www.prisme.ch
-""",
+'summary': 'start / end time, reports',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [
