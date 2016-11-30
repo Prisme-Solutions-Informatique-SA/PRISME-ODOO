@@ -1,15 +1,8 @@
 {
 'name': 'Prisme Shortage',
-'version': '6.1',
+'version': '2016-05-17 10:45',
 'category': 'Warehouse',
-'description': """
-Computes and shows a list of shortage products.
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'products shortage',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': ['base', 'account', 'sale', 'stock', ],
