@@ -1,23 +1,14 @@
 
 {
 'name': 'Prisme Lots Enhancement',
-'version': '6.1',
+'version': '2016-05-03 11:47',
 'category': 'Warehouse',
-'description': """
-Add features to track products
-
-- Add features to manage informations about products and warranties thanks to the production lots.
-- Add recall e-mails when warranty come to end.
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'warranties, extra fields',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [
     'stock',
+    'account_voucher',
  ],
 'init_xml': [
     'init_scheduler.xml',

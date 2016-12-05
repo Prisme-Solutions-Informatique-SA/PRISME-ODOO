@@ -1,26 +1,15 @@
 {
 'name': 'Prisme Reporting for Sales',
-'version': '7.0',
+'version': '2016-05-04 10:10',
 'category': 'Sales',
-'description': """
-Adds specific reports (for paper or e-mail) and features needed to these 
-reports related to sales.
-
-- Don't show discount if equals 0
-- Adds an option to show or not the taxes or the totals on the output
-- Misc. graphical changes
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'sale order report, quotation report',
 	'author': 'Prisme Solutions Informatique SA',
 	'website': 'http://www.prisme.ch',
 	'depends': [
 				'ons_productivity_sale_layout',
 				'prisme_so_enhancement',
 				'sale',
+				'sale_stock',
 	],
 	'data': [
 				   'sale_order_view.xml',

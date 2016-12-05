@@ -1,32 +1,20 @@
 
 {
 'name': 'Prisme Reporting for Stock',
-'version': '7.0',
+'version': '2016-05-20 16:24',
 'category': 'Warehouse',
-'description': """
-Adds specific reports (for paper or e-mail) and features needed to these 
-reports related to stock management.
-
-- Transporter on picking
-- Modifying header informations
-- Shipped quantity / back-office
-- Remarks
-- Misc. graphical changes
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'stock picking report, stock picking list',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [
             'stock',
             'sale_stock',
+            'purchase',
 ],
 'init_xml': [],
 'update_xml': [
-               'report/picking.xml',
+               'view/stock_picking.xml',
+               'report/picking.xml',            
 ], 
 'demo_xml': [],
 'test': [],

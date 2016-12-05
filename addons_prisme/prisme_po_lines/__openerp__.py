@@ -1,10 +1,10 @@
 {
-    "name": "Prisme Purchases Lines",
-    "version": "1.0",
+    "name": "Prisme PO Lines",
+    "version": "2016-05-06 11:20",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
-    "website": "",
-    "license": "",
+    "summary": "purchase orders lines list",
+    "website": "https://www.prisme.ch",
     "depends": [
 		"purchase"
     ],

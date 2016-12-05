@@ -1,10 +1,10 @@
 {
-    "name": "Prisme Manufacturer Order Lines",
-    "version": "1.0",
+    "name": "Prisme MO Lines",
+    "version": "2016-05-20 11:00",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
-    "website": "",
-    "license": "",
+    "summary":"manufacturer orders lines list",
+    "website":"https://www.prisme.ch",
     "depends": [
         'mrp'
     ],

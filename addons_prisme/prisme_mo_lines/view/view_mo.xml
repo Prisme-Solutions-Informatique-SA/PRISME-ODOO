@@ -30,5 +30,20 @@
 		
 		<!-- Menu -->
 		<menuitem name="Composants de fabrication" id="menu_prisme_product_line" parent="mrp.menu_mrp_manufacturing" sequence="12" action="prisme_product_line"/>
+		
+		<!-- Production product lines Search View -->
+		<record model="ir.ui.view" id="search_view_prisme_product_line_tree">
+			<field name="name">prisme.product.line.view.tree</field>
+			<field name="model">mrp.production.product.line</field>
+	        <field name="arch" type="xml">
+	            <search string="Production prduct Line">
+					<group expand="0" string="Group By">
+						<filter string="Production Order" domain="[]" context="{'group_by':'production_id'}"/>
+						<filter string="Article" domain="[]" context="{'group_by':'product_id'}"/>
+					</group>
+				</search>
+	        </field>
+    	</record>
+	
     </data>
 </openerp>

@@ -1,10 +1,10 @@
 {
-    "name": "Prisme Sale Order Lines",
-    "version": "1.0",
+    "name": "Prisme SO Lines",
+    "version": "2016-05-06 11:34",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
-    "website": "",
-    "license": "",
+    "summary": "sale orders lines list",
+    "website": "https://www.prisme.ch",
     "depends": [
         'sale'
     ],

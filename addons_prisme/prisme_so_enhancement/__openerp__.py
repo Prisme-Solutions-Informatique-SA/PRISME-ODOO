@@ -1,24 +1,9 @@
 
 {
 'name': 'Prisme Sales Order Enhancement',
-'version': '7.0',
+'version': '2016-05-04 14:14',
 'category': 'Sales',
-'description': """
-Add features to manage Sales
-
-- Delivery Date in the SO Lines
-- Rounding on subtotal in SO
-- Quotation validity and comment
-- SO and SO lines refused
-- Discounts in percent or amount
-- Misc. changes in the views
-
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'ammount discount, rounding on subtotal, partial refusal',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [

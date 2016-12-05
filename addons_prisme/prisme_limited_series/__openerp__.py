@@ -1,21 +1,14 @@
 {
 'name': 'Prisme Limited Series',
-'version': '6.1',
+'version': '2016-05-03 09:40',
 'category': 'Warehouse',
-'description': """
-Adds the possibility to manage production lots by limited series number. 
-Example: piece 3 of 10.
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'lots, limited series',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [
             'stock',
             'stock_account',
+            'sale_stock',
 ],
 'init_xml': [],
 'update_xml': [

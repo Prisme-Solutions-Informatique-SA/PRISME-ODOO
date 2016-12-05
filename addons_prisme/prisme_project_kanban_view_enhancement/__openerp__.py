@@ -1,10 +1,10 @@
 {
     "name": "Prisme Project Kanban View Enhancement",
-    "version": "1.6",
+    "version": "2016-05-06 13:44",
     "author": "Prisme Solutions Informatique SA",
     "category": "Project",
-    "website": "",
-    "license": "",
+    "summary": "client on project kanban view",
+    "website": "https://www.prisme.ch",
     "depends": [
         "project"
     ],

@@ -10,13 +10,15 @@
                 position="attributes">
                     <attribute name="widget">ckeditor</attribute>
                 </xpath>-->
+	        <!--
 	        <field name="content" position="replace">
  			<field name="content_pad" class="oe_edit_only" widget="pad" />
-                </field>	
-                <xpath expr="/form/group/group//field[@name='parent_id']" position="after">
+                </field>
+                  -->	
+                <xpath expr="/form/sheet/group/group//field[@name='parent_id']" position="after">
                     <field name="numbering" sum="numbering"></field>
                 </xpath>
-		<xpath expr="/form/group/group//field[@name='parent_id']" position="after">
+		<xpath expr="/form/sheet/group/group//field[@name='parent_id']" position="after">
                     <field name="state" sum="state"></field>
                 </xpath>
             </field>

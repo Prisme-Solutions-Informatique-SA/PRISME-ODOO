@@ -1,22 +1,9 @@
 
 {
 'name': 'Prisme Stock Rotation',
-'version': '6.1',
+'version': '2016-05-17 11:26',
 'category': 'Warehouse',
-'description': """
-Create a report that compute and display the stock rotation
-for the products.
-
-The stock rotation is calculated like this:
-
-- Average stock = (Stock at beginning of the periode + Stock at end of the period) / 2   
-- Stock Rotation = Quantity of item sold / Average stock 
-       
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'stock period analysis, stock rotation, stock average',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [

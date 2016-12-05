@@ -1,20 +1,8 @@
 {
 'name': 'Prisme Reporting for Purchases',
-'version': '8.0',
+'version': '2016-05-19 14:18',
 'category': 'Purchases',
-'description': """
-Adds specific reports (for paper or e-mail) and features needed to these reports related to purchases.
-
-- Sorting PO lines
-- PO lines page break
-- Delivery terms on PO
-- Misc. graphical changes
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'purchase order report, PO, report, sequence',
 'author': 'Prisme Solutions Informatique SA',
 'sequence': 150,
 'website': 'http://www.prisme.ch',
@@ -24,7 +12,6 @@ For more informations:
 'init_xml': [],
 'update_xml': [
                'purchase_order_view.xml',
-               'purchase_order_line_view.xml',
                'report/purchase_order.xml',
 ],
 'demo_xml': [],

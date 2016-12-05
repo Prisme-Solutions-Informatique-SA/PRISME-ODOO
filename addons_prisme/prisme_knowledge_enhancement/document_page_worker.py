@@ -58,16 +58,7 @@ class document_page(osv.Model):
         if index:
             r += "" + "".join(index) + ""
         return r
-
-    def _get_display_content(self, cr, uid, ids, name, args, context=None):
-        res = {}
-        for page in self.browse(cr, uid, ids, context=context):
-            if page.type == "category":
-               content = self._get_page_index(cr, uid, page, link=False)
-            else:
-               content = page.content
-            res[page.id] =  content
-        return res
-
+    
+    
 document_page()
 

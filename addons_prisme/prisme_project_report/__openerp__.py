@@ -1,16 +1,8 @@
 {
 'name': 'Prisme Project Report',
-'version': '8.0',
+'version': '2016-05-06 16:40',
 'category': 'Project',
-'description': """
-Prisme specific developments
-
-Add print report for Project:
-    * Creat PDF with all need informations
-    
-For more informations:
-www.prisme.ch
-""",
+'summary': "project report with related SO and PO",
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [

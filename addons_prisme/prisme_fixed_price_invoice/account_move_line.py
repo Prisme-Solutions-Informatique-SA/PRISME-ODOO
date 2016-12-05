@@ -6,7 +6,7 @@ class AccountMoveLine(osv.osv):
 
     _inherit = 'account.move.line'
     
-    """ Redefined _prepare_analytic_line method to set the quantity(hours) to zero in sale journal when "fixed price" is chosen in analytic journal invoicing"""
+    """ Redefined _prepare_analytic_line method to set the quantity(hours) to zero in sale journal when "fixed price" is chosen in analytic journal invoicing and the line amount is 0.0"""
     def _prepare_analytic_line(self, cr, uid, obj_line, context=None):
 
         quantity = obj_line.quantity

@@ -1,19 +1,9 @@
 
 {
 'name': 'Prisme Contact Enhancement',
-'version': '8',
+'version': '2016-05-02 10:49',
 'category': 'Tools',
-'description': """
-Add features to manage old contacts:
-
-- Partner set to inactive state and not default visible
-- Contact set to inactive state and not default visible
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'Partner prescriber',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [

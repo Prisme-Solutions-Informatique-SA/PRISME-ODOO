@@ -1,10 +1,10 @@
 {
     "name": "Prisme Tool Menu",
-    "version": "1.0",
+    "version": "2016-05-06 13:25",
     "author": "Prisme Solutions Informatique SA",
     "category": "Tools",
-    "website": "",
-    "license": "",
+    "summary": "subscription menu, recurring document",
+    "website": "https://www.prisme.ch",
     "depends": [
         'subscription'
     ],

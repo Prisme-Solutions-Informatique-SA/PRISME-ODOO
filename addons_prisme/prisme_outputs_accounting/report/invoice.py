@@ -9,23 +9,10 @@ class prisme_accounting_parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
         super(prisme_accounting_parser, self).__init__(cr, uid, name, context)
         self.localcontext.update({
-            "get_back_prefix": self._get_back_prefix,
             "get_date": self._get_date,
             "sorts_lines": self._sorts_lines,
             })
         self.context = context
-    
-    #return prefix of stock picking out
-    def _get_back_prefix(self):
-        
-        related_prefix = []
-        obj_prefix = self.pool.get("ir.sequence")
-        related_prefix_ids = obj_prefix.search(self.cr, self.uid,
-                              [("code", "=", "stock.picking.out"),])
-        if related_prefix_ids:
-            related_prefix = obj_prefix.browse(self.cr, self.uid, \
-                                                     related_prefix_ids)
-        return related_prefix[0].prefix
     
     #return date of sale by id of line
     def _get_date(self, line):
@@ -58,27 +45,7 @@ class prisme_accounting_parser(report_sxw.rml_parse):
         for l in linesstored:
             dic_lines = {}
             dic_lines['name'] = l.name
-            #dic_lines['name']= l.product_id.name + ' \n ' + l.name
-            splitedline = l.name.split('-')
-            #if line is start with 'stock picking out' (OUT/)
-            if splitedline[0].startswith(self._get_back_prefix()):
-                #if the head is NOT allready know
-                if lasthead!=splitedline[0]:
-                    lasthead=splitedline[0]
-                    dic_head={}
-                    d_date = datetime.strptime(self._get_date(l), '%Y-%m-%d %H:%M:%S')
-                    s_day = d_date.strftime('%d.%m.%Y').strip()
-                    dic_head['pick']=str(splitedline[0])
-                    dic_head['pickdate']= s_day
-                    #the fields 'note' is not in v7.0
-                    #dic_head['note']=''
-                    dic_head['page_break'] = ''
-                    dic_head['name']=''
-                    list_lines.append(dic_head)
-                    dic_lines['name']= '- '+splitedline[1]
-                    
-                else:
-                    dic_lines['name']= '- '+splitedline[1]
+
             dic_lines['tax'] = ' ,'.join([ lt.name or '' for lt in l.invoice_line_tax_id ])
             dic_lines['quantity'] = l.quantity
             if l.uos_id:
@@ -92,7 +59,6 @@ class prisme_accounting_parser(report_sxw.rml_parse):
             #the fields 'note' is not in v7.0
             #dic_lines['note'] = l.note
             dic_lines['pick'] = ''
-            dic_lines['page_break'] = l.page_break
             #add dictionary in line
             list_lines.append(dic_lines)
         return list_lines

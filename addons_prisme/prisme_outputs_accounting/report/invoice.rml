@@ -238,7 +238,6 @@
     </blockTable>
     <section>
       <para style="terp_default_2">[[ repeatIn(sorts_lines(o.invoice_line),'l') ]]</para>
-      <pageBreak>[[ l['page_break'] != True and removeParentNode('pageBreak')]]</pageBreak>
       <blockTable colWidths="209.0,71.0,78.0,52.0,54,65.0" style="Table8">
         <tr>
           <td>

@@ -21,25 +21,17 @@
 
 {
     'name': 'Prisme postit',
-    'version': '1.0',
+    'version': '2016-05-19 09:15',
     'category': 'Tools',
-    'description': """
-This module allows users to create their own postit inside OpenERP
-=================================================================
-
-
-""",
+    'summary': "task manager, reminder",
     'author': 'Prisme Solutions Informatique SA',
     'website': 'https://www.prisme.ch',
-    'summary': 'Managing tasks and reminders',
+    'summary': 'tasks and reminders manager',
     'sequence': 9,
     'depends': [
         'mail',
     ],
     'data': [
-      #  'security/note_security.xml',
-      #  'security/ir.rule.xml',
-      #  'security/ir.model.access.csv',
         'postit_view.xml',
         'postit_workflow.xml',
 

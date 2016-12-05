@@ -11,10 +11,10 @@
           <header>
               <button name="active" 
                       type="workflow"
-                      string="active" 
-                      states="closed,in_process"/>
+                      string="To do" 
+                      states="terminated,in_process"/>
 
-              <button name="start" 
+              <button name="get_started" 
                       type="workflow"
                       string="Start"
                       states="active"/>
@@ -22,9 +22,9 @@
               <button name="in_process" 
                       type="workflow"
                       string="In process" 
-                      states="start"/>
+                      states="get_started"/>
 
-              <button name="closed" 
+              <button name="terminated" 
                       type="workflow"
                       string="Close" 
                       states="in_process"
@@ -54,6 +54,10 @@
               </page>
             </notebook>
           </group>
+		  <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+           </div>
         </form>
       </field>
     </record>
@@ -65,7 +69,7 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Postit">
-          <field name="assigned_to"/>
+          <field name="names_users"/>
           <field name="priority"/>
           <field name="state"/>
           <field name="tags"/>
@@ -76,7 +80,80 @@
         </tree>
       </field>
     </record>
-
+	
+	<!-- Postit Tag Search View -->
+	<record model="ir.ui.view" id="view_prisme_postit_search">
+		<field name="name">prisme.postit.tree</field>
+		<field name="model">prisme.postit</field>
+        <field name="arch" type="xml">
+            <search string="Postit">
+                <field name="assigned_to"/>
+				<field name="assigned_by"/> 
+                <field name="name"/>
+				<field name="partner_id"/>
+				<group expand="0" string="Group By">
+					<filter string="Assigned to" domain="[]" context="{'group_by':'names_users'}"/>
+					<filter string="Assigned by" domain="[]" context="{'group_by':'assigned_by'}"/>
+					<filter string="Client" domain="[]" context="{'group_by':'partner_id'}"/>
+					<filter string="Statut" domain="[]" context="{'group_by':'state'}"/>
+				</group>
+			</search>
+        </field>
+    </record>
+	
+<!-- Postit postit Kanban View-->
+   <record model="ir.ui.view" id="view_prisme_postit_kanban">
+        <field name="name">prisme.postit.kanban</field>
+        <field name="model">prisme.postit</field>
+            <field name="arch" type="xml">
+			<kanban default_group_by="state" class="o_kanban_small_column" default_order="state">
+				<field name="name"/>
+				<field name="state"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <h4><a type="open"><field name="name"/></a></h4>
+                                </div>
+                                <div>
+                                    <p><strong>Assigned to: </strong><field name="names_users"/></p>
+									<p><strong>Assigned by: </strong><field name="assigned_by"/></p>
+									<p><strong>Client: </strong><field name="partner_id"/></p>
+									<span class="oe_kanban_list_many2many">
+										<field name="tags"/>
+									</span>
+                                </div>
+                            </div>
+                            <div class="oe_clear"/>
+                        </div>
+                    </t>
+                    </templates>
+                </kanban>
+            </field>
+         </record>
+		 
+		 <!-- Postit postit Calendar View-->
+		 <record model="ir.ui.view" id="view_prisme_postit_calendar">
+            <field name="name">prisme.postit.calendar</field>
+            <field name="model">prisme.postit</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Postit Calendar" date_start="date_start" date_stop="recall_date" color="state">
+                    <field name="name"/>
+			<field name="names_users"/>
+                </calendar>
+            </field>
+        </record>
+		
+    <!-- Prisme postit -->
+    <record model="ir.actions.act_window" id="action_prisme_postit">
+        <field name="name">Postit</field>
+        <field name="res_model">prisme.postit</field>
+        <field name="view_mode">tree,form,kanban,calendar</field>
+		<field name="search_view_id" ref="view_prisme_postit_search"/>
+    </record>
+	
 <!-- prisme postit Tag Form View -->
     <record model="ir.ui.view" id="view_prisme_postit_tag_form">
       <field name="name">prisme.postit.tag.form</field>
@@ -91,8 +168,6 @@
       </field>
     </record>
 
-
-
         <!-- note Stage Tree View -->
     <record model="ir.ui.view" id="view_prisme_postit_tag_tree">
       <field name="name">prisme.postit.tag.tree</field>
@@ -105,24 +180,28 @@
         </tree>
       </field>
     </record>
-    
-
-    <!-- Prisme postit -->
-    <record model="ir.actions.act_window" id="action_prisme_postit">
-        <field name="name">Postit</field>
-        <field name="res_model">prisme.postit</field>
-        <field name="view_mode">tree,form</field>
+	
+	<!-- Postit Tag Search View -->
+	<record model="ir.ui.view" id="view_prisme_postit_tag_search">
+		<field name="name">prisme.postit.tag.search</field>
+		<field name="model">prisme.postit.tag</field>
+        <field name="arch" type="xml">
+            <search string="Postit tag">
+                <field name="name"/>
+			</search>
+        </field>
     </record>
-
+	
         <!-- Prisme postit tag -->
     <record model="ir.actions.act_window" id="action_prisme_postit_tag">
         <field name="name">Postit Tag</field>
         <field name="res_model">prisme.postit.tag</field>
         <field name="view_mode">tree,form</field>
+		<field name="search_view_id" ref="view_prisme_postit_tag_search"/>
     </record>
 
-    <menuitem name="PostIt" id="menu_prisme_postit" parent="mail.mail_my_stuff" sequence="22" action="prisme_postit.action_prisme_postit"/>
-    <menuitem name="PostIt Tag" id="menu_prisme_postit_tag" parent="mail.mail_my_stuff" sequence="23" action="prisme_postit.action_prisme_postit_tag"/>
+    <menuitem name="PostIt" id="menu_prisme_postit" parent="mail.mail_my_stuff" sequence="22" action="action_prisme_postit"/>
+    <menuitem name="PostIt Tag" id="menu_prisme_postit_tag" parent="mail.mail_my_stuff" sequence="23" action="action_prisme_postit_tag"/>
 
 
     <record model="prisme.postit.day" id="0">

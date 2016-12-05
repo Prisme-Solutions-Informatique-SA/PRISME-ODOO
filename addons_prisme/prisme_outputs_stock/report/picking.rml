@@ -150,16 +150,17 @@
           <para style="main_address">[[ ((picking.address_id.country_id.id!=picking.company_id.partner_id.country.id) and picking.address_id and picking.address_id.country_id and picking.address_id.country_id.name) or removeParentNode('para') ]]</para>
         </td>
        -->
-       <!--
+       
         <td>
-          <para style="terp_default_Bold_9">Supplier Address : [[ (picking.type == 'in' or removeParentNode('para')) and '' ]]</para>
-          <para style="terp_default_Bold_9">Customer Address : [[ (picking.type == 'out' or removeParentNode('para')) and '' ]]</para>
-          <para style="terp_default_Bold_9">Warehouse Address : [[ (picking.type == 'internal' or removeParentNode('para')) and '' ]]</para>
+          <para style="terp_default_Bold_9">Supplier Address : [[ (picking.picking_type_code == 'incoming' or removeParentNode('para')) and '' ]]</para>
+          <para style="terp_default_Bold_9">Customer Address : [[ (picking.picking_type_code == 'outgoing' or removeParentNode('para')) and '' ]]</para>
+          <para style="terp_default_Bold_9">Warehouse Address : [[ (picking.picking_type_code == 'internal' or removeParentNode('para')) and '' ]]</para>
           <para style="terp_default_9">[[ (picking.partner_id and picking.partner_id.id and picking.partner_id.title.name) or '' ]] [[ picking.partner_id and picking.partner_id.id and picking.partner_id.name ]]</para>
           <para style="terp_default_9">[[ picking.partner_id and display_address(picking.partner_id) ]]</para>
           <para style="terp_default_9">[[ picking.partner_id.phone or picking.partner_id.email or removeParentNode('para')]]</para>
         </td>        
-       -->
+       
+       <!--
        <td>
           <para style="terp_default_Bold_9"></para>
           <para style="terp_default_Bold_9"></para>
@@ -168,6 +169,7 @@
           <para style="terp_default_9"></para>
           <para style="terp_default_9"></para>
         </td>
+        -->
        
         <td>
 <!-- Adresse de livraison de la commande de vente si existant -->
@@ -272,11 +274,8 @@
     <para style="terp_default_5cm_Above_Space">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" repeatRows="1" style="Move_Line_Header">
+    <blockTable colWidths="305.0,73.0,70.0,70.0" repeatRows="1" style="Move_Line_Header">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details">Pos.</para>
-        </td>
         <td>
           <para style="terp_tblheader_Details">Description</para>
         </td>
@@ -294,16 +293,20 @@
     <section>
       <para style="terp_default_2">[[ repeatIn([line for line in picking.move_lines if (line.state == 'confirmed' or line.state=='done' or line.state=='assigned')],'move_lines') ]]</para>
       <para style="terp_default_2">[[ (picking.move_lines!=[] and removeParentNode('para')) or removeParentNode('section')]]</para>
-      <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" style="Move_Line_Contect_Assign_State">
+      <blockTable colWidths="305.0,73.0,70.0,70.0" style="Move_Line_Contect_Assign_State">
         <tr>
-          <td>
-            <para style="terp_default_9">[[  move_lines.purchase_line_id.sequence or move_lines.procurement_id.sale_line_id.sequence or '']]</para>
-          </td>
           <td>
 			<para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.procurement_id.sale_line_id.name or '' ]]</para>
           </td>
           <td>
-            <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
+          
+			<section>
+            	<!-- get S/N from stock move quants -->
+                                           
+            	<para style="terp_default_2">[[repeatIn([lot for lot in serial_numbers(move_lines)],'lot_id')]]</para>
+            	<para style="terp_default_9">[[ lot_id.name ]]</para>
+            </section>
+            
           </td>
          <td>
             <para style="terp_default_Right_9">[[ shipped_quantity(move_lines) or '0.0' ]] [[ move_lines.product_uom.name ]] </para>
@@ -314,19 +317,24 @@
         </tr>
       </blockTable>
     </section>
-    <section>
+    <section>                         
       <para style="terp_default_2">[[ repeatIn([line for line in picking.move_lines if (line.state == 'draft' or line.state=='waiting')],'move_lines') ]] </para>
       <para style="terp_default_2">[[ (picking.move_lines!=[] and removeParentNode('para')) or removeParentNode('section')]]</para>
-      <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" style="Move_Line_Content_Other_State">
+      <blockTable colWidths="305.0,73.0,70.0,70.0" style="Move_Line_Content_Other_State">
         <tr>
-          <td>
-            <para style="terp_default_9">[[  move_lines.purchase_line_id.sequence or move_lines.procurement_id.sale_line_id.sequence or '']]</para>
-          </td>
           <td>
             <para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.procurement_id.sale_line_id.name or '' ]]</para>
           </td>
           <td>
-            <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
+          
+          	<section>
+            	<!-- get S/N from stock move quants -->
+                                           
+            	<para style="terp_default_2">[[repeatIn([lot for lot in serial_numbers(move_lines)],'lot_id')]]</para>
+            	<para style="terp_default_9">[[ lot_id.name ]]</para>
+            </section>
+  
+            
           </td>
           <td>
             <para style="terp_default_Right_9">[[ shipped_quantity(move_lines) or '0.0' ]] [[ move_lines.product_uom.name ]] </para>
@@ -340,16 +348,20 @@
     <section>
       <para style="terp_default_2">[[ repeatIn([line for line in back_order_lines(picking)],'move_lines') ]]</para>
       <para style="terp_default_2">[[ (picking.move_lines!=[] and removeParentNode('para')) or removeParentNode('section')]]</para>
-      <blockTable colWidths="59.0,246.0,73.0,70.0,70.0" style="Move_Line_Contect_Assign_State">
+      <blockTable colWidths="305.0,73.0,70.0,70.0" style="Move_Line_Contect_Assign_State">
         <tr>
-          <td>
-            <para style="terp_default_9">[[ move_lines.purchase_line_id.sequence or move_lines.procurement_id.sale_line_id.sequence or '']]</para>
-          </td>
           <td>
             <para style="terp_default_9">[[ move_lines.name or move_lines.purchase_line_id.name or move_lines.procurement_id.sale_line_id.name or '' ]]</para>
           </td>
           <td>
-            <para style="terp_default_Centre_9">[[ (move_lines.prodlot_id and move_lines.prodlot_id.name) or '' ]]</para>
+          
+          	<section>
+            	<!-- get S/N from stock move quants -->
+                                           
+            	<para style="terp_default_2">[[repeatIn([lot for lot in serial_numbers(move_lines)],'lot_id')]]</para>
+            	<para style="terp_default_9">[[ lot_id.name ]]</para>
+            </section>
+          
           </td>
          <td>
             <para style="terp_default_Right_9">[[ shipped_quantity(move_lines) or '0.0' ]] [[ move_lines.product_uom.name ]] </para>

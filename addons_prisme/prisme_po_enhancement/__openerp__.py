@@ -1,18 +1,8 @@
 {
 'name': 'Prisme po Enhancement',
-'version': '7.0',
+'version': '2016-05-04 10:57',
 'category': 'Purchase order',
-'description': """
-Add features to purchase order
-
-- display origin when created manually
-
-
-For more informations:
-
-- info@prisme.ch
-- http://www.prisme.ch/openerp
-""",
+'summary': 'purchase order merge, purchase order origin',
 'author': 'Prisme Solutions Informatique SA',
 'sequence': 150,
 'website': 'http://www.prisme.ch',

@@ -1,16 +1,8 @@
 {
 'name': 'Prisme Opp enhancement',
-'version': '8.0',
+'version': '2016-05-03 14:10',
 'category': 'Sale',
-'description': """
-Prisme specific developments
-
-Add print report for Opportunity:
-    * Creat PDF with all need informations
-    
-For more informations:
-www.prisme.ch
-""",
+'summary': 'opportunity report',
 'author': 'Prisme Solutions Informatique SA',
 'website': 'http://www.prisme.ch',
 'depends': [
