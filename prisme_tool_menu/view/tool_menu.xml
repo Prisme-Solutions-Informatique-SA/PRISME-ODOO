@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Menu -->
+		<menuitem name="Outils" id="menu_outil" sequence="150"/>
+		
+		<menuitem id="menu_rec_doc" name="Documents récurrents" parent="menu_outil" sequence="1"/>
+        <menuitem id="menu_rec_type" name="Recurring type" parent="menu_outil" sequence="2"/>
+		
+		<menuitem name="Documents récurrents" id="menu_prisme_rec_doc" parent="menu_rec_doc" sequence="1" action="subscription.action_subscription_form"/>
+		<menuitem name="Recurring type" id="menu_prisme_rec_type" parent="menu_rec_type" sequence="1" action="subscription.action_document_form"/>
+    </data>
+</openerp>

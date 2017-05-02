@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- View used to set new filter to display only available S/N in stock transfert wizzard, available S/N = SN:end_life_date > today's date -->
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_pack_operation_lot_form_prisme">
+			<field name="name">stock.pack.operation.lots.form.prisme</field>
+			<field name="model">stock.pack.operation</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="stock.view_pack_operation_lot_form" />
+			<field name="arch" type="xml">
+				<!-- set new filter domain -->
+				<xpath expr="/form/group[2]/field/tree/field[@name='lot_id']" position="attributes">
+					<attribute name="domain">[('product_id','=', parent.product_id),'|',('end_life_date','=',False),('end_life_date','&gt;=',datetime.datetime.now())]</attribute>
+				</xpath>
+				
+			</field>
+		</record>
+	</data>
+</openerp>

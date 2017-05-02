@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="sale_report_search_prisme">
+			<field name="name">sale.report.search.prisme</field>
+			<field name="model">sale.report</field>
+			<field name="inherit_id" ref="sale.view_order_product_search" />
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<field name="partner_id" position="before">
+					<field name="so_name" />
+				</field>
+
+
+			</field>
+		</record>
+
+
+	</data>
+</openerp>

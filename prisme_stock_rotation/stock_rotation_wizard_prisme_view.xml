@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="stock_rotation_wizard_prisme_form_prisme" model="ir.ui.view">
+			<field name="name">stock.rotation.wizard.prisme</field>
+			<field name="model">stock.rotation.wizard.prisme</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Stock Rotation" create="false" edit="false">
+					<separator string="Select the Period" colspan="4" />
+					<field name="period_begin" />
+					<newline />
+					<field name="period_end" />
+					<separator colspan="4" />
+					<footer>
+						<button special="cancel" string="Cancel" />
+						<button name="stock_rotation_prisme_launch_report" string="Open Report"
+							type="object" />
+                    </footer>
+				</form>
+			</field>
+		</record>
+		
+		<record id="stock_rotation_wizard_prisme_action" model="ir.actions.act_window">
+            <field name="name">Stock Rotation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.rotation.wizard.prisme</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="stock_rotation_wizard_prisme_form_prisme"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            name="Stock Rotation Analysis"
+            parent="stock.menu_warehouse_report"
+            action="stock_rotation_wizard_prisme_action"
+            id="stock_rotation_wizard_prisme_menu"/>
+	</data>
+</openerp>

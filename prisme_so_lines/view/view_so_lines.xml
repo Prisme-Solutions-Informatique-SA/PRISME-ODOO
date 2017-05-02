@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!--Sale Line -->
+        <record id="prisme_sale_line_view_tree" model="ir.ui.view">
+            <field name="name">prisme.sale.line.view.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+				<tree string="Lignes de vente">
+					<field name="company_id"/>
+					<field name="order_id"/>
+					<field name="order_partner_id"/>
+					<field name="currency_id"/>
+					<field name="product_id"/>
+					<field name="price_unit"/>
+					<field name="product_uom_qty"/>
+					<field name="name"/>
+					<field name="state"/>
+				</tree>
+            </field>
+        </record>
+		
+		<record model="ir.actions.act_window" id="prisme_sale_line">
+			<field name="name">Lignes de vente</field>
+			<field name="res_model">sale.order.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="prisme_sale_line_view_tree"/>
+		</record>
+
+		<!-- Menu -->
+		<menuitem name="Lignes de ventes" id="menu_prisme_sale_line" parent="sales_team.menu_sales" sequence="14" action="prisme_sale_line"/>
+    </data>
+</openerp>

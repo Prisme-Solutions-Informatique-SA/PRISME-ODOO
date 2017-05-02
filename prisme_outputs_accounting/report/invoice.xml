@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<report id="report_prisme_invoice_paper"
+		    name="account.invoice.paper.prisme" 
+		    string="Prisme Invoice for Paper"
+			model="account.invoice" 
+			rml="addons/prisme_outputs_accounting/report/invoice.rml" 
+			header="False"
+			auto="True" />
+			
+		<report id="report_prisme_invoice_email"
+		    name="account.invoice.email.prisme" 
+		    string="Prisme Invoice for E-Mail"
+			model="account.invoice" 
+			rml="addons/prisme_outputs_accounting/report/invoice.rml" 
+			header="True"
+			auto="True" />
+	</data>
+</openerp>

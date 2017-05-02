@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* prisme_opp_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-20 09:06+0000\n"
+"PO-Revision-Date: 2015-11-20 09:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Compagny"
+msgstr "Société"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Contact"
+msgstr "Contact"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Description"
+msgstr "Description"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "History"
+msgstr "Historique"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Next action"
+msgstr "Action suivante"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Opportunity"
+msgstr "Opportunité"
+
+#. module: prisme_opp_enhancement
+#: model:ir.actions.report.xml,name:prisme_opp_enhancement.report_opp
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Opportunity Report"
+msgstr "Suivi d'opportunité"
+
+#. module: prisme_opp_enhancement
+#: view:website:prisme_opp_enhancement.report_opp_view
+msgid "Reference"
+msgstr "Référence"
+
