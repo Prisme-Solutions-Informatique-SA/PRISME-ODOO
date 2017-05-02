@@ -1,3 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_prisme_shortage_all","prisme_shortage.shortage.all","model_prisme_shortage_all","base.group_user",1,1,1,1
-"access_prisme_shortage_wizard","prisme_shortage.shortage.wizard","model_prisme_shortage_wizard","base.group_user",1,1,1,1

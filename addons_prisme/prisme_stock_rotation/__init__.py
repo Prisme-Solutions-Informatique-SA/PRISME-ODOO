@@ -1,2 +1,0 @@
-import stock_rotation_wizard_prisme_worker
-import product_product_stock_rotation_worker
