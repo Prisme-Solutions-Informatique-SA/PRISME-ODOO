@@ -13,9 +13,8 @@
 					<field name="currency_id"/>
 					<field name="product_id"/>
 					<field name="price_unit"/>
-					<field name="product_uos_qty"/>
+					<field name="product_uom_qty"/>
 					<field name="name"/>
-					<field name="invoiced"/>
 					<field name="state"/>
 				</tree>
             </field>
@@ -30,6 +29,6 @@
 		</record>
 
 		<!-- Menu -->
-		<menuitem name="Lignes de ventes" id="menu_prisme_sale_line" parent="base.menu_sales" sequence="7" action="prisme_sale_line"/>
+		<menuitem name="Lignes de ventes" id="menu_prisme_sale_line" parent="sales_team.menu_sales" sequence="14" action="prisme_sale_line"/>
     </data>
 </openerp>

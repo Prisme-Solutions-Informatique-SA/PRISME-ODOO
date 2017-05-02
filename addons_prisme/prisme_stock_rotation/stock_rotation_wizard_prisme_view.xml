@@ -6,17 +6,17 @@
 			<field name="model">stock.rotation.wizard.prisme</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<form string="Stock Rotation">
+				<form string="Stock Rotation" create="false" edit="false">
 					<separator string="Select the Period" colspan="4" />
 					<field name="period_begin" />
 					<newline />
 					<field name="period_end" />
 					<separator colspan="4" />
-					<group colspan="4" col="6">
-						<button special="cancel" string="Cancel" icon="gtk-cancel" />
+					<footer>
+						<button special="cancel" string="Cancel" />
 						<button name="stock_rotation_prisme_launch_report" string="Open Report"
-							type="object" icon="gtk-ok" />
-					</group>
+							type="object" />
+                    </footer>
 				</form>
 			</field>
 		</record>
@@ -33,10 +33,8 @@
 
         <menuitem
             name="Stock Rotation Analysis"
-            parent="stock.next_id_61"
+            parent="stock.menu_warehouse_report"
             action="stock_rotation_wizard_prisme_action"
-            id="stock_rotation_wizard_prisme_menu"
-            icon="STOCK_JUSTIFY_FILL"
-            groups="stock.group_stock_user"/>
+            id="stock_rotation_wizard_prisme_menu"/>
 	</data>
 </openerp>

@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Reporting for Sales',
-'version': '2016-05-04 10:10',
+'version': '2017-05-02 14:38',
 'category': 'Sales',
 'summary': 'sale order report, quotation report',
 	'author': 'Prisme Solutions Informatique SA',
@@ -10,6 +10,7 @@
 				'prisme_so_enhancement',
 				'sale',
 				'sale_stock',
+				'crm',
 	],
 	'data': [
 				   'sale_order_view.xml',

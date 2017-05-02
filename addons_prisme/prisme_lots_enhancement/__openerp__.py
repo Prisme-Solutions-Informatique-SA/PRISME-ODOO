@@ -1,7 +1,7 @@
 
 {
 'name': 'Prisme Lots Enhancement',
-'version': '2016-05-03 11:47',
+'version': '2017-03-08 10:32',
 'category': 'Warehouse',
 'summary': 'warranties, extra fields',
 'author': 'Prisme Solutions Informatique SA',

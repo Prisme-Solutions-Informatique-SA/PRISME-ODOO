@@ -1,6 +1,6 @@
 {
     "name": "Prisme Tool Menu",
-    "version": "2016-05-06 13:25",
+    "version": "2017-02-06 15:44",
     "author": "Prisme Solutions Informatique SA",
     "category": "Tools",
     "summary": "subscription menu, recurring document",

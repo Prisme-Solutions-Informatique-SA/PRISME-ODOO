@@ -1,7 +1,7 @@
 
 {
 'name': 'Prisme Sales Order Enhancement',
-'version': '2016-05-04 14:14',
+'version': '2017-05-02 14:43',
 'category': 'Sales',
 'summary': 'ammount discount, rounding on subtotal, partial refusal',
 'author': 'Prisme Solutions Informatique SA',

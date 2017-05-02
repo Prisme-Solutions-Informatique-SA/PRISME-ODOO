@@ -1,7 +1,7 @@
 
 {
 'name': 'Prisme Stock Rotation',
-'version': '2016-05-17 11:26',
+'version': '2017-03-27 10:21',
 'category': 'Warehouse',
 'summary': 'stock period analysis, stock rotation, stock average',
 'author': 'Prisme Solutions Informatique SA',
@@ -9,7 +9,7 @@
 'depends': [
             'stock',
             'product',
-            'account_analytic_plans',
+            'account_analytic_default',
 ],
 'init_xml': [],
 'update_xml': [

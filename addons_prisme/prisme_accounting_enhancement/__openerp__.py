@@ -1,7 +1,7 @@
 
 {
 "name": "Prisme Accounting Enhancement",
-"version": "2016-05-23 16:30",
+"version": "2017-02-16 10:45",
 "category": "Finance",
 'summary' : "amount discount, rounding subtotal",
 "author": "Prisme Solutions Informatique SA",
@@ -11,16 +11,14 @@
     "product",
     "sale",
     "stock",
-    "account_payment",
+    "account_accountant",
     "prisme_so_enhancement",
+    "account_analytic_default"
  ],
 "init_xml": [],
 "update_xml": [
-    "account_analytic_chart_view.xml",
     "account_invoice_view.xml",
     "account_invoice_line_view.xml",
-    "account_account_view.xml",
-    "account_analytic_account_view.xml",
 ],
 "demo_xml": [],
 "test": [],

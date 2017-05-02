@@ -145,7 +145,7 @@
           <para style="prisme_1">VAT: [[ (o.company_id.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
         <td>
-<para style="main_address">[[ (o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name) or '' ]] </para>
+<para style="main_address">[[ (o.partner_id.is_company == False and o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name) or '' ]] </para>
 <para style="main_address">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
           <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]] </para>
           <!--
@@ -207,7 +207,7 @@
           <para style="terp_default_Centre_9">[[ (o.partner_id and o.partner_id.ref) or ' ' ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_9">[[ o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note) ]]</para>
+          <para style="terp_default_Centre_9">[[ o.payment_term_id and o.payment_term_id.name and format(o.payment_term_id and o.payment_term_id.name) ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -237,7 +237,7 @@
       </tr>
     </blockTable>
     <section>
-      <para style="terp_default_2">[[ repeatIn(sorts_lines(o.invoice_line),'l') ]]</para>
+      <para style="terp_default_2">[[ repeatIn(sorts_lines(o.invoice_line_ids),'l') ]]</para>
       <blockTable colWidths="209.0,71.0,78.0,52.0,54,65.0" style="Table8">
         <tr>
           <td>
@@ -364,7 +364,7 @@
     <blockTable colWidths="206.0,51.0,55.0,225.0" style="Table9">
       <tr>
         <td>
-          <para style="terp_tblheader_Details">Tax [[ o.tax_line==[] and removeParentNode('blockTable') ]]</para>
+          <para style="terp_tblheader_Details">Tax [[ o.tax_line_ids==[] and removeParentNode('blockTable') ]]</para>
         </td>
         <td>
           <para style="terp_tblheader_Details_Right">Base </para>
@@ -380,7 +380,7 @@
       </tr>
     </blockTable>
     <section>
-      <para style="terp_default_2">[[ repeatIn(o.tax_line,'t') ]]</para>
+      <para style="terp_default_2">[[ repeatIn(o.tax_line_ids ,'t') ]]</para>
       <blockTable colWidths="205.0,52.0,49.0,224.0" style="Table2">
         <tr>
           <td>
@@ -390,7 +390,7 @@
             <para style="terp_default_Right_8">[[ formatLang(t.base, digits=get_digits(dp='Account')) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_8">[[ (t.tax_code_id and t.tax_code_id.notprintable) and removeParentNode('blockTable') or '' ]] [[ formatLang(t.amount, digits=get_digits(dp='Account')) ]]</para>
+            <para style="terp_default_Right_8">[[ formatLang(t.amount, digits=get_digits(dp='Account')) ]]</para>
           </td>
           <td>
             <para style="white_space">

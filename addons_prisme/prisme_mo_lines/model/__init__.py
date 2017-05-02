@@ -1,1 +1,1 @@
-from . import mrp_production_product_line
+from . import stock_move

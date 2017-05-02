@@ -1,63 +1,51 @@
 import datetime
 from openerp import tools
-from openerp.osv import fields, osv, expression
+from odoo import api, fields, models, _
 import prisme_file_logger
 import logging
 
 _logger = logging.getLogger('prisme_lots_enhancement')
 
-class prisme_warranty_warranty(osv.osv):
+class prisme_warranty_warranty(models.Model):
     _name = 'prisme.warranty.warranty'
     
-    _columns = {
-        'description': fields.text('Description'),
+
+    description = fields.Text('Description')
     
-        'assigned_by': fields.many2one('res.partner',
-                                        string='Assigned By'),
-        'assigned_to': fields.many2one('res.partner',
-                                        string='Assigned To'),
-        'copy_to': fields.many2one('res.partner',
-                                    string='Copy To'),
-        'warranty_type_id': fields.many2one(
-                    'prisme.warranty.type',
-                    string='Type'
-                    ),
-        'state': fields.selection([('active', 'Active'),
-                                   ('cur_ren_suppl',
+    assigned_by = fields.Many2one('res.partner', string='Assigned By')
+    assigned_to =fields.Many2one('res.partner', string='Assigned To')
+    copy_to = fields.Many2one('res.partner', string='Copy To')
+    warranty_type_id = fields.Many2one('prisme.warranty.type', string='Type')
+    state = fields.Selection([('active', 'Active'), ('cur_ren_suppl',
                                     'Current Renewal (Suppl.)'),
                                    ('cur_ren_cust',
                                     'Current Renewal (Cust.)'),
                                    ('closed', 'Closed')],
-                                    'State', required=True),
+                                    'State', required=True)
                                     
-        #TODO The context would complete the partner search field to
-        # match the supplier name
-        'last_suppl_invoice': fields.many2one('account.invoice',
+    last_suppl_invoice = fields.Many2one('account.invoice',
                                 string='Last Supplier Invoice',
-                                domain="[('type','=','in_invoice')]"),
+                                domain="[('type','=','in_invoice')]")
                                 
-        #TODO The context would complete the partner search field to
-        # match the customer name
-        'last_cust_invoice': fields.many2one('account.invoice',
+    last_cust_invoice = fields.Many2one('account.invoice',
                                 string='Last Customer Invoice',
-                                domain="[('type','=','out_invoice')]"),
+                                domain="[('type','=','out_invoice')]")
                                 
-        'start_date': fields.date('Start Date'),
-        'end_date': fields.date('End Date'),
-        'recall_date': fields.date('Recall Date'),
+    start_date = fields.Date('Start Date')
+    end_date = fields.Date('End Date')
+    recall_date = fields.Date('Recall Date')
         
-        'internal_notes': fields.text('Internal Notes'),
-        'contact_notes': fields.text('Notes for Contact'),
+    internal_notes = fields.Text('Internal Notes')
+    contact_notes = fields.Text('Notes for Contact')
         
-        'lot_id': fields.many2one('stock.production.lot', ondelete='cascade',
-                                  string="Production Lot", required=True),
+    lot_id = fields.Many2one('stock.production.lot', ondelete='cascade',
+                                  string="Production Lot", required=True)
                                   # required=True:
                                   # Attention a la creation depuis un lot qui
                                   # ne remplira ce champ que lors de la 
                                   # sauvegarde du lot (ce qui empeche
                                   # l'enregistrement de la garantie)
-        'partner' : fields.many2one('res.partner', string='Partner',readonly=True),
-    }
+    partner = fields.Many2one('res.partner', string='Partner',readonly=True)
     
     # Launched each minute, this scheduled action write the date and hour
     # into a file to allow to view if the vm is on
@@ -73,8 +61,7 @@ class prisme_warranty_warranty(osv.osv):
                     '/var/log/prisme/vm_on-warranty/', 7)
         logger.log(current_date + ', ' + current_time + ' : ON')
     
-    def scheduled_action(self, cr, uid, automatic=False, use_new_cursor=False, \
-                       context=None):
+    def scheduled_action(self, automatic=False, use_new_cursor=False,):
         import time
         self._log('Lancement du planificateur (' + \
                   time.strftime('%d.%m.%Y %H:%M:%S', time.localtime()) + ')')
@@ -83,11 +70,10 @@ class prisme_warranty_warranty(osv.osv):
         self._log('Fin')
         self._log('\n')
         
-    def _check_warranty_dates(self, cr, uid, context=None):
+    def _check_warranty_dates(self):
         self._log('')
         self._log('Scan des garanties de la base ' + cr.dbname)
-        warranties_ids = self.search(cr, uid, [("state", "!=", "closed")])
-        warranties = self.browse(cr, uid, warranties_ids)
+        warranties = self.search([("state", "!=", "closed")])
         for warranty in warranties:
             self._log('-------------------------------------------------------')
             self._log('Scan d\'une garantie du lot ' + warranty.lot_id.name)
@@ -116,7 +102,7 @@ class prisme_warranty_warranty(osv.osv):
                         self._notify_lot_recall(cr, uid, warranty)
                     
                 
-    def _notify_lot_recall(self, cr, uid, warranty):
+    def _notify_lot_recall(self, warranty):
         self._log('Construction de l\'e-mail')
         subject = self._construct_subject(cr, uid, warranty)
         body = self._construct_body(cr, uid, warranty)
@@ -155,7 +141,7 @@ class prisme_warranty_warranty(osv.osv):
                           copy_to + ' != ' + ass_to + ': Envoi')
                 self._send_email(cr, uid, sender, copy_to, subject, body)
     
-    def _construct_subject(self, cr, uid, warranty):
+    def _construct_subject(self, warranty):
         self._log('Construction du sujet')
         lot = warranty.lot_id
         
@@ -182,7 +168,7 @@ class prisme_warranty_warranty(osv.osv):
                 " expire ou expirera bientot" + end_date_string
         return subject
     
-    def _construct_body(self, cr, uid, warranty):
+    def _construct_body(self, warranty):
         self._log('Construction du corps')
         
         body = "Rappel d'expiration de garantie\n"
@@ -277,7 +263,7 @@ class prisme_warranty_warranty(osv.osv):
                 body = body + "Remarques: \n" + remarks
         return body
     
-    def _send_email(self, cr, uid, sender, recipient, subject, body):
+    def _send_email(self, sender, recipient, subject, body):
         self._log('Tentative d\'envoi du mail')
         self._log('Envoi d\'un e-mail a ' + recipient + '. Sujet: ' + subject)
         tools.email_send(email_from=sender, email_to=[recipient] , \
@@ -291,5 +277,3 @@ class prisme_warranty_warranty(osv.osv):
         
     def _debug(self, message):
         _logger.debug(message)
-        
-prisme_warranty_warranty()

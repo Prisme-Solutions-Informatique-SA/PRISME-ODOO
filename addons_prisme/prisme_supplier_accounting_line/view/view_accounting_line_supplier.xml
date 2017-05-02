@@ -18,8 +18,8 @@
 					<field name="price_subtotal"/>
 					<field name="currency_id"/>
 					<field name="journal_id"/>
-					<field name="analytic_journal"/>
-					<field name="invoice_line_tax_id"/>
+					<field name="account_analytic_id"/>
+					<field name="invoice_line_tax_ids"/>
 				</tree>
             </field>
         </record>

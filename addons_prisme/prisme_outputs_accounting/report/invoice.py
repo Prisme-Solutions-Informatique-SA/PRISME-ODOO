@@ -1,7 +1,7 @@
 ﻿from os.path import split
 from datetime import datetime
 from openerp.report import report_sxw
-from openerp.osv import fields, osv, expression
+from odoo import api, fields, models, _
 from openerp import netsvc
 
 class prisme_accounting_parser(report_sxw.rml_parse):
@@ -46,10 +46,10 @@ class prisme_accounting_parser(report_sxw.rml_parse):
             dic_lines = {}
             dic_lines['name'] = l.name
 
-            dic_lines['tax'] = ' ,'.join([ lt.name or '' for lt in l.invoice_line_tax_id ])
+            dic_lines['tax'] = ' ,'.join([ lt.name or '' for lt in l.invoice_line_tax_ids ])
             dic_lines['quantity'] = l.quantity
-            if l.uos_id:
-              dic_lines['uos_name'] = l.uos_id.name
+            if l.uom_id:
+              dic_lines['uos_name'] = l.uom_id.name
             else:
               dic_lines['uos_name'] = ''
             dic_lines['price_unit'] = l.price_unit
@@ -64,7 +64,7 @@ class prisme_accounting_parser(report_sxw.rml_parse):
         return list_lines
 
 # Change default print report to custom prisme report 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
     _name = 'account.invoice'
     _inherit = 'account.invoice'
     
@@ -85,9 +85,6 @@ class account_invoice(osv.osv):
             'datas': datas,
             'nodestroy' : True
         }
-account_invoice()
-
-
 
     
 report_sxw.report_sxw(

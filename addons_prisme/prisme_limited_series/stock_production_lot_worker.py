@@ -1,26 +1,17 @@
-from openerp.osv import osv, fields
+from openerp import models, fields, api, _
+from odoo.exceptions import UserError, RedirectWarning, ValidationError
 
-class stock_production_lot(osv.osv):
+class stock_production_lot(models.Model):
     _name = 'stock.production.lot'
     _inherit = 'stock.production.lot'
     
-    _columns = {
-        'limited_series_no': fields.char('Limited Series No', 255),
-        'limited_series_of': fields.char('Of', 255),
-    }
+    limited_series_no = fields.Char('Limited Series No')
+    limited_series_of = fields.Char('Of')
     
-    def _check_series_completion(self, cr, uid, ids):
-        ok = True
+    @api.one
+    @api.constrains('limited_series_of')
+    def _check_series_completion(self):
         for lot in self.browse(cr, uid, ids):
             if lot.limited_series_of:
                  if not lot.limited_series_no:
-                     ok = False
-        return ok
-
-    _constraints = [
-                    (_check_series_completion, 'You must specify a Limited ' + \
-                     'Series No or remove "Of" value',
-                     ['limited_series_no', 'limited_series_of']),
-                      ]
-      
-stock_production_lot()
+                     raise ValidationError('You must specify a Limited Series No or remove "Of" value')

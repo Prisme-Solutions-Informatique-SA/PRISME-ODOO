@@ -18,8 +18,8 @@
 					<field name="price_subtotal"/>
 					<field name="currency_id"/>
 					<field name="journal_id"/>
-					<field name="analytic_journal"/>
-					<field name="invoice_line_tax_id"/>
+					<field name="account_analytic_id"/>
+					<field name="invoice_line_tax_ids"/>
 					
 				</tree>
             </field>
@@ -36,7 +36,6 @@
 		
 		<!-- Menu -->
 		<menuitem name="Lignes de factures clients" id="menu_prisme_account_line_client" parent="account.menu_finance_receivables" sequence="10" action="prisme_accountline_client"/>
-		
 		<!-- Client accounting lines Search View -->
 	<record model="ir.ui.view" id="search_view_prisme_accountline_client_tree">
 		<field name="name">prisme.accountline.client.tree</field>

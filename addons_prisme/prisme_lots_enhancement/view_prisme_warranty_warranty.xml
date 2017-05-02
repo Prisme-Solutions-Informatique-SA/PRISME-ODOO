@@ -94,8 +94,8 @@
 			<field name="search_view_id" ref="prisme_warranty_warranty_search" />
 		</record>
 
-		<menuitem id="prisme_warranty_warranty_menu" parent="stock.menu_traceability"
+		<menuitem id="prisme_warranty_warranty_menu" parent="stock.menu_stock_inventory_control"
 			name="Warranties" icon="STOCK_JUSTIFY_FILL" action="prisme_warranty_warranty_action"
-			sequence="9" />
+			sequence="1001" />
 	</data>
 </openerp>						

@@ -51,8 +51,8 @@
 			<field name="search_view_id" ref="prisme_warranty_type_search" />
 		</record>
 
-		<menuitem id="prisme_warranty_type_menu" parent="stock.menu_traceability"
+		<menuitem id="prisme_warranty_type_menu" parent="stock.menu_stock_inventory_control"
 			name="Warranty Types" icon="STOCK_JUSTIFY_FILL" action="prisme_warranty_type_action"
-			sequence="10" />
+			sequence="1002" />
 	</data>
 </openerp>

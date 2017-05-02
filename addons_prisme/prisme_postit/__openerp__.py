@@ -21,7 +21,7 @@
 
 {
     'name': 'Prisme postit',
-    'version': '2016-05-19 09:15',
+    'version': '2017-03-08 16:17',
     'category': 'Tools',
     'summary': "task manager, reminder",
     'author': 'Prisme Solutions Informatique SA',

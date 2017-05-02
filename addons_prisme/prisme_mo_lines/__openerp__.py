@@ -1,6 +1,6 @@
 {
     "name": "Prisme MO Lines",
-    "version": "2016-05-20 11:00",
+    "version": "2017-03-10 10:10",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
     "summary":"manufacturer orders lines list",

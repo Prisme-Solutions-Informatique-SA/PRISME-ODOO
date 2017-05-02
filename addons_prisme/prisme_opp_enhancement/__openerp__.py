@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Opp enhancement',
-'version': '2016-05-03 14:10',
+'version': '2017-01-16 11:03',
 'category': 'Sale',
 'summary': 'opportunity report',
 'author': 'Prisme Solutions Informatique SA',

@@ -11,8 +11,7 @@
 			    <field name="pricelist_id" position="after">
 			        <field name="rounding_on_subtotal" />
 			    </field>
-			    <field name="address_allotment_id" position="after">
-					<field name="delay" />
+			    <field name="customer_lead" position="after">
 					<field name="date_delivery" on_change="get_number_of_days_prisme(date_delivery)" />
 			 </field>
 
@@ -42,7 +41,7 @@
 				   	<group>
 				    	
 				    	<field name="create_date"/>
-				    	<field name="date_confirm" />
+				    	<field name="confirmation_date" />
 				    </group>
 				    <group>
 			            <separator string="Quotation Validity" colspan="2"/>
@@ -55,33 +54,13 @@
 				    </group>
 					<group>
 				    	<separator colspan="4" string="Annulation"/>
-				    	<field name="cancellation_reason" />
+				    	<field colspan="4" name="cancellation_reason" />
 				    </group>
 				</xpath>
 			
 			</field>
 		</record>
 		
-		<record model="ir.ui.view" id="sale_order_form_prisme">
-			<field name="name">sale.order.form.prisme</field>
-			<field name="model">sale.order</field>
-			<field name="inherit_id" ref="sale.view_order_form"/>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-			    <xpath expr="/form/sheet/notebook/page[last()]/group[last()]" position="after">
-			        <group colspan="2" col="2" groups="base.group_extended">
-			            <separator string="Quotation Validity" colspan="2"/>
-			            <field name="quotation_validity" />
-			            <field name="quotation_comment" />
-			        </group>
-			        
-			        <group colspan="2" col="2" groups="base.group_extended">
-						<separator string="Cancellation" colspan="2"/>
-			            <field name="cancellation_reason" string="Reason"/>
-			        </group>
-			    </xpath>
-			</field>
-		</record>
 		
 		<record model="ir.ui.view" id="sale_order_tree_prisme">
 			<field name="name">sale.order.tree.prisme</field>
@@ -130,7 +109,7 @@
                         <field name="priority">30</field>
                         <field name="type">form</field>
                         <field name="arch" type="xml">
-                   <xpath expr="/form/sheet/notebook/page[@string='Order Lines']/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                   <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
                         <field name="refused" />
                     </xpath>
                       </field>

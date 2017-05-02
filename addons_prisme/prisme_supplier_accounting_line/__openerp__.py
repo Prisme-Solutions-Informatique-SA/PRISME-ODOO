@@ -1,6 +1,6 @@
 {
     "name": "Prisme Supplier Accounting Lines ",
-    "version": "2016-05-20 10:18",
+    "version": "2017-01-17 10:22",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
     "summary": "supplier accounting lines list",

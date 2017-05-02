@@ -1,22 +1,17 @@
-from openerp.osv import fields, osv, expression
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, RedirectWarning, ValidationError
 from datetime import date, datetime
 
-class stock_rotation_wizard_prisme(osv.osv_memory):
+class stock_rotation_wizard_prisme(models.TransientModel):
     _name = 'stock.rotation.wizard.prisme'
 
-    _columns = {
-        'period_begin': fields.date('Beginning of period', required=True),
-        'period_end': fields.date('End of period', required=True),
-    }
+    period_begin = fields.Date('Beginning of period', default=str(date(date.today().year, 1, 1)), required=True)
+    period_end = fields.Date('End of period', default=str(date.today()), required=True)
     
-    _defaults = {
-        'period_begin': str(date(date.today().year, 1, 1)),
-        'period_end': str(date.today()),
-    }
-    
-    def _check_periods(self, cr, uid, ids):
+    @api.constrains('period_begin', 'period_end')
+    def _check_periods(self):
         ok = True
-        for record in self.browse(cr, uid, ids):
+        for record in self:
             begin_date = datetime.strptime(record.period_begin, \
                                            '%Y-%m-%d').date()
             end_date = datetime.strptime(record.period_end, \
@@ -27,29 +22,21 @@ class stock_rotation_wizard_prisme(osv.osv_memory):
             if end_date > date.today():
                 ok = False
                 
-        return ok
+        if not ok:
+            raise ValidationError('The beginning of the period must be before the end' + \
+                     ' of period and none can be future')
     
-    _constraints = [
-                    (_check_periods,
-                     'The beginning of the period must be before the end' + \
-                     ' of period and none can be future',
-                     ['period_begin', 'period_end']),
-                   ]
-    
-    def stock_rotation_prisme_launch_report(self, cr, uid, ids, context=None):
-        model_obj = self.pool.get('ir.model.data')
-        action_obj = self.pool.get('ir.actions.act_window')
+    def stock_rotation_prisme_launch_report(self):
+        model_obj = self.env['ir.model.data']
+        action_obj = self.env['ir.actions.act_window']
         result_context = {}
-        if context is None:
+        if self.env.context is None:
             context = {}
-        result = model_obj.get_object_reference(cr, uid, 'prisme_stock_rotation',
-                                    'product_product_stock_rotation_action')
-        id = result and result[1] or False
-        result = action_obj.read(cr, uid, [id], context=context)[0]
-        data = self.read(cr, uid, ids, [])[0]
+        
+        result = self.env['ir.actions.act_window'].for_xml_id('prisme_stock_rotation', 'product_product_stock_rotation_action')
+        
+        data = self
         result_context.update({'period_begin': data['period_begin']})
         result_context.update({'period_end': data['period_end']})
         result['context'] = str(result_context)
         return result
-
-stock_rotation_wizard_prisme()

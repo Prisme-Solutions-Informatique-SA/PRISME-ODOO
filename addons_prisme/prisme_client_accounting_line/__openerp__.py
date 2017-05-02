@@ -1,6 +1,6 @@
 {
     "name": "Prisme Client Accounting Line",
-    "version": "2016-05-20 10:00",
+    "version": "2017-01-17 09:53",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
     "website": "https://www.prisme.ch",

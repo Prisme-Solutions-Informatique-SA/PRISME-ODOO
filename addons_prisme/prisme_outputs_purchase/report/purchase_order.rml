@@ -191,7 +191,7 @@
           <para style="terp_default_Centre_8">[[formatLang(o.date_order,date=True) ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_8">[[ o.partner_id.property_payment_term and o.partner_id.property_payment_term.note or '' ]]</para>
+          <para style="terp_default_Centre_8">[[ o.payment_term_id and o.payment_term_id.name or '' ]]</para>
         </td>
       </tr>
     </blockTable>
@@ -214,6 +214,7 @@
     <blockTable colWidths="136.0,132.0,133.0,133.0" style="Content_Order_Reference_Table">
       <tr>
         <td>
+          <!-- To view this field. Install the "delivery"  module -->
           <para style="terp_default_Centre_8">[[ o.partner_id.ref or '' ]]</para>
         </td>
         <td>
@@ -221,9 +222,10 @@
           <para style="terp_default_Centre_8">[[ o.partner_id.property_delivery_carrier and o.partner_id.property_delivery_carrier.name or '' ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_8">[[ o.delivery_terms and o.delivery_terms.name or '' ]]</para>
+          <para style="terp_default_Centre_8">[[ o.incoterm_id and o.incoterm_id.name or '' ]]</para>
         </td>
         <td>
+          <!-- To view this field. Install the "base_vat"  module -->
           <para style="terp_default_Centre_8">[[ o.partner_id.vat or '' ]]</para>
         </td>
       </tr>

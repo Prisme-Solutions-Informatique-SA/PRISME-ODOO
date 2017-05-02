@@ -140,8 +140,8 @@
           <para style="terp_default_9">[[ (o.partner_shipping_id and o.partner_shipping_id.street) or '' ]]</para>
           <para style="terp_default_9">[[ (o.partner_shipping_id and o.partner_shipping_id.street2) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">[[ (o.partner_shipping_id and o.partner_shipping_id.zip) or '' ]] [[ (o.partner_shipping_id and o.partner_shipping_id.city) or '' ]]</para>
-          <para style="terp_default_9">[[ ((o.partner_shipping_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id and o.partner_shipping_id.state_id.name) or removeParentNode('para') ]] </para>
-          <para style="terp_default_9">[[ ((o.partner_shipping_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id and o.partner_shipping_id.country_id and o.partner_shipping_id.country_id.name) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">[[ ((o.partner_shipping_id.country_id.id!=o.company_id.partner_id.country_id.id) and o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id and o.partner_shipping_id.state_id.name) or removeParentNode('para') ]] </para>
+          <para style="terp_default_9">[[ ((o.partner_shipping_id.country_id.id!=o.company_id.partner_id.country_id.id) and o.partner_shipping_id and o.partner_shipping_id.state_id and o.partner_shipping_id and o.partner_shipping_id.country_id and o.partner_shipping_id.country_id.name) or removeParentNode('para') ]]</para>
 
         <para style="white_space">
             <font color="white"> </font>
@@ -153,8 +153,8 @@
           <para style="terp_default_9">[[ (o.partner_invoice_id and o.partner_invoice_id.street) or '' ]] </para>
           <para style="terp_default_9">[[ (o.partner_invoice_id and o.partner_invoice_id.street2) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">[[ (o.partner_invoice_id and o.partner_invoice_id.zip) or '' ]] [[ (o.partner_invoice_id and o.partner_invoice_id.city) or '' ]]</para>
-          <para style="terp_default_9">[[ ((o.partner_invoice_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_invoice_id and o.partner_invoice_id.state_id and o.partner_invoice_id.state_id.name) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">[[ ((o.partner_invoice_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_invoice_id and o.partner_invoice_id.country_id and o.partner_invoice_id.country_id.name) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">[[ ((o.partner_invoice_id.country_id.id!=o.company_id.partner_id.country_id.id) and o.partner_invoice_id and o.partner_invoice_id.state_id and o.partner_invoice_id.state_id.name) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">[[ ((o.partner_invoice_id.country_id.id!=o.company_id.partner_id.country_id.id) and o.partner_invoice_id and o.partner_invoice_id.country_id and o.partner_invoice_id.country_id.name) or removeParentNode('para') ]]</para>
         </td>
         <td>
           <para style="white_space">
@@ -167,8 +167,8 @@
           <para style="main_address">[[ (o.partner_id and o.partner_id.street) or '' ]]</para>
           <para style="main_address">[[ (o.partner_id and o.partner_id.street2) or removeParentNode('para') ]]</para>
           <para style="main_address">[[ (o.partner_id and o.partner_id.zip) or '' ]] [[ (o.partner_id and o.partner_id.city) or '' ]]</para>
-          <para style="main_address">[[ ((o.partner_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_id and o.partner_id.state_id and o.partner_id.state_id.name) or removeParentNode('para') ]] </para>
-          <para style="main_address">[[ ((o.partner_id.country_id.id!=o.company_id.partner_id.country.id) and o.partner_id and o.partner_id.country_id and o.partner_id.country_id.name) or removeParentNode('para') ]] </para>
+          <para style="main_address">[[ ((o.partner_id.country_id.id!=o.company_id.partner_id.country_id.id) and o.partner_id and o.partner_id.state_id and o.partner_id.state_id.name) or removeParentNode('para') ]] </para>
+          <para style="main_address">[[ ((o.partner_id.country_id.id!=o.company_id.partner_id.country_id.id) and o.partner_id and o.partner_id.country_id and o.partner_id.country_id.name) or removeParentNode('para') ]] </para>
           <para>
               <font color="white"> </font>
           </para>
@@ -240,7 +240,7 @@
           <para style="terp_default_Centre_8">[[ (o.user_id and o.user_id.name) or '' ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_8">[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]]</para>
+          <para style="terp_default_Centre_8">[[ (o.payment_term_id and o.payment_term_id.note and format(o.payment_term_id and o.payment_term_id.note)) or removeParentNode('para') ]]</para>
         </td>
         <td>
           <para style="terp_default_Centre_8">[[ o.state &lt;&gt; 'draft' and  o.state&lt;&gt;'sent' and removeParentNode('blockTable')  ]][[ o.quotation_comment ]]</para>
@@ -277,7 +277,7 @@
           <para style="terp_default_Centre_8">[[ (o.user_id and o.user_id.name) or '' ]]</para>
         </td>
         <td>
-          <para style="terp_default_Centre_8">[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]]</para>
+          <para style="terp_default_Centre_8">[[ (o.payment_term_id and o.payment_term_id.note and format(o.payment_term_id and o.payment_term_id.note)) or removeParentNode('para') ]]</para>
         </td>
       </tr>
     </blockTable>

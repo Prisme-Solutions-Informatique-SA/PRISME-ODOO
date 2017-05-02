@@ -1,9 +1,9 @@
 from openerp.report import report_sxw
-from openerp.osv import fields, osv, expression
+from odoo import api, fields, models, _
 from openerp import netsvc
 
 # Change default print button report with custom prisme report
-class purchase_order(osv.Model):
+class purchase_order(models.Model):
     _name = "purchase.order"
     _inherit = "purchase.order"
 

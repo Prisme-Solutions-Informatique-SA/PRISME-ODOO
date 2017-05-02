@@ -1,6 +1,6 @@
 {
     "name": "Prisme PO Lines",
-    "version": "2016-05-06 11:20",
+    "version": "2017-01-17 11:22",
     "author": "Prisme Solutions Informatique SA",
     "category": "Generic Modules/Accounting",
     "summary": "purchase orders lines list",

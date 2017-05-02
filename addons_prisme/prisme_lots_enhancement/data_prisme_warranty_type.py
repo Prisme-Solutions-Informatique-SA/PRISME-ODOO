@@ -1,14 +1,10 @@
-from openerp.osv import fields, osv, expression
+from odoo import api, fields, models, _
 
 
-class prisme_warranty_type(osv.osv):
+class prisme_warranty_type(models.Model):
     _name = "prisme.warranty.type"
     
-    _columns = {
-        "name": fields.char("Name", 255, required=True, unique=True),
-        "description": fields.text("Description"),
-    }
+    name = fields.Char("Name", required=True, unique=True)
+    description = fields.Text("Description")
     
     _sql_constraints = [("name_uniq", "unique(name)", "Type must be unique")]
-
-prisme_warranty_type()

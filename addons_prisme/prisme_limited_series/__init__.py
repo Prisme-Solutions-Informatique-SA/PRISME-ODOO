@@ -1,3 +1,1 @@
 import stock_production_lot_worker
-import stock_picking_worker
-#import sale_order_line_worker

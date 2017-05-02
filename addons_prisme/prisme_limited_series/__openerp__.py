@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Limited Series',
-'version': '2016-05-03 09:40',
+'version': '2017-03-10 15:15',
 'category': 'Warehouse',
 'summary': 'lots, limited series',
 'author': 'Prisme Solutions Informatique SA',
@@ -18,7 +18,4 @@
 'test': [],
 'installable': True,
 'active': False,
-'images':[
-          'images/limited_series_no.jpg',
-          ],
 }

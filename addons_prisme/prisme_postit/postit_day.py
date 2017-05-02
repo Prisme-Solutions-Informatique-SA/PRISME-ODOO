@@ -7,5 +7,3 @@ class prisme_postit_day(models.Model):
 
     name = fields.Char(string="Day name", required=True, translate=True)
     nbr = fields.Integer('Day number', required=True)
-
-prisme_postit_day()

@@ -1,5 +1,5 @@
 from openerp.report import report_sxw
-from openerp.osv import fields, osv, expression
+from openerp import models, fields, api, _
 from openerp import netsvc
 from os.path import split
 
@@ -80,12 +80,10 @@ class prisme_picking_parser(report_sxw.rml_parse):
         
     def _get_back_order_pickings(self, picking):
         related_pickings = []
-        obj_picking = self.pool.get("stock.picking")
-        related_picking_ids = obj_picking.search(self.cr, self.uid,
-                              [("backorder_id", "=", picking.id),
-                              ])
+        id = picking.id
+        related_picking_ids = picking.env["stock.picking"].search([("backorder_id", "=", id)])
         if related_picking_ids:
-            for related_picking in obj_picking.browse(self.cr, self.uid, related_picking_ids):
+            for related_picking in related_picking_ids:
                 related_pickings.append(related_picking)
                 
         return related_pickings

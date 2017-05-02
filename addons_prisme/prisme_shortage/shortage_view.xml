@@ -7,13 +7,29 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='buttons']" position="inside">
+                <xpath expr="//div[@name='button_box']" position="inside">
                     <button class="oe_inline oe_stat_button" string="Product shortage" name="action_view_product_shortage" type="object">
                         
                     </button>
                 </xpath>
             </field>
         </record>
+        
+        <record id="view_prisme_product_template_shortage_button_form" model="ir.ui.view">
+            <field name="name">prisme.product.template.shortage_button_form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_inline oe_stat_button" string="Product shortage" name="action_view_product_shortage" type="object">
+                        
+                    </button>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        	
 		
 	 	<record id="wizard_prisme_shortage" model="ir.ui.view">
 			<field name="name">prisme.shortage.wizard.tree</field>
@@ -39,7 +55,7 @@
 	
  	    <record model="ir.actions.act_window" id="action_prisme_product_template_shortage">
             <field name="name">Product Shortage</field>
-            <!-- <field name="context">{"template_id": active_id}</field> -->
+            <field name="context">{"template_id": active_id}</field>
             <field name="res_model">prisme.shortage.wizard</field>
             <field name="src_model">product.template</field>
             <field name="view_id" ref="wizard_prisme_shortage"/>
@@ -109,7 +125,7 @@
         </record>
         <menuitem
                 id="menu_view_prisme_shortage_all"
-                parent="stock.menu_traceability"
+                parent="stock.menu_stock_inventory_control"
                 name="All product shortage"
                 action="action_prisme_shortage_all"
                 sequence="99"

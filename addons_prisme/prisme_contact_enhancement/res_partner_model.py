@@ -1,14 +1,11 @@
-from openerp.osv import fields, osv, expression
+from openerp import models, fields, api, _
+from openerp import netsvc
+from openerp.osv.orm import browse_record_list, browse_record, browse_null
+from openerp.tools.translate import _
 
-class res_partner(osv.osv):
+class res_partner(models.Model):
     _name = 'res.partner'
     _inherit = 'res.partner'
 
-    _columns = {
+    prescriber = fields.Many2one('res.partner', 'Prescriber', store=True)
 
-                'prescriber': fields.many2one('res.partner', 'Prescriber'),
-
-                }
-
-
-res_partner()

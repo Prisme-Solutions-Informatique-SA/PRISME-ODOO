@@ -1,12 +1,12 @@
 from openerp.report import report_sxw
-from openerp import netsvc
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from openerp import tools
-from openerp.osv import fields, osv, expression
+from odoo import api, fields, models, _
+from openerp import netsvc
 import openerp.addons.decimal_precision as dp
 
-class sale_order(osv.Model):
+class sale_order(models.Model):
     _name = 'sale.order'
     _inherit = 'sale.order'
 
@@ -25,7 +25,6 @@ class sale_order(osv.Model):
         }
         return {'type': 'ir.actions.report.xml', 'report_name': 'sale.order.email.prisme', 'datas': datas, 'nodestroy': True}
 
-sale_order()
 
 class prisme_sale_order_parser(report_sxw.rml_parse):
     
@@ -48,13 +47,9 @@ class prisme_sale_order_parser(report_sxw.rml_parse):
         sub_total = {}
         order_lines = []
         res = {}
-        obj_order_line = self.pool.get('sale.order.line')
-        # Getting entries (the sale order lines)
-        ids = obj_order_line.search(self.cr, self.uid, [('order_id', '=', sale_order.id)])
-        for id in range(0, len(ids)):
-            order = obj_order_line.browse(self.cr, self.uid, ids[id], self.context.copy())
-            order_lines.append(order)
 
+        for line in sale_order.order_line:
+            order_lines.append(line)
 
         j = 0
         sum_flag = {}
@@ -106,12 +101,8 @@ class prisme_sale_order_parser(report_sxw.rml_parse):
         sub_total = {}
         order_lines = []
         res = {}
-        obj_order_line = self.pool.get('sale.order.line')
-        # Getting entries (the sale order lines)
-        ids = obj_order_line.search(self.cr, self.uid, [('order_id', '=', sale_order.id)])
-        for id in range(0, len(ids)):
-            order = obj_order_line.browse(self.cr, self.uid, ids[id], self.context.copy())
-            order_lines.append(order)
+        for line in sale_order.order_line:
+            order_lines.append(line)
 
         i = 1
         j = 0
@@ -126,8 +117,8 @@ class prisme_sale_order_parser(report_sxw.rml_parse):
             if entry.layout_type == 'article':
                 res['tax_id'] = ', '.join(map(lambda x: x.name, entry.tax_id)) or ''
                 res['name'] = entry.name
-                res['product_uom_qty'] = entry.product_uos and entry.product_uos_qty or entry.product_uom_qty or 0.00
-                res['product_uom'] = entry.product_uos and entry.product_uos.name or entry.product_uom.name
+                res['product_uom_qty'] = entry.product_uom_qty or 0.00
+                res['product_uom'] = entry.product_uom.name
                 res['price_unit'] = entry.price_unit or 0.00
                 res['discount'] = entry.discount > 0.0 and entry.discount_type != 'none' and self.formatLang(entry.discount, digits=self.get_digits(dp='Sale Price'))
                 res['discount_label'] = entry.discount > 0.0 and entry.discount_type == 'amount' and '-' or entry.discount > 0.0 and entry.discount_type == 'percent' and '%' or '' 

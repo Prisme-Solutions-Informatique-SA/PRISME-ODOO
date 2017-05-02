@@ -25,10 +25,10 @@ class prisme_postit(models.Model):
     duration = fields.Char(string='Duration')
     state= fields.Selection([('active', 'Non termine'),('get_started','Demarre'),('in_process','En cours'),('terminated', 'Termine'),], default='active')
 
-    def init(self, cr):
-        cr.execute("""DROP TRIGGER IF EXISTS postit_update ON prisme_postit_assignedto_rel;""")
-        cr.execute("""CREATE OR REPLACE FUNCTION postit_update() RETURNS trigger AS $$ BEGIN IF pg_trigger_depth() <> 1 THEN RETURN NEW; END IF; UPDATE prisme_postit SET names_users = subquery.string_agg FROM (SELECT ppar.prisme_postit_id,string_agg(partner.name, ', ') FROM prisme_postit_assignedto_rel ppar JOIN res_users users ON users.id=ppar.res_users_id JOIN res_partner partner ON partner.id=users.partner_id GROUP BY ppar.prisme_postit_id) AS subquery Where prisme_postit.id=subquery.prisme_postit_id; RETURN NEW; END; $$ LANGUAGE plpgsql;""")
-        cr.execute("""CREATE TRIGGER postit_update AFTER INSERT OR UPDATE OR DELETE ON prisme_postit_assignedto_rel WHEN (pg_trigger_depth() < 1) EXECUTE PROCEDURE postit_update();""")
+    def init(self):
+        self.env.cr.execute("""DROP TRIGGER IF EXISTS postit_update ON prisme_postit_assignedto_rel;""")
+        self.env.cr.execute("""CREATE OR REPLACE FUNCTION postit_update() RETURNS trigger AS $$ BEGIN IF pg_trigger_depth() <> 1 THEN RETURN NEW; END IF; UPDATE prisme_postit SET names_users = subquery.string_agg FROM (SELECT ppar.prisme_postit_id,string_agg(partner.name, ', ') FROM prisme_postit_assignedto_rel ppar JOIN res_users users ON users.id=ppar.res_users_id JOIN res_partner partner ON partner.id=users.partner_id GROUP BY ppar.prisme_postit_id) AS subquery Where prisme_postit.id=subquery.prisme_postit_id; RETURN NEW; END; $$ LANGUAGE plpgsql;""")
+        self.env.cr.execute("""CREATE TRIGGER postit_update AFTER INSERT OR UPDATE OR DELETE ON prisme_postit_assignedto_rel WHEN (pg_trigger_depth() < 1) EXECUTE PROCEDURE postit_update();""")
     @api.model
     def action_start(self):
         return self.write({'state': 'get_started'})
@@ -168,8 +168,6 @@ class prisme_postit(models.Model):
     @api.model
     def _log(self, message):
         print message
-
-prisme_postit()
 
 
 

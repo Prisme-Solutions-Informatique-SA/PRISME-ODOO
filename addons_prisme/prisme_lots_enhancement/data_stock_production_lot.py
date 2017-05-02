@@ -1,77 +1,48 @@
-from openerp.osv import fields, osv, expression
+from odoo import api, fields, models, _
 
-class stock_production_lot(osv.osv):
+class stock_production_lot(models.Model):
     _name = "stock.production.lot"
     _inherit = "stock.production.lot"
     
-    _columns = {
-                "description": fields.text("Description"),
-                "model_no": fields.char("Model No", 255),
-                "customer": fields.many2one("res.partner", string="Customer",
-                                            domain="[('customer','=', 1)]"),
-                "user": fields.char("End User", 255),
-                "user_department": fields.char("End User Dept", 255),
-                "installation_date": fields.date("Installation Date"),
+
+    description = fields.Text("Description")
+    model_no = fields.Char("Model No")
+    customer = fields.Many2one("res.partner", string="Customer", domain="[('customer','=', 1)]")
+    user = fields.Char("End User")
+    user_department = fields.Char("End User Dept")
+    installation_date = fields.Date("Installation Date")
                 #TODO The context would complete the partner search field to
                 # match the customer name
-                "customer_invoice": fields.many2one("account.invoice",
+    customer_invoice = fields.Many2one("account.invoice",
                                         string="Customer Invoice",
-                                        domain="[('type','=','out_invoice')]",),
-                "attachments": fields.text("Attachments"),
-                "manufacturer": fields.char("Manufacturer", 255),
-                "manufact_item_no": fields.char("Part. Number", 255),
-                "supplier": fields.many2one("res.partner", string="Supplier",
-                                            domain="[('supplier','=', 1)]"),
-                "supplier_item_no": fields.char("Supplier Item No", 255),
-                #TODO The context would complete the partner search field to
-                # match the supplier name
-                "supplier_invoice": fields.many2one("account.invoice",
-                                        string="Supplier Invoice",
-                                        domain="[('type','=','in_invoice')]"),
-                "delivery_date": fields.date("Delivery Date"),
-                "remarks": fields.text("Remarks"),
+                                        domain="[('type','=','out_invoice')]",)
+    attachments = fields.Text("Attachments")
+    manufacturer = fields.Char("Manufacturer")
+    manufact_item_no = fields.Char("Part. Number")
+    supplier = fields.Many2one("res.partner", string="Supplier", domain="[('supplier','=', 1)]")
+    supplier_item_no = fields.Char("Supplier Item No")
+
+    supplier_invoice = fields.Many2one("account.invoice", string="Supplier Invoice", domain="[('type','=','in_invoice')]")
+    delivery_date = fields.Date("Delivery Date")
+    remarks = fields.Text("Remarks")
                 
-                # TODO Faire en sorte que le champ lot de production de la 
-                # garantie soit mis a jour immediatement lorsqu'on le cree
-                # depuis le lot de production.
-                'warranties_ids': fields.one2many('prisme.warranty.warranty',
-                                    'lot_id', 'Warranties'),
-                "end_life_date": fields.date("Delivery Date"),
-    }
-    
-    def onchange_product(self, cr, uid, ids, product_id):
+    warranties_ids = fields.One2many('prisme.warranty.warranty', 'lot_id', 'Warranties')
+    end_life_date = fields.Date("Delivery Date")
+
+    @api.one
+    @api.onchange('product_id')
+    def onchange_product(self):
         value_to_return = {}
-        if(product_id):
-            products = \
-                self.pool.get('product.product').browse(cr, uid, [product_id])
-            i = 0
-            for product in products:
-                i += 1
-                value_to_return['description'] = \
-                    product.product_tmpl_id.description
-                value_to_return['warranty_description'] = \
-                    product.product_tmpl_id.description
-        return {'value': value_to_return}
-
-    def onchange_customer(self, cr, uid, ids, warranties_ids, customer):
-        value_to_return = {}
-        print (warranties_ids)
-        for w in warranties_ids:
-            print (w[1])
-            print (customer)
-            self.pool.get('prisme.warranty.warranty').write(cr, uid, [w[1]], {'partner': customer})
-        return True
+        if(self.product_id):
+            self.description = self.product_id.product_tmpl_id.description
+            self.warranty_description = self.product_id.product_tmpl_id.description
 
 
-    def write(self, cr, uid, ids, vals, context=None):
+    @api.multi
+    def write(self, vals):
         print "Write fonction !"
-        res = super(stock_production_lot,self).write(cr, uid, ids, vals, context=context)
-        lots = self.pool.get('stock.production.lot').browse(cr, uid, ids)
-        if(lots):
-            for lot in lots:
-                if (lot):
-                    for w in lot.warranties_ids:
-                        self.pool.get('prisme.warranty.warranty').write(cr, uid, [w.id], {'partner': lot.customer.id})
+        res = super(stock_production_lot,self).write(vals)
+        for w in self.warranties_ids:
+            w.partner = self.customer
+        
         return res
-
-stock_production_lot()

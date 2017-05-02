@@ -200,8 +200,9 @@
 		<field name="search_view_id" ref="view_prisme_postit_tag_search"/>
     </record>
 
-    <menuitem name="PostIt" id="menu_prisme_postit" parent="mail.mail_my_stuff" sequence="22" action="action_prisme_postit"/>
-    <menuitem name="PostIt Tag" id="menu_prisme_postit_tag" parent="mail.mail_my_stuff" sequence="23" action="action_prisme_postit_tag"/>
+	<menuitem name="Postit" id="menu_prisme_postit_base" sequence="150"/>
+    <menuitem name="PostIt" id="menu_prisme_postit" parent="menu_prisme_postit_base" sequence="22" action="action_prisme_postit"/>
+    <menuitem name="PostIt Tag" id="menu_prisme_postit_tag" parent="menu_prisme_postit_base" sequence="23" action="action_prisme_postit_tag"/>
 
 
     <record model="prisme.postit.day" id="0">

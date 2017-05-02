@@ -1,7 +1,7 @@
 
 {
 'name': 'Prisme Reporting for Stock',
-'version': '2016-05-20 16:24',
+'version': '2016-01-18 12:00',
 'category': 'Warehouse',
 'summary': 'stock picking report, stock picking list',
 'author': 'Prisme Solutions Informatique SA',

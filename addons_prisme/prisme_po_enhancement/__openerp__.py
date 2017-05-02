@@ -1,6 +1,6 @@
 {
 'name': 'Prisme po Enhancement',
-'version': '2016-05-04 10:57',
+'version': '2017-03-08 13:56',
 'category': 'Purchase order',
 'summary': 'purchase order merge, purchase order origin',
 'author': 'Prisme Solutions Informatique SA',

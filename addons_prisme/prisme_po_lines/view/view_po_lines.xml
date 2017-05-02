@@ -16,7 +16,6 @@
 					<field name="product_qty"/>
 					<field name="product_uom"/>
 					<field name="partner_id"/>
-					<field name="invoiced"/>
 					<field name="state"/>
 				</tree>
             </field>
