@@ -1,5 +1,7 @@
 
-from openerp import models, fields, tools, api, exceptions, _ 
+from openerp import models, fields, tools, api, exceptions, tools, _ 
+from openerp.tools import frozendict, lazy_classproperty, lazy_property, ormcache, \
+                   Collector, LastOrderedSet, OrderedSet
 import datetime
 
 # class utilisee pour lie le bouton de raccourci "product shortage" du produit a sa vue

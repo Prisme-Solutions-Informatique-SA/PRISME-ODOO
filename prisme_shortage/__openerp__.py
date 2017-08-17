@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Shortage',
-'version': '2017-04-24 11:40',
+'version': '2017-08-17 09:15',
 'category': 'Warehouse',
 'summary': 'products shortage',
 'author': 'Prisme Solutions Informatique SA',
