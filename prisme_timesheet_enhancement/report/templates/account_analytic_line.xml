@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <report id="report_account_analytic_line"
+            model="account.analytic.line"
+            string="Prisme Checklist heures"
+            report_type="qweb-pdf"
+ 			name="prisme_timesheet_enhancement.report_account_analytic_line_view"
+        	file="prisme_timesheet_enhancement.report_account_analytic_line"
+    />
+    
+    <!-- paper format is in hr_timesheet_sheet_check report template --> 	
+	<record id="report_account_analytic_line" model="ir.actions.report.xml">
+    	<field name="paperformat_id" ref="paperformat_landscape"/>
+	</record>
+	
+	<template id="report_account_analytic_line_view">
+        <t t-name="prisme_timesheet_enhancement.report_account_analytic_line_view">
+	        <t t-call="report.html_container">
+	            <div class="page">
+	            	<table style="	font-family: verdana,arial,sans-serif; font-size: 9px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse;" width="100%">
+						<tr>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Client</th>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Projet</th>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Collaborateur</th> 
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Description du travail</th> 
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" width="4%">Date</th> 
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Dét</th>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Fin</th>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Total</th>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Facturable</th>
+							<th style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Net</th>
+						</tr>
+						
+						<t t-foreach="docs.getSortedList()" t-as="doc">
+							<span t-esc="doc.updateClAPr()"/>
+							<tr>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-esc="doc.getClient()"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-esc="doc.getProject()"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.user_id.partner_id.name"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.name"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.date"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.time_beginning"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.time_end"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.unit_amount"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.to_invoice.name"/></td>
+								<td style="	border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-esc="doc.unit_amount-((doc.to_invoice.factor*doc.unit_amount)/100.0)"/></td>
+							</tr>
+						</t>
+					</table>
+				</div>
+	      	</t>
+	  	</t>
+    </template>
+	
+</data>
+</openerp>

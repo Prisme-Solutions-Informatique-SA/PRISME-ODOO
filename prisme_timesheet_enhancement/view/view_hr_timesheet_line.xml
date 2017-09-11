@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account_analytic_line_search_prisme">
+			<field name="name">account.analytic.line.search.prisme</field>
+			<field name="model">account.analytic.line</field> 
+			<field name="type">search</field>
+			<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search" />
+			<field name="arch" type="xml">
+				<field name="date" position="before">
+					<filter icon="terp-go-month" string="This Month" name="this_month"
+						domain="[('working_month','=',time.strftime('%%Y-%%m'))]" />
+				</field>
+				<field name="project_id" position="before">
+					<field name="partner_id" string="Customer" />
+				</field>
+				<xpath expr="/search/group"
+					position="inside">
+					<filter string="Customer" icon="terp-partner" name="group_by_customer"
+						context="{'group_by':'partner_id'}" />
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="account_analytic_line_tree_prisme">
+			<field name="name">account.analytic.line.tree.prisme</field>
+			<field name="model">account.analytic.line</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+			<field name="priority">20</field>
+			<field name="arch" type="xml">
+				<field name="project_id" position="replace" />
+				<field name="name" position="before">
+					<field name="partner_id" string="Customer" readonly="1" />
+					<field domain="[('type','=','normal')]" name="project_id" />
+				</field>
+				<field name="unit_amount" position="before">
+					<field name="time_beginning" widget="float_time"/>
+					<field name="time_end" widget="float_time"/>
+				</field>
+				<xpath expr="/tree/field[last()]" position="after">
+					<field name="working_month" invisible="1" string="Month" />
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="account_analytic_line_form_prisme">
+			<field name="name">account.analytic.line.form.prisme</field>
+			<field name="model">account.analytic.line</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form" />
+			<field name="arch" type="xml">
+				<field name="account_id" position="replace">
+					<field name="account_id" invisible="1"/>
+				</field>
+				<field name="project_id" position="before">
+					<field name="user_id"/>
+			    </field>
+			    
+			    <xpath expr="/form/sheet/group" position="replace">
+			    	<group>
+				        <group>
+	                     	<field name="name"/>
+	                      	<field name="user_id"/>
+	                      	<field name="project_id"/>
+	                      	<field name="task_id" domain="[('project_id', '=', project_id)]"/>
+	                    </group>
+						<group string="Date">
+							<field name="date"/>
+							<field name="sheet_id"/>
+						</group>
+					</group>
+			    </xpath>
+			    
+				
+				<xpath expr="/form/sheet/group" position="after">
+					<notebook>
+                 		<page string="Informations">
+                 			<group>
+                          	 	<group string="Product" name="info_product">
+	                           		<field name="product_id" domain="[('type','=','service')]"/>		
+									<field name="time_beginning" widget="float_time" />
+									<field name="time_end" widget="float_time" />
+									<field name="unit_amount"/>
+									<field name="product_uom_id"/>
+	                           	</group>
+	                           	<group string="Accounting" name="info_accounting">
+	                           		<field name="partner_id" />		
+									<field name="amount"/>
+									<field name="general_account_id" readonly="True"/>
+	                           	</group>
+	                           	<group string="Billing">
+	                           		<field name="to_invoice"/>	
+									<field name="invoice_id" readonly="True"/>
+	                           	</group>
+								<group colspan="2" col="2">
+									<separator string="Internal Description" colspan="2" />
+									<field name="internal_description" nolabel="1" colspan="2" />
+								</group>
+
+                        	</group>
+                  		</page>
+                 	</notebook>
+                </xpath>
+                 
+				
+
+			</field>
+		</record>
+		
+		
+	</data>
+</openerp>

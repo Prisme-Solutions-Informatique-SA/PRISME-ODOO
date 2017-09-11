@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="prisme_timesheet_view_employee_form" model="ir.ui.view">
+            <field name="name">prisme.timesheet.view.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="priority">30</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//field[@name='calendar_id']" position="after">
+	            	<field name="product_id" domain="[('type','=','service')]"/>
+	            </xpath>
+	     	</field>
+	 	</record>
+	</data>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <report
+        id="report_hr_timesheet_sheet_check"
+        model="hr_timesheet_sheet.sheet"
+        string="Prisme Checklist heures feuille de temps"
+        name="prisme_timesheet_enhancement.report_hr_timesheet_sheet_check_view"
+        file="prisme_timesheet_enhancement.report_hr_timesheet_sheet_check"
+        report_type="qweb-pdf" />
+        
+    <record id="paperformat_landscape" model="report.paperformat">
+    	<field name="name">landscape format</field>
+	    <field name="orientation">Landscape</field>
+	</record>
+	
+	<record id="report_hr_timesheet_sheet_check" model="ir.actions.report.xml">
+    	<field name="paperformat_id" ref="paperformat_landscape"/>
+	</record>
+
+    <template id="report_hr_timesheet_sheet_check_view">
+        <t t-name="prisme_timesheet_enhancement.report_hr_timesheet_sheet_check_view">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                
+                    <div class="page">
+                    	<h1>
+                    		<span t-field="doc.name"/> - <span t-field="doc.employee_id.name"></span>
+						</h1>
+                    	
+                    		
+                    		
+                    	<table style = "font-family: verdana,arial,sans-serif; font-size: 9px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse;"  width="100%">
+							<tr>
+								<th width="15%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Client</th>
+								<th width="15%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Projet</th>
+								<th width="41%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Description du travail</th>
+								<th width="9%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Date</th>
+								<th width="4%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Dét</th>
+								<th width="4%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Fin</th>
+								<th width="4%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Total</th>
+								<th width="4%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Facturable</th>
+								<th width="4%" style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;">Net</th>					
+							</tr>
+							<t t-foreach="doc.get_sorted_timesheets()" t-as="timesheet">
+								<tr>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="timesheet.partner_id.name"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="timesheet.account_id.name"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="timesheet.name"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-esc="doc.updateDate(timesheet.date)"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="timesheet.time_beginning"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="timesheet.time_end"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="timesheet.unit_amount"/></td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><!-- TODO UNCOMMENT <span t-field="timesheet.to_invoice.name"/> --> </td>
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><!-- TODO UNCOMMENT <span t-esc="timesheet.time_quantity - ((timesheet.to_invoice.factor * timesheet.time_quantity)/100)" /> --></td>   
+								</tr>
+							</t>
+							
+						</table>
+                    </div>
+                
+            </t>
+        </t>
+    </t>
+    </template>
+</data>
+</openerp>

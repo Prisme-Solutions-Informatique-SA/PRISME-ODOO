@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <report id="report_account_invoice_detail"
+            model="account.invoice"
+            string="Prisme décompte de prestations"
+            report_type="qweb-pdf"
+ 			name="prisme_timesheet_enhancement.report_account_invoice_detail_view"
+        	file="prisme_timesheet_enhancement.report_account_invoice_detail"
+    />
+    
+    <!-- paper format is in hr_timesheet_sheet_check report template --> 	
+	<record id="report_account_invoice_detail" model="ir.actions.report.xml">
+    	<field name="paperformat_id" ref="report.paperformat_euro"/>
+	</record>
+
+	
+	
+	
+	<template id="report_account_invoice_detail_view">
+        
+        	<!-- <t t-call="prisme_timesheet_enhancement.report_account_invoice_detail_layout"/> -->
+
+	        	<t t-foreach="docs" t-as="doc">
+	            	<div class="page">
+	            	  	<table width="100%">
+							<tr>
+							<td  width="60%" valign="bottom"></td>
+							<td width="40%">
+							<p class="lw" >
+								<t t-if="doc.partner_id.is_company">
+    								<span t-field="doc.partner_id.title.name"/> <span t-field="doc.partner_id.name"/><br/>
+								</t>
+								<t t-if="not doc.partner_id.is_company and doc.partner_id.parent_id">
+									<span t-field="doc.partner_id.parent_id.name"/><br/>
+									<span t-field="doc.partner_id.title.name"/> <span t-field="doc.partner_id.name"/><br/>
+								</t>
+								<t t-if="not doc.partner_id.is_company and not doc.partner_id.parent_id">	
+									<span t-field="doc.partner_id.title.name"/> <span t-field="doc.partner_id.name"/><br/>
+							    </t>
+							    
+							    <t t-foreach="docs.display_address(doc.partner_id).splitlines(True)" t-as="s">
+							    	<t t-if="s.strip('\r\n')">
+										<span t-esc="s"/>
+										<br/>
+									</t>						    	
+							    </t>
+							    
+							</p>
+							
+							</td>
+							</tr>
+						</table>
+						
+						<h3>Prestations facture <span t-field="doc.number"/></h3>
+						
+						<t t-set="colTotal" t-value="0"/>
+						<t t-set="colAmount" t-value="0"/>
+						<t t-set="oldProject" t-value="-1"/>
+						<t t-set="oldProduct" t-value="-1"/>
+						<t t-set="oldCollab" t-value="-1"/>
+						<t t-set="oldFactor" t-value="-1"/>
+						<t t-set="chgCollab" t-value="False"/>
+						
+						<t t-foreach="docs.getSortedList(doc.id)" t-as="sortedList">
+							<t t-set="chgCollab" t-value="False"/>
+							<t t-if=" sortedList[0] != oldProject">
+								<p>
+									<table style="font-family: verdana,arial,sans-serif; font-size: 12px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse" width="100%">
+										<tr>
+											<th style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" align="left">Projet</th>
+											<th style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" align="left">Date</th>
+										</tr>
+										<tr>
+											<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-esc="sortedList[0]"/></td>
+											<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;"><span t-field="doc.date_invoice"/></td>
+										</tr>
+									</table>
+								</p>
+							</t>
+							
+							<t t-if="sortedList[1] != oldCollab">
+								<t t-if="oldCollab!=-1">
+									<t t-set="chgCollab" t-value="True"/>
+									<table style="font-family: verdana,arial,sans-serif; font-size: 12px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse" width="100%">	
+				        		  		<tr>
+										<td width="10%"></td> 
+									  	<td width="70%"></td>
+										<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" align="right" width="10%"><b><span t-esc="docs.getAndResetTotal()"/></b></td>
+										<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" align="right" width="10%"><b><span t-esc="docs.getAndResetAmount()"/></b></td>
+										</tr>
+									</table>
+								</t>
+								<br/><h4 > Collaborateur: <span t-esc="sortedList[1]"/></h4>
+							</t>
+							
+							<t t-if="(sortedList[5]!=oldProduct) or (sortedList[8]!=oldFactor) or chgCollab">
+								<t t-if="(oldProduct!=-1) or (oldFactor!=-1)">
+									<t t-if="chgCollab==False">
+										<table style="font-family: verdana,arial,sans-serif; font-size: 12px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse" width="100%">	
+					        		  		<tr>
+											<td width="10%"></td> 
+										  	<td width="70%"></td>
+											<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" align="right" width="10%"><b><span t-esc="docs.getAndResetTotal()"/></b></td>
+											<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" align="right" width="10%"><b><span t-esc="docs.getAndResetAmount()"/></b></td>
+											</tr>
+										</table>
+									</t>
+								</t>
+								<h5><span t-esc="sortedList[5]"/> - <span t-esc="sortedList[8]"/></h5>
+								<table style="font-family: verdana,arial,sans-serif; font-size: 12px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse" width="100%">
+									<tr>
+										<th style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" align="left" width="10%">Date</th>
+										<th style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" align="left" width="70%">Description</th>
+										<th style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" align="right" width="10%">Total</th>
+										<th style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #dedede;" align="right" width="10%">CHF</th>
+									</tr>
+									<t t-set="colTotal" t-value="0"/>
+									<t t-set="colAmount" t-value="0"/>
+								</table>
+							</t>
+							
+							<t t-set="plid" t-value="0"/>
+							<t t-set="plid" t-value="sortedList[10]"/>
+							<t t-set="paid" t-value="0"/>
+							<t t-set="paid" t-value="sortedList[11]"/>
+							<t t-set="pid" t-value="0"/>
+							<t t-set="pid" t-value="sortedList[9]"/>
+							<t t-set="qty" t-value="0"/>
+							<t t-set="qty" t-value="sortedList[4]"/>
+							<t t-set="price" t-value="0"/>
+							<t t-set="price" t-value="docs.getprice(plid,pid,paid,qty)"/>
+							<t t-set="amt" t-value="0"/>
+							<t t-set="amt" t-value="(price*qty)-((price*qty)*sortedList[7]/100)"/>
+							<t t-if="sortedList[7]==100">
+								<t t-set="amt" t-value="price*qty"/>
+							</t>
+							
+							<div style="page-break-inside: avoid;" >
+								<table style="font-family: verdana,arial,sans-serif; font-size: 12px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse" width="100%">
+									<tr>
+									  
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" valign="top" width="10%" align="left"><span t-esc="sortedList[2]"/></td> 
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" width="70%" align="left"><span t-esc="sortedList[3]"/></td> 
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" valign="top" align="right" width="10%"><span t-esc="sortedList[4]"/></td> 
+									<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" valign="top" align="right" width="10%"><span t-esc="amt"/></td>
+									  
+									</tr>
+								</table>
+							</div>
+							
+							<t t-set="at" t-value="docs.addToTotal(sortedList[4])"/>
+							<t t-set="aa" t-value="docs.addToAmount(amt)"/>
+							<t t-set="oldProject" t-value="sortedList[0]"/>
+							<t t-set="oldCollab" t-value="sortedList[1]"/>
+							<t t-set="oldProduct" t-value="sortedList[5]"/>
+							<t t-set="oldFactor" t-value="sortedList[8]"/>
+
+						</t>
+						<table style="font-family: verdana,arial,sans-serif; font-size: 12px; color:#333333; border-width: 1px; border-color: #666666; border-collapse: collapse" width="100%">	
+	        		  		<tr>
+								<td width="10%"></td> 
+							  	<td width="70%"></td>
+							  	<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" align="right" width="10%"><b><span t-esc="docs.getAndResetTotal()"/></b></td>
+							  	<td style="border-width: 1px; padding: 1px; border-style: solid; border-color: #666666; background-color: #ffffff;" align="right" width="10%"><b><span t-esc="docs.getAndResetAmount()"/></b></td>
+  							</tr>
+  						</table>
+	        		</div>
+
+	        		
+	        	</t>
+	        
+	    
+	</template>
+	
+</data>
+</openerp>

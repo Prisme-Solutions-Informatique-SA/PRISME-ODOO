@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="view_timesheet_form_prisme" model="ir.ui.view">
+            <field name="name">Line creation and edition from grid</field>
+            <field name="model">account.analytic.line</field>
+            <field name="priority">4567</field>
+            <field name="inherit_id" ref="timesheet_grid.view_timesheet_form" />
+            <field name="arch" type="xml">
+            	<field name="unit_amount" position="before">
+            		<field name="time_beginning" widget="float_time" />
+					<field name="time_end" widget="float_time" />
+            	</field>
+            
+            	<field name="project_id" position="after">
+					<field name="partner_id" string="Customer" readonly="True" />
+				</field>
+				
+				<field name="name" position="after">
+					<group colspan="2" col="2">
+						<separator string="Internal Description" colspan="2" />
+						<field name="internal_description" nolabel="1" colspan="2" />
+					</group>
+				</field>
+
+            </field>
+        </record>
+ 	</data>
+</odoo>

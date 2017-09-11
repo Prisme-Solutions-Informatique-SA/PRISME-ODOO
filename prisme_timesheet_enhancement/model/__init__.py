@@ -1,0 +1,6 @@
+import data_hr_timesheet_sheet
+import data_hr_timesheet_invoice
+import data_account_analytic_line
+import hr_timesheet_invoice_factor
+import account_analytic_account
+import hr_employee
