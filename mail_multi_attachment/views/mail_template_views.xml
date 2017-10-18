@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Inherit Mail template form. -->
+    <record model="ir.ui.view" id="mail_multi_attachment_email_template_form">
+        <field name="name">email.template.form</field>
+        <field name="model">mail.template</field>
+        <field name="inherit_id" ref="mail.email_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[4]" position="after">
+                <page string="Additional Report Attachments">
+                    <field name="add_attachment_ids" nolabel="1">
+                        <tree string="Lines" editable="bottom">
+                            <field name="report_template" required="1" domain="[('model','=',parent.model)]"/>
+                            <field name="report_name"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

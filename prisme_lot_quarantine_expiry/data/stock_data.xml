@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo noupdate="1">
+        <!-- Route: Quarantine -->
+        <record id="route_warehouse_svs" model="stock.location.route">
+            <field name="name">Quarantine</field>
+            <field name="product_selectable" eval="False"/>
+            <field name="warehouse_selectable" eval="True"/>
+        </record>
+        <!-- Create procurement rules of route: Quarantine -->
+        <function model="procurement.rule" name="_set_rules_to_route_quarantine"/>
+</odoo>

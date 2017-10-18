@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo noupdate="1">
+    <!-- Procurement order origin sequence -->
+    <record id="ir_sequence_procurement_order" model="ir.sequence">
+        <field name="name">Procurement Order Sequence</field>
+        <field name="code">procurement.order</field>
+        <field name="prefix">EXP/LOT/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

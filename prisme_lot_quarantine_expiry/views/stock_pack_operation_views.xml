@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit stock.pack.operation form view to add use and removal date -->
+    <record id="view_pack_operation_lot_form" model="ir.ui.view">
+        <field name="name">stock.pack.operation.lots.form</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="inherit_id" ref="stock.view_pack_operation_lot_form"/> 
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pack_lot_ids']/tree/field[@name='qty']" position="before">
+                <field name="use_date"/>
+                <field name="removal_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

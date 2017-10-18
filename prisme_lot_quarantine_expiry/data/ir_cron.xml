@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo noupdate="1">
+    <!-- Scheduler of Split Lot: Creates procurement orders  -->
+    <record model="ir.cron" id="prisme_lot_quarantine_expiry_inventory_internal_transfer">
+        <field name="name">Quarantine</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model" eval="'stock.production.lot'"/>
+        <field name="function" eval="'create_procurement_of_expiry_lot'"/>
+        <field name="args" eval="'()'" />
+    </record>
+</odoo>

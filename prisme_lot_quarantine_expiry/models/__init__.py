@@ -1,0 +1,7 @@
+import stock_picking
+import stock_warehouse
+import stock_move
+import procurement
+import stock_quant
+import stock_pack_operation
+import stock_production_lot
