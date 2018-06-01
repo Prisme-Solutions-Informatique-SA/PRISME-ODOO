@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- Create the menu for the report -->
+		<report
+			id="print_qrinvoices"
+			model="account.invoice"
+			string="Invoices with QR-bill"
+			report_type="qweb-pdf"
+			name="prisme_invoice_iban_qrcode.report_invoice_qrinvoice"
+			file="prisme_invoice_iban_qrcode.report_invoice_qrinvoice"
+			/>
+		
+		<!-- Create the menu for the report: Version without header/footer -->
+		<!-- <report
+			id="print_qrinvoices_paper"
+			model="account.invoice"
+			string="Prisme Invoice for paper with QR-bill"
+			report_type="qweb-pdf"
+			name="prisme_invoice_iban_qrcode.report_invoice_qrinvoice_nohead"
+			file="prisme_invoice_iban_qrcode.report_invoice_qrinvoice_nohead"
+			/> -->
+			
+		<!-- Create the menu for the report: Version with header/footer -->
+		<!-- <report
+			id="print_qrinvoices_email"
+			model="account.invoice"
+			string="Prisme Invoice for email with QR-bill"
+			report_type="qweb-pdf"
+			name="prisme_invoice_iban_qrcode.report_invoice_qrinvoice"
+			file="prisme_invoice_iban_qrcode.report_invoice_qrinvoice"
+			/> -->
+	</data>
+</odoo>

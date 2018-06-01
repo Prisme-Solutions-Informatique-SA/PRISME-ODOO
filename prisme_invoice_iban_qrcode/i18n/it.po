@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* prisme_invoice_iban_qrcode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e-20170906\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-09 12:05+0000\n"
+"PO-Revision-Date: 2017-10-09 12:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "QR-bill payment part"
+msgstr "Sezione pagamento QR-fattura"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Support"
+msgstr "Sostiene"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Credit transfer"
+msgstr "Bonifico"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Currency"
+msgstr "Valuta"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Amount"
+msgstr "Importo"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Account"
+msgstr "Conto"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Creditor"
+msgstr "Beneficiario"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Reference number"
+msgstr "Numero di riferimento"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Debtor"
+msgstr "Debitore"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Payable by"
+msgstr "Da pagare entro"
+
+
+
+#: model:ir.actions.report.xml,name:prisme_invoice_iban_qrcode.print_qrinvoices
+msgid "Invoices with QR-bill"
+msgstr "Fatture con QR-fattura"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.invoice_form_add_qr
+msgid "QR-Invoice"
+msgstr "QR-Fattura"
+
+#: model:ir.model.fields,field_description:prisme_invoice_iban_qrcode.field_account_invoice_qrcode_qrbill
+msgid "QRCode"
+msgstr "Codice QR"
+
+#: model:ir.model.fields,field_description:prisme_invoice_iban_qrcode.field_account_invoice_qrcode_status
+msgid "QRCode Status"
+msgstr "Stato del codice QR"

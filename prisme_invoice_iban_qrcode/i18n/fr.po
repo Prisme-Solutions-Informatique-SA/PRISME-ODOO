@@ -1,0 +1,314 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* prisme_invoice_iban_qrcode
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e-20170906\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-09 12:05+0000\n"
+"PO-Revision-Date: 2017-10-09 12:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "QR-bill payment part"
+msgstr "Section paiement QR-facture"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Support"
+msgstr "Soutient"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Credit transfer"
+msgstr "Virement"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Currency"
+msgstr "Monnaie"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Amount"
+msgstr "Montant"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Account"
+msgstr "Compte"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Creditor"
+msgstr "Bénéficiaire"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Reference number"
+msgstr "Numéro de référence"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Debtor"
+msgstr "Débiteur"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.report_invoice_qrinvoice_document
+msgid "Payable by"
+msgstr "A payer jusqu'au"
+
+
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:37
+#, python-format
+msgid "The QRCode will be generated once you validate the invoice"
+msgstr "Le code QR sera généré une fois la facture validé"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:86
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:90
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:93
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:96
+#, python-format
+msgid "Invalid IBAN"
+msgstr "IBAN invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:86
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:90
+#, python-format
+msgid "You must specify an IBAN"
+msgstr "Vous devez spécifier un IBAN"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:93
+#, python-format
+msgid "Only IBANs starting with CH or LI are permitted. IBAN: %s"
+msgstr "Seuls les IBAN commençant par CH ou LI sont permis. IBAN: %s"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:96
+#, python-format
+msgid "IBAN \"%s\" length (%s) must be exactly 21 characters long"
+msgstr "L'IBAN \"%s\" (%s) doit être de 21 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:113
+#, python-format
+msgid "Invalid Currency"
+msgstr "Monnaie invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:113
+#, python-format
+msgid "Currency must be either CHF or EUR (used %s)"
+msgstr "La monnaie doit être soit des CHF soit des EUR (actuel: %s)"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:134
+#, python-format
+msgid "Invalid BVR Reference Number"
+msgstr "Numéro de référence BVR invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:134
+#, python-format
+msgid "BVR reference number length (%s) must be exactly 27 characters long"
+msgstr "Le numéro de référence BVR (%s) doit être de 27 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:144
+#, python-format
+msgid "Invalid Debtor"
+msgstr "Débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:144
+#, python-format
+msgid "Invalid Creditor"
+msgstr "Bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:144
+#, python-format
+msgid "Debtor is mandatory"
+msgstr "Le débiteur est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:144
+#, python-format
+msgid "Creditor is mandatory"
+msgstr "Le bénéficiaire est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:149
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:152
+#, python-format
+msgid "Invalid Debtor's Name"
+msgstr "Nom du débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:149
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:152
+#, python-format
+msgid "Invalid Creditor's Name"
+msgstr "Nom du bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:149
+#, python-format
+msgid "Debtor's name is mandatory"
+msgstr "Le nom du débiteur est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:149
+#, python-format
+msgid "Creditor's name is mandatory"
+msgstr "Le nom du bénéficiaire est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:152
+#, python-format
+msgid "Debtor's name \"%s\" length (%s) must not exceeds 70 characters"
+msgstr "Le nom du débiteur \"%s\" (%s) ne doit pas dépasser 70 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:152
+#, python-format
+msgid "Creditor's name \"%s\" length (%s) must not exceeds 70 characters"
+msgstr "Le nom du bénéficiaire \"%s\" (%s) ne doit pas dépasser 70 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:160
+#, python-format
+msgid "Invalid Debtor's Street"
+msgstr "Rue du débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:160
+#, python-format
+msgid "Invalid Creditor's Street"
+msgstr "Rue du bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:160
+#, python-format
+msgid "Debtor's street \"%s\" length (%s) must not exceeds 70 characters"
+msgstr "La rue du débiteur \"%s\" (%s) ne doit pas dépasser 70 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:160
+#, python-format
+msgid "Creditor's street \"%s\" length (%s) must not exceeds 70 characters"
+msgstr "La rue du bénéficiaire \"%s\" (%s) ne doit pas dépasser 70 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:168
+#, python-format
+msgid "Invalid Debtor's House Number"
+msgstr "Numéro de maison du débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:168
+#, python-format
+msgid "Invalid Creditor's House Number"
+msgstr "Numéro de maison du bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:168
+#, python-format
+msgid "Debtor's house number \"%s\" length (%s) must not exceeds 16 characters"
+msgstr "Le numéro de maison du débiteur ne doit pas dépasser 16 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:168
+#, python-format
+msgid "Creditor's house number \"%s\" length (%s) must not exceeds 16 characters"
+msgstr "Le numéro de maison du bénéficiaire ne doit pas dépasser 16 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:173
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:176
+#, python-format
+msgid "Invalid Debtor's Postal Code"
+msgstr "Code postal du débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:173
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:176
+#, python-format
+msgid "Invalid Creditor's Postal Code"
+msgstr "Code postal du bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:173
+#, python-format
+msgid "Debtor's postal code is mandatory"
+msgstr "Le code postal du débiteur est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:173
+#, python-format
+msgid "Creditor's postal code is mandatory"
+msgstr "Le code postal du bénéficiaire est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:176
+#, python-format
+msgid "Debtor's postal code \"%s\" length (%s) must not exceeds 16 characters"
+msgstr "Le code postal du débiteur ne doit pas dépasser 16 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:176
+#, python-format
+msgid "Creditor's postal code \"%s\" length (%s) must not exceeds 16 characters"
+msgstr "Le code postal du bénéficiaire ne doit pas dépasser 16 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:181
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:184
+#, python-format
+msgid "Invalid Debtor's City"
+msgstr "Ville du débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:181
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:184
+#, python-format
+msgid "Invalid Creditor's City"
+msgstr "Ville du bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:181
+#, python-format
+msgid "Debtor's city is mandatory"
+msgstr "La ville du débiteur est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:181
+#, python-format
+msgid "Creditor's city is mandatory"
+msgstr "La ville du bénéficiaire est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:184
+#, python-format
+msgid "Debtor's city \"%s\" length (%s) must not exceeds 35 characters"
+msgstr "La ville du débiteur ne doit pas dépasser 35 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:184
+#, python-format
+msgid "Creditor's city \"%s\" length (%s) must not exceeds 35 characters"
+msgstr "La ville du bénéficiaire ne doit pas dépasser 35 caractères"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:189
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:192
+#, python-format
+msgid "Invalid Debtor's Country Code"
+msgstr "Code du pays du débiteur invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:189
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:192
+#, python-format
+msgid "Invalid Creditor's Country Code"
+msgstr "Code du pays du bénéficiaire invalide"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:189
+#, python-format
+msgid "Debtor's country code is mandatory"
+msgstr "Le code du pays du débiteur est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:189
+#, python-format
+msgid "Creditor's country code is mandatory"
+msgstr "Le code du pays du bénéficiaire est obligatoire"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:192
+#, python-format
+msgid "Debtor's country code \"%s\" length (%s) must be exactly 2 characters long (according to ISO 3166-1)"
+msgstr "Le code du pays du débiteur doit être de 2 caractères (ISO 3166-1)"
+
+#: code:addons/prisme_invoice_iban_qrcode/model/account_invoice.py:192
+#, python-format
+msgid "Creditor's country code \"%s\" length (%s) must be exactly 2 characters long (according to ISO 3166-1)"
+msgstr "Le code du pays du bénéficiaire doit être de 2 caractères (ISO 3166-1)"
+
+
+
+#: model:ir.actions.report.xml,name:prisme_invoice_iban_qrcode.print_qrinvoices
+msgid "Invoices with QR-bill"
+msgstr "Factures avec QR-facture"
+
+#: model:ir.ui.view,arch_db:prisme_invoice_iban_qrcode.invoice_form_add_qr
+msgid "QR-Invoice"
+msgstr "QR-Facture"
+
+#: model:ir.model.fields,field_description:prisme_invoice_iban_qrcode.field_account_invoice_qrcode_qrbill
+msgid "QRCode"
+msgstr "Code QR"
+
+#: model:ir.model.fields,field_description:prisme_invoice_iban_qrcode.field_account_invoice_qrcode_status
+msgid "QRCode Status"
+msgstr "Statut du code QR"
