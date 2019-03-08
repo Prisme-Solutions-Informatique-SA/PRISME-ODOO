@@ -10,6 +10,106 @@ class sale_order_line(models.Model):
     _name = 'sale.order.line'
     _inherit = 'sale.order.line'
     
+    # Column copied from sale.order.line and renamed to remove '%'   
+    discount = fields.Float(string='Discount (percent)', digits=dp.get_precision('Discount'), default=0.0)
+    #New field for discount in amount
+    discount_amount = fields.Float(string='Discount (amount)', digits=(16, 2), default=0.0)
+    
+    #Deprecated, tried to delete but stuck with a "discount_type doest not exist" error
+    #Seems to work when uninstalling then installing the module but then the data is lost...
+    discount_type = fields.Selection([('amount', 'Amount'),
+                                  ('percent', 'Percent')],
+                                   'Discount type', readonly=True,
+                                    states={'draft': [('readonly', False)]},
+                                    default='percent')
+
+    def check_discount_percent(self, discount_value):
+        error = ""
+        if (discount_value < 0.0):
+            error = _("A discount in percent cannot be negative !")
+        elif (discount_value > 100.0):
+            error = _("A discount in percent cannot be bigger than 100 !")
+        return error
+ 
+    def check_discount_amount(self, discount_amount_value, price_unit_value):
+        error = ""
+        if (discount_amount_value < 0.0):
+            error = _("A discount in amount cannot be negative !")
+        elif (discount_amount_value > price_unit_value):
+            error = _("A discount in amount cannot be bigger than the price !")
+        return error
+     
+     
+    #Override "create" and "write" functions to check discount constraints each save/creation in DB.
+    #Tried using @api.constrains for almost one day, seems never to be called...
+    @api.model
+    def create(self, values):
+        # Do your custom logic here
+        final_error = ""
+        if 'discount' in values:
+            error = self.check_discount_percent(values['discount'])
+            if error:
+                final_error+=(error+"\n")
+        if 'discount_amount' in values:
+            error = self.check_discount_amount(values['discount_amount'], values['price_unit'])
+            if error:
+                final_error+=error
+        if final_error:
+            raise ValidationError(final_error)    
+        return super(sale_order_line, self).create(values)
+ 
+    @api.model
+    def write(self, values):
+        # Do your custom logic here
+        final_error = ""
+        if 'discount' in values:
+            error = self.check_discount_percent(values['discount'])
+            if error:
+                final_error+=(error+"\n")
+        if 'discount_amount' in values:
+            error = self.check_discount_amount(values['discount_amount'], self.price_unit)
+            if error:
+                final_error+=error
+        if final_error:
+            raise ValidationError(final_error)
+        return super(sale_order_line, self).write(values)
+
+    @api.multi
+    def _action_procurement_create(self):
+        """
+        Create procurements based on quantity ordered. If the quantity is increased, new
+        procurements are created. If the quantity is decreased, no automated action is taken.
+        """
+        precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
+        new_procs = self.env['procurement.order']  # Empty recordset
+        for line in self:
+            # Prisme Modification begin
+            if line.refused:
+                continue
+            # Prisme Modification end
+            
+            if line.state != 'sale' or not line.product_id._need_procurement():
+                continue
+            qty = 0.0
+            for proc in line.procurement_ids:
+                qty += proc.product_qty
+            if float_compare(qty, line.product_uom_qty, precision_digits=precision) >= 0:
+                continue
+
+            if not line.order_id.procurement_group_id:
+                vals = line.order_id._prepare_procurement_group()
+                line.order_id.procurement_group_id = self.env["procurement.group"].create(vals)
+
+            vals = line._prepare_order_line_procurement(group_id=line.order_id.procurement_group_id.id)
+            vals['product_qty'] = line.product_uom_qty - qty
+            new_proc = self.env["procurement.order"].create(vals)
+            new_proc.message_post_with_view('mail.message_origin_link',
+                values={'self': new_proc, 'origin': line.order_id},
+                subtype_id=self.env.ref('mail.mt_note').id)
+            new_procs += new_proc
+        new_procs.run()
+        return new_procs
+    
     
     @api.multi
     def _prepare_order_line_procurement(self, group_id=False):
@@ -37,19 +137,21 @@ class sale_order_line(models.Model):
     price_tax = fields.Monetary(compute='_compute_amount_prisme', string='Taxes', readonly=True, store=True)
     price_total = fields.Monetary(compute='_compute_amount_prisme', string='Total', readonly=True, store=True)
     
-    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id')
+    price_reduce = fields.Monetary(compute='_get_price_reduce_prisme', string='Price Reduce', readonly=True, store=True)
+    
+    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id', 'discount_amount')
     def _compute_amount_prisme(self):
         """
         Compute the amounts of the SO line.
         """
         for line in self:
              # Prisme modification start
-            if line.discount_type == 'amount':
-                price = line.price_unit - (line.discount or 0.0)
-            elif line.discount_type == 'percent':
-                price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            else:
-                price = line.price_unit 
+            price = line.price_unit
+            if (line.discount_amount):
+                price = price - line.discount_amount
+                
+            if (line.discount):
+                price = price * (1 - (line.discount / 100.0))
             
             # Modification: if the line has been refused, set the price to 0
             if line.refused or line.layout_type != 'article':
@@ -73,7 +175,27 @@ class sale_order_line(models.Model):
                     'price_subtotal': new_price_subtotal,
                 })
             #Prisme modification end
-    
+  
+  
+    @api.depends('price_unit', 'discount', 'discount_amount')
+    def _get_price_reduce_prisme(self):
+
+        for line in self:
+            #Prisme Modification start: compute the reduced price with amount and/or percent discount
+            if line.refused or line.layout_type != 'article':
+                continue           
+            
+            price = line.price_unit
+            if (line.discount_amount):
+                price = price - line.discount_amount
+                
+            if (line.discount):
+                price = price * (1 - (line.discount / 100.0))
+
+                
+            line.price_reduce = price
+             #Prisme modification end
+            
     @api.depends('product_id', 'purchase_price', 'product_uom_qty', 'price_unit')
     def _product_margin(self):
         for line in self:
@@ -108,16 +230,12 @@ class sale_order_line(models.Model):
                       'invoice_except': [('readonly', False)]})
               
              
-    # Column copied from sale.order.line and renamed to remove '%'   
-    discount = fields.Float('Discount', digits=(16, 2),
-                                 readonly=True,
-                                 states={'draft': [('readonly', False)]})
-    discount_type = fields.Selection([('amount', 'Amount'),
-                                           ('percent', 'Percent')],
-                                          'Discount type', readonly=True,
-                                          states={'draft': [('readonly', False)]},
-                                          default='percent')
-        
+
+    #discount = fields.Float('Discount', digits=(16, 2),
+    #                             readonly=True,
+    #                             states={'draft': [('readonly', False)]})
+
+    
     # Method overriden to use the method in this class     
     shipped = fields.Boolean('Shipped')
         
@@ -196,3 +314,12 @@ class sale_order_line(models.Model):
                         sub_total += sub_sol.price_subtotal
             
             sol.rel_subtotal = sub_total
+    
+    @api.depends('state', 'product_uom_qty', 'qty_delivered', 'qty_to_invoice', 'qty_invoiced')
+    def _compute_invoice_status(self):
+        super(sale_order_line, self)._compute_invoice_status()        
+        for line in self:
+            # Si la ligne a ete refusee ou n'est pas de type article
+            if line.refused or line.layout_type != 'article':
+                # mettre la ligne en etat facture
+                line.invoice_status = 'invoiced'

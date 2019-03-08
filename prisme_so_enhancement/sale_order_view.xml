@@ -18,13 +18,13 @@
 				
 				<xpath expr="/form/sheet/notebook/page/field/form/div" position="after">
 					<group>
-						<separator colspan="4" string="Refusal"/>
+						<separator colspan="2" string="Refusal"/>
 						<field name="refused" />
 						<field name="refusal_reason" />
 					</group>
 					
 					<group>
-						<separator colspan="4" string="State"/>
+						<separator colspan="2" string="State"/>
 						<field name="state" />
 					</group>
 				</xpath>
@@ -33,9 +33,13 @@
                  	<field name="discount" class="oe_inline"/>
 				</xpath>
 				
-				<field name="discount" position="after">
-					<field name="discount_type" />
-				</field>
+				<xpath expr="/form/sheet/notebook/page/field/form/group/group/div[last()]/field[@name='discount']/.." position="after">
+					<field name="discount_amount" />
+      		    </xpath>
+
+				<xpath expr="/form/sheet/notebook/page/field/tree/field[@name='discount']" position="after">
+					<field name="discount_amount" />
+      		    </xpath>
 
 				<xpath expr="/form/sheet/notebook/page[last()]/group[last()]" position="after">
 				   	<group>
@@ -45,7 +49,6 @@
 				    </group>
 				    <group>
 			            <separator string="Quotation Validity" colspan="2"/>
-			            <field name="quotation_validity"/>
 			            <field name="quotation_comment"/>
 				    </group>
 				    <group>

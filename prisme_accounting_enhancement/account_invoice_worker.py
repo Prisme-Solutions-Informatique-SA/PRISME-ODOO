@@ -11,12 +11,13 @@ class account_invoice_prisme(models.Model):
         tax_grouped = {}
         for line in self.invoice_line_ids:
             #Prisme modification start : compute price_unit with percent or amount discount
-            if line.discount_type == 'amount':
-                price_unit = line.price_unit - (line.discount or 0.0)
-            elif line.discount_type == 'percent':
-                price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            else:
-                price_unit = line.price_unit - (0.0)
+            price_unit = line.price_unit
+            if (line.discount_amount):
+                price_unit = price_unit - line.discount_amount
+            
+            if (line.discount):
+                price_unit = price_unit * (1 - (line.discount / 100.0)) 
+                 
             #Prisme modification end
             taxes = line.invoice_line_tax_ids.compute_all(price_unit, self.currency_id, line.quantity, line.product_id, self.partner_id)['taxes']
             for tax in taxes:
@@ -29,3 +30,9 @@ class account_invoice_prisme(models.Model):
                     tax_grouped[key]['amount'] += val['amount']
                     tax_grouped[key]['base'] += val['base']
         return tax_grouped
+    
+    @api.multi
+    def copy(self, default=None):
+        default['reference_type'] = 'none'
+        
+        return super(account_invoice_prisme, self).copy(default=default)

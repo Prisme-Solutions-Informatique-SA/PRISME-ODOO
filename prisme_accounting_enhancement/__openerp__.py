@@ -1,7 +1,7 @@
 
 {
 "name": "Prisme Accounting Enhancement",
-"version": "2017-02-16 10:45",
+"version": "2018-03-08 15:00",
 "category": "Finance",
 'summary' : "amount discount, rounding subtotal",
 "author": "Prisme Solutions Informatique SA",
@@ -17,6 +17,7 @@
  ],
 "init_xml": [],
 "update_xml": [
+    "migration.sql",
     "account_invoice_view.xml",
     "account_invoice_line_view.xml",
 ],

@@ -40,4 +40,4 @@ class sale_report(models.Model):
         return select_str
 
     def _group_by(self):
-        return super(sale_report, self)._group_by() + ", s.name,l.discount_type"
+        return super(sale_report, self)._group_by() + ", s.name"

@@ -1,15 +1,14 @@
-    <header>
+<header>
     <pageTemplate>
         <frame id="first" x1="34.0" y1="3cm" width="530" height="21.7cm"/>
         <pageGraphics>
             <image x="7.75cm" y="27cm" width="5.5cm" >[[ company.logo or removeParentNode('image') ]]</image>
-            <setFont name="DejaVu Sans" size="11"/>
+            <setFont name="DejaVu Sans" size="10"/>
             <stroke color="#EE7744"/>
-
             <!--page bottom-->
-            <lines>1cm 1cm 19.9cm 1cm</lines>
-            <drawCentredString x="10.5cm" y="0.4cm">[[ company.rml_footer1 ]]</drawCentredString>
-            <drawCentredString x="10.5cm" y="0.4cm">[[ company.rml_footer2 ]]</drawCentredString>
+            <lines>1cm 1.3cm 19.9cm 1.3cm</lines>
+            <drawCentredString x="10.5cm" y="0.8cm">[[ company.rml_footer ]]</drawCentredString>
+            <drawCentredString x="10.5cm" y="0.3cm">Banque Cantonale de Fribourg - IBAN CH02 0076 8011 0175 7820 2</drawCentredString>
         </pageGraphics>
     </pageTemplate>
 </header>

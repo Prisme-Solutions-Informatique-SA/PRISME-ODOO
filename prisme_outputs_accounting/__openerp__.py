@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Reporting for Accounting',
-'version': '2017-03-01 09:47',
+'version': '2018-03-08 15:00',
 'category': 'Finance',
 'summary': 'invoice reports',
 'author': 'Prisme Solutions Informatique SA',

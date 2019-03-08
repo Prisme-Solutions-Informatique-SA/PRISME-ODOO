@@ -154,7 +154,7 @@ msgstr "You can't print VAT if you don't print totals"
 #: report:sale.order.email.prisme:0
 #: report:sale.order.paper.prisme:0
 msgid "Quotation Date"
-msgstr "Date de Devis"
+msgstr "Date de devis"
 
 #. module: prisme_outputs_sale
 #: report:sale.order.email.prisme:0

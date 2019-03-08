@@ -12,7 +12,6 @@ class sale_order_prisme(models.Model):
     _name = 'sale.order'
     _inherit = 'sale.order'
     
-    
         # Method copied from sale/sale.py (sale_order._amount_line_tax the 22.09.2011
     # modified the 22.09.2011 by Damien Raemy to compute the subtotal by line 
     # using the discount type (percent, amount or null).
@@ -23,14 +22,14 @@ class sale_order_prisme(models.Model):
         # Author(s):            Damien Raemy
         # Date:                 22.09.2011
         # Last modification:    22.09.2011
-        # Description:          Calculate the unit price using discount_type
+        # Description:          Calculate the unit price using discount
         # But:                  Have a price rightly calculated
-        if line.discount_type == 'amount':
-            unit_price = line.price_unit - (line.discount or 0.0)
-        elif line.discount_type == 'percent':
-            unit_price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-        else:
-            unit_price = line.price_unit 
+        unit_price = line.price_unit
+        if (line.discount_amount):
+            unit_price = unit_price - line.discount_amount
+            
+        if (line.discount):
+            unit_price = unit_price * (1 - (line.discount / 100.0))
         # Modification 1 end    
         
         
@@ -61,12 +60,12 @@ class sale_order_prisme(models.Model):
                 # FORWARDPORT UP TO 10.0
                 if order.company_id.tax_calculation_rounding_method == 'round_globally':
                     # Prisme modification start
-                    if line.discount_type == 'amount':
-                        price = line.price_unit - (line.discount or 0.0)
-                    elif line.discount_type == 'percent':
-                        price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-                    else:
-                        price = line.price_unit 
+                    price = line.price_unit
+                    if (line.discount_amount):
+                        price = price - line.discount_amount
+                    if (line.discount):
+                        price = price * (1 - (line.discount / 100.0))
+                    
                     # Prisme modification end
                     taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty, product=line.product_id, partner=line.order_id.partner_id)
                     amount_tax += sum(t.get('amount', 0.0) for t in taxes.get('taxes', []))
@@ -83,7 +82,6 @@ class sale_order_prisme(models.Model):
 
     rounding_on_subtotal = fields.Float('Rounding on Subtotal', default=lambda *a: 0.05)
                     
-    quotation_validity = fields.Date('Quotation Validity', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)] })
     quotation_comment = fields.Char('Quotation Comment', translate=True, readonly=False, states={'draft': [('readonly', False)]})
                                                
     cancellation_reason = fields.Char("Cancellation Reason", readonly=True, states={'draft': [('readonly', False)],
@@ -103,6 +101,9 @@ class sale_order_prisme(models.Model):
     shipped = fields.Boolean("Shipped")
     order_line = fields.One2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, 
                     states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'manual': [('readonly', False)]}, copy=True)
+    
+    # Redefine field confirmation_date to disable copy when duplicating sale.order
+    confirmation_date = fields.Datetime(string='Confirmation Date', readonly=True, index=True, help="Date on which the sale order is confirmed.", oldname="date_confirm", copy=False)
 
     
     @api.multi
@@ -114,39 +115,3 @@ class sale_order_prisme(models.Model):
                      'Other Information tab before cancelling this ' + 
                      'sale order'))
         return result
-    
-    @api.multi
-    def _action_procurement_create(self):
-        """
-        Create procurements based on quantity ordered. If the quantity is increased, new
-        procurements are created. If the quantity is decreased, no automated action is taken.
-        """
-        precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
-        new_procs = self.env['procurement.order']  # Empty recordset
-        for line in self:
-            # Prisme Modification begin
-            if line.refused:
-                continue
-            # Prisme Modification end
-            
-            if line.state != 'sale' or not line.product_id._need_procurement():
-                continue
-            qty = 0.0
-            for proc in line.procurement_ids:
-                qty += proc.product_qty
-            if float_compare(qty, line.product_uom_qty, precision_digits=precision) >= 0:
-                continue
-
-            if not line.order_id.procurement_group_id:
-                vals = line.order_id._prepare_procurement_group()
-                line.order_id.procurement_group_id = self.env["procurement.group"].create(vals)
-
-            vals = line._prepare_order_line_procurement(group_id=line.order_id.procurement_group_id.id)
-            vals['product_qty'] = line.product_uom_qty - qty
-            new_proc = self.env["procurement.order"].create(vals)
-            new_proc.message_post_with_view('mail.message_origin_link',
-                values={'self': new_proc, 'origin': line.order_id},
-                subtype_id=self.env.ref('mail.mt_note').id)
-            new_procs += new_proc
-        new_procs.run()
-        return new_procs

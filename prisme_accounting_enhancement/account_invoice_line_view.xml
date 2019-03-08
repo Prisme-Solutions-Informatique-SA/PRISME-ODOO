@@ -7,13 +7,13 @@
 			<field name="type">form</field>
 			<field name="inherit_id" ref="account.invoice_form" />
 			<field name="arch" type="xml">
-                                            <field name="discount" position="replace">
-				           
+				<field name="discount" position="replace">           
 				</field>
-				<xpath expr="/form/sheet/notebook/page[1]/field/tree/field[last()]" position="after">
-					<field name="discount"/>	
-					<field name="discount_type"/>	
+				<xpath expr="/form/sheet/notebook/page[1]/field/tree/field[@name='invoice_line_tax_ids']" position="after">
+					<field name="discount"/>
+					<field name="discount_amount"/>	
 			    </xpath>
+			    
 			</field>
 		</record>		
 	</data>

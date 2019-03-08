@@ -1,6 +1,6 @@
 {
 'name': 'Prisme Reporting for Sales',
-'version': '2017-05-02 14:38',
+'version': '2018-03-08 15:00',
 'category': 'Sales',
 'summary': 'sale order report, quotation report',
 	'author': 'Prisme Solutions Informatique SA',

@@ -145,9 +145,13 @@
           <para style="prisme_1">VAT: [[ (o.company_id.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
         <td>
-<para style="main_address">[[ (o.partner_id.is_company == False and o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name) or '' ]] </para>
-<para style="main_address">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+          <para style="terp_default_9">[[ o.partner_id and get_contact(o.partner_id, {"widget": "contact", "fields": ["address", "name"], "no_marker": True}) ]]</para>
+          
+          <!--
+		  <para style="main_address">[[ (o.partner_id.is_company == False and o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name) or '' ]] </para>
+		  <para style="main_address">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
           <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]] </para>
+          -->
           <!--
           <para style="prisme_1">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
           <para style="prisme_1">[[ (o.address_invoice_id and o.address_invoice_id.title and o.address_invoice_id.title.name) or '' ]] [[ (o.address_invoice_id and o.address_invoice_id.name) or '' ]]</para>
@@ -171,12 +175,6 @@
     <para style="terp_header">Supplier Refund [[ (o.type=='in_refund' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Supplier Invoice [[ (o.type=='in_invoice' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_default_8">
-      <font color="white"> </font>
-    </para>
-    <para style="white_space">
-      <font color="white"> </font>
-    </para>
-    <para style="white_space">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="133.75,133.75,133.75,133.75" style="Table_Invoice_General_Header">
@@ -229,7 +227,7 @@
           <para style="terp_tblheader_Details_Right">Unit Price</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Right">Disc.</para>
+          <para style="terp_tblheader_Details_Right">[[ get_column_disc(o.invoice_line_ids)=='0' and removeParentNode('para') ]]Disc.</para>
         </td>
         <td>
           <para style="terp_tblheader_Details_Right">Price [[ o.currency_id.symbol ]]</para>
@@ -253,7 +251,7 @@
             <para style="terp_default_Right_9">[[ formatLang(l['price_unit']) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ (l['discount'] > 0.0 and l['discount_type'] != 'none') and formatLang(l['discount'], digits=get_digits(dp='Account')) ]][[ l['discount'] > 0.0 and l['discount_type'] == 'percent' and '%' ]][[ l['discount'] > 0.0 and l['discount_type'] == 'amount' and '-' ]]</para>
+            <para style="terp_default_Right_9">[[ l['discount'] ]]</para>
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(l['price_subtotal'], digits=get_digits(dp='Account')) ]]</para>
@@ -287,7 +285,7 @@
           	<!--
             <para style="terp_default_Note">[[ format(l['note'] or '') or removeParentNode('tr') ]]</para>
            -->
-           <para style="terp_default_Note"></para>
+           <para style="terp_default_Note">[[ removeParentNode('tr') ]]</para>
           </td>
           <td>
             <para style="white_space">
@@ -412,7 +410,7 @@
           <para style="terp_default_Bold_9">Fiscal Position Remark : </para>
         </td>
         <td>
-          <para style="terp_default_9">[[ (o.fiscal_position and o.fiscal_position.note and format(o.fiscal_position.note)) or removeParentNode('blockTable') ]]</para>
+          <para style="terp_default_9">[[ (o.fiscal_position_id and o.fiscal_position_id.note and format(o.fiscal_position_id.note)) or removeParentNode('blockTable') ]]</para>
         </td>
       </tr>
     </blockTable>

@@ -13,10 +13,8 @@
 					<field name="print_vat" />
 				</field>
 				<field name="fiscal_position_id" position="after">
-					<field name="header_comment"/>	
-				</field>
-				<field name="opportunity_id" position="after">
-					<field name="footer_comment"/>	
+					<field name="header_comment"/>
+					<field name="footer_comment"/>
 				</field>
 			</field>
 		</record>

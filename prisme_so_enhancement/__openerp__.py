@@ -1,7 +1,7 @@
 
 {
 'name': 'Prisme Sales Order Enhancement',
-'version': '2017-05-02 14:43',
+'version': '2018-03-08 15:00',
 'category': 'Sales',
 'summary': 'ammount discount, rounding on subtotal, partial refusal',
 'author': 'Prisme Solutions Informatique SA',
@@ -12,8 +12,9 @@
     'sale_margin',
  ],
 'data': [
-    'sale_report_view.xml',
+    'migration.sql',
     'sale_order_view.xml',
+    'sale_report_view.xml',
 ],
 	'js': [
 	],

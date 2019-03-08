@@ -16,6 +16,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: prisme_accounting_enhancement
+#: code:addons/prisme_accounting_enhancement/account_invoice_line_worker.py:36
+#, python-format
+msgid "A discount in amount cannot be bigger than the price !"
+msgstr "Une remise en montant ne peut pas être supérieure aux prix !"
+
+#. module: prisme_accounting_enhancement
+#: code:addons/prisme_accounting_enhancement/account_invoice_line_worker.py:34
+#, python-format
+msgid "A discount in amount cannot be negative !"
+msgstr "Une remise en montant ne peut pas être négative !"
+
+#. module: prisme_accounting_enhancement
+#: code:addons/prisme_accounting_enhancement/account_invoice_line_worker.py:28
+#, python-format
+msgid "A discount in percent cannot be bigger than 100 !"
+msgstr "Une remise en pourcent ne peut pas être supérieure à 100 !"
+
+#. module: prisme_accounting_enhancement
+#: code:addons/prisme_accounting_enhancement/account_invoice_line_worker.py:26
+#, python-format
+msgid "A discount in percent cannot be negative !"
+msgstr "Une remise en pourcent ne peut pas être négative !"
+
+#. module: prisme_accounting_enhancement
+#: model:ir.model.fields,field_description:prisme_accounting_enhancement.field_account_invoice_line_discount_amount
+msgid "Discount (amount)"
+msgstr "Remise (montant)"
+
+#. module: prisme_accounting_enhancement
 #: constraint:sale.order.line:0
 msgid "You must give a reason for each line you refuse"
 msgstr "Vous devez donner une raison pour chaque ligne que vous refusez"
@@ -83,7 +112,7 @@ msgstr "Erreur ! La monnaie doit être la même que la monnaie de la société s
 #. module: prisme_accounting_enhancement
 #: help:account.analytic.chart,financial_account_filter:0
 msgid "Use this filter to obtain quantities and amounts calculated only on analytic lines concerning  certain accounts. Used to avoid the double hours count on projects (one for the hour worked, and one for the  hour invoiced."
-msgstr "Utilisez ce filtre pour obtenir les quantités et les montants calculés seulement sur les lignes analytiques concernant certains comptes. Utilisé pour annuler les heures comptées à double sur les projets (une pour les heures travaillées, et une pour les heures facturées)"
+msgstr "Utilisez ce filtre pour obtenir les quantités et les montants calculés seulement sur les lignes analytiques concernant certains comptes. Utilisé pour annuler les heures comptées Ã  double sur les projets (une pour les heures travaillées, et une pour les heures facturées)"
 
 #. module: prisme_accounting_enhancement
 #: model:ir.model,name:prisme_accounting_enhancement.model_account_invoice_tax

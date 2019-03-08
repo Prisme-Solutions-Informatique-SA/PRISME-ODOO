@@ -16,6 +16,6 @@ class sale_order_line_prisme(models.Model):
         self.ensure_one()
         res = super(sale_order_line_prisme, self)._prepare_invoice_line(qty)
         
-        res['discount_type'] = self.discount_type
+        res['discount_amount'] = self.discount_amount
 
         return res
