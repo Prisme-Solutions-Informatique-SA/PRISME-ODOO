@@ -15,7 +15,8 @@ class account_invoice_line_prisme(models.Model):
     #Deprecated, tried to delete but stuck with a "discount_type doest not exist" error
     #Seems to work when uninstalling then installing the module but then the data is lost...
     discount_type = fields.Selection([('amount', 'Amount'),
-                                      ('percent', 'Percent')],
+                                      ('percent', 'Percent'),
+                                      ('deprecated', 'Deprecated')],
                                        'Discount type', readonly=True,
                                         states={'draft': [('readonly', False)]},
                                         default='percent')
