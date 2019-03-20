@@ -36,7 +36,7 @@ class sale_order_line(models.Model):
         error = ""
         if (discount_amount_value < 0.0):
             error = _("A discount in amount cannot be negative !")
-        elif (discount_amount_value > price_unit_value):
+        elif ((discount_amount_value > price_unit_value) and (discount_amount_value > 0)):
             error = _("A discount in amount cannot be bigger than the price !")
         return error
      
