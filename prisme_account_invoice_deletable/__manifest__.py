@@ -38,4 +38,6 @@
     'test': [],
     'installable': True,
     'active': False,
+    'images': ['static/description/icon.jpg'],
+    'license': 'LGPL-3',
 }
