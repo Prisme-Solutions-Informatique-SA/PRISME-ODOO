@@ -22,7 +22,7 @@
 ##########################################################################
 {
 'name': 'Prisme Account Invoice Deletable',
-'version': '2019-10-17 14:01',
+'version': '2019-09-20 15:15',
 'category': 'Account',
 'summary': 'deletable account invoice',
 'author': 'Prisme Solutions Informatique SA',
@@ -38,6 +38,6 @@
     'test': [],
     'installable': True,
     'active': False,
-	'images': ['static/description/icon.jpg'],
+    'images': ['static/description/icon.jpg'],
     'license': 'LGPL-3',
 }
