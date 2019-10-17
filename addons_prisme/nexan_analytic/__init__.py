@@ -1,4 +1,0 @@
-import account, prisme_accounting_enhancement
-import analytic_account_nexan
-import sale_order_line_nexan
-import stock_picking_nexan
