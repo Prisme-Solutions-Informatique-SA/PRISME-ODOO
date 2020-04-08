@@ -1,2 +1,0 @@
-import stock_production_lot_worker
-import stock_picking_worker

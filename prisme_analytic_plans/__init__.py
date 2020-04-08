@@ -1,8 +1,0 @@
-import product_product_worker
-import sale_order_line_worker
-import stock_picking_worker
-import account_invoice_line_worker
-import purchase_order_worker
-import account_invoice_report_worker
-import account_analytic_plan_instance_worker
-import product_category_worker

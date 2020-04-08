@@ -1,7 +1,0 @@
-import warehouse
-import stock
-import sale
-import procurement
-import mrp
-import product_product_worker
-import purchase_order_worker
