@@ -50,5 +50,6 @@ Adds a QR-bill to invoices.
     'auto_install': False,
     'price': 100,
     'currency': 'EUR',
+    'license': 'AGPL-3',
     'support': 'info@prisme.ch'
 }
