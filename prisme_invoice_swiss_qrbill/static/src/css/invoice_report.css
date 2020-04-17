@@ -1,0 +1,64 @@
+/*
+Warning: The value are in PX not in MM because there is a bug with the DPI
+
+The value in MM are commented and are used to calculate the value in PX
+Calculation (approximative): mm * 4.745 = px
+*/
+.qrinv-root {
+	font-family: OCR-B, Arial, Frutiger, Helvetica;
+	page-break-inside: avoid;
+	/* width: 148mm; */
+	/* height: 105mm; */
+	width: 702px;
+	height: 498px;
+	border: 0.5mm solid black;
+}
+.qrinv-key {
+	/* font-size: 8pt; */
+	font-size: 9pt;
+	font-weight: bold;
+	margin: 0;
+}
+.qrinv-val {
+	/* font-size: 10pt; */
+	font-size: 11pt;
+	margin: 1pt 0 5pt 0;
+}
+.qrinv-title {
+	font-size: 12pt;
+}
+.qrinv-qrcode,
+.qrinv-qrcode>img {
+	/* width: 47mm; */
+	/* height: 47mm; */
+	width: 223px;
+	height: 223px;
+}
+.qrinv-qrcode {
+	/* margin: 8mm 0; */
+	margin: 38px 0;
+}
+.qrinv-info-left,
+.qrinv-info-right,
+.qrinv-amount {
+	display: inline-block;
+	vertical-align: top;
+}
+.qrinv-info-left {
+	/* width: 47mm; */
+	/* margin: 8mm; */
+	width: 223px;
+	margin: 38px;
+}
+.qrinv-info-right {
+	/* width: 70mm; */
+	/* margin: 8mm 5mm; */
+	/* padding-top: 30pt; */
+	width: 345px;
+	margin: 38px 25px;
+	padding-top: 40px;
+}
+.qrinv-amount {
+	/* margin: 2mm; */
+	margin: 9.5px;
+}
