@@ -21,7 +21,7 @@
 ##########################################################################
 {
     'name': 'Swiss QR-bill',
-    'version': '2020-04-17 15:00',
+    'version': '10.2020-04-17 15:00',
     'category': 'Accounting',
     'summary': """QR-bill for payment slips in Switzerland""",
     'description'  : """
@@ -50,5 +50,5 @@ Adds a QR-bill to invoices.
     'auto_install': False,
     'price': 100,
     'currency': 'EUR',
-    'license': 'OPL-1',
+    'support': 'info@prisme.ch'
 }
