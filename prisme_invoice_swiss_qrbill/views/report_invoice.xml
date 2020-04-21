@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#    You should have received a copy of the GNU Affero General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID:    OERP-002-08
+#    Phabricator:   T499
+#
+##########################################################################
+ -->
+<odoo>
+	<data>
+		<!-- Create a custom report from the custom template -->
+		<template id="report_invoice_qrinvoice">
+			<!-- Create base document -->
+		    <t t-call="web.html_container">
+				<!-- Loop in documents to print -->
+		        <t t-foreach="docs" t-as="o">
+					<!-- Call the copied template -->
+		            <t t-call="prisme_invoice_swiss_qrbill.report_invoice_qrinvoice_document_copy" t-lang="o.partner_id.lang"/>
+		        </t>
+		    </t>
+		</template>
+	
+		<!-- Create a custom report from the custom template -->
+		<template id="report_invoice_qrinvoice_nohead">
+			<!-- Create base document -->
+		    <t t-call="web.html_container">
+				<!-- Loop in documents to print -->
+		        <t t-foreach="docs" t-as="o">
+		        	<!-- First div with header/footer as class is used and following header/footer not used -->
+		        	<div class="header"></div>
+		        	<div class="footer"></div>
+					<!-- Call the copied template -->
+		            <t t-call="prisme_invoice_swiss_qrbill.report_invoice_qrinvoice_document_copy" t-lang="o.partner_id.lang"/>
+		        </t>
+		    </t>
+		</template>
+		
+		<!-- Create a custom new template ('primary="True"') with the QR-bill from the original -->
+		<template id="report_invoice_qrinvoice_document_copy" inherit_id="account.report_invoice_document" primary="True">
+			<xpath expr="//div[@class='page']" position="inside">
+				<!-- Add the QR template indise this template -->
+				<t t-call="prisme_invoice_swiss_qrbill.report_invoice_qrinvoice_document" />
+		    </xpath>
+		</template>
+		
+		<!-- Template containing the QR-bill -->
+		<template id="report_invoice_qrinvoice_document">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/prisme_invoice_swiss_qrbill/static/src/css/invoice_report.css" />
+			</xpath>
+			<xpath expr="//div[@class='page']" position="inside">
+				<div t-if="o.qrcode_qrbill">
+					<!--
+					Warning: The value are in PX not in MM because there is a bug with the DPI
+					
+					This might be corrected in the future, the original CSS is under:
+					- /prisme_invoice_swiss_qrbill/static/src/css/invoice_report.css
+					
+					The value in MM are commented and are used to calculate the value in PX
+					Calculation (approximative): mm * 4.745 = px
+					-->
+					<style>
+.qrinv-root {
+	margin-top: 30px;
+	font-family: Helvetica;
+	page-break-inside: avoid;
+	width: 702px;
+	height: 498px;
+	border: 0.5mm solid black;
+	float: right;
+}
+.qrinv-key {
+	font-size: 9pt;
+	font-weight: bold;
+	margin: 0;
+}
+.qrinv-val {
+	font-size: 11pt;
+	margin: 1pt 0 5pt 0;
+}
+.qrinv-title {
+	font-size: 12pt;
+	font-weight: bold;
+}
+.qrinv-qrcode,
+.qrinv-qrcode>img {
+	width: 223px;
+	height: 223px;
+}
+.qrinv-qrcode {
+	margin: 38px 0;
+}
+.qrinv-info-left,
+.qrinv-info-right,
+.qrinv-amount {
+	display: inline-block;
+	vertical-align: top;
+}
+.qrinv-info-left {
+	width: 223px;
+	margin: 38px;
+}
+.qrinv-info-right {
+	width: 345px;
+	margin: 38px 25px;
+	padding-top: 40px;
+}
+.qrinv-amount {
+	margin: 9.5px;
+}
+					</style>
+					<div class="qrinv-root">
+						<!-- 
+						Each text field are displayed with their key name
+						Use css .qrinv-key to format the key
+						Use css .qrinv-val to format the value
+						 -->
+					
+						<!-- The left side -->
+						<div class="qrinv-info-left">
+							<div class="qrinv-title">
+								<p>Payment part</p>
+							</div>
+							<!-- Payment support isn't used anymore in v2.1 -->
+							<!-- <div class="qrinv-scheme">
+								<p class="qrinv-key">Support</p>
+								<p class="qrinv-val">Credit transfer</p>
+							</div> -->
+							<div class="qrinv-qrcode">
+								<img t-attf-src="data:image/png;base64,{{o.qrcode_qrbill}}" alt="QR-Invoice" />
+							</div>
+							<div class="qrinv-amount">
+								<p class="qrinv-key">Currency</p>
+								<p class="qrinv-val" t-field="o.currency_id.name" />
+							</div>
+							<div class="qrinv-amount">
+								<p class="qrinv-key">Amount</p>
+								<p class="qrinv-val" t-esc="'{0:.2f}'.format(float(o.amount_total)).replace(',', ' ')" />
+							</div>
+						</div>
+						
+						<!-- The right side -->
+						<div class="qrinv-info-right">
+							<p class="qrinv-key">Account / Payable to</p>
+							<p class="qrinv-val">
+								<span t-field="o.partner_bank_id.acc_number"/><br/>
+								<span t-field="o.company_id.partner_id.name" />
+								<br t-if="o.company_id.partner_id.street" />
+								<span t-if="o.company_id.partner_id.street" t-field="o.company_id.partner_id.street" />
+								<br />
+								<span t-field="o.company_id.partner_id.zip" /> <span t-field="o.company_id.partner_id.city" />
+							</p>
+							<div t-if="'isr_reference' in o.fields_get() and o.isr_reference">
+								<p class="qrinv-key">Reference</p>
+								<p class="qrinv-val" t-field="o.isr_reference" />
+							</div>
+							<p class="qrinv-key">Payable by</p>
+							<p class="qrinv-val">
+								<span t-if="(not o.partner_id.is_company) and o.partner_id.parent_id.name" t-field="o.partner_id.parent_id.name" />
+								<span t-else="" t-field="o.partner_id.name" />
+								<br t-if="o.partner_id.street" />
+								<span t-if="o.partner_id.street" t-field="o.partner_id.street" />
+								<br />
+								<span t-field="o.partner_id.zip" /> <span t-field="o.partner_id.city" />
+							</p>
+							<!-- Date due isn't used anymore in v2.1 -->
+							<!-- <div t-if="o.date_due">
+								<p class="qrinv-key">Payable by</p>
+								<p class="qrinv-val" t-field="o.date_due" />
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</template>
+	</data>
+</odoo>
