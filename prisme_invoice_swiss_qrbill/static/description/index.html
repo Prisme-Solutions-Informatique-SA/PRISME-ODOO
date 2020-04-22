@@ -22,7 +22,6 @@
 				The module creates a new report called "Invoices with QR-bill", based on the original ODOO invoice.
 				<ul>
 					<li>The QR-bill payment section is added at the end of the invoice.</li>
-					<li>It uses BVR reference generated with the l10n_ch_payment_slip module (if one has been generated).</li>
 					<li>Note : optional fields "Bill information" and "Unstructured message" of the QR-bill are not supported yet.</li>
 				</ul>				
 			</p>
@@ -60,6 +59,22 @@
 		</div>
 	</div>
 	<div class="oe_row oe_spaced">
+		<div class="oe_span6">
+			<p class="oe_mt32">
+				If you still want to use your invoice issuer number, you may provide it under Invoicing > Configuration > Bank Accounts > in the actual bank account, under the "Invoice Issuer Number" field added by this module. Otherwise, leave this field blank.<br><br>
+				
+				The invoice issuer number will eventually (after the QR / ISR parallel phase) or may already be dropped by the banks.
+			</p>
+		</div>
+		<div class="oe_span6">
+			<div class="oe_demo oe_picture oe_screenshot">
+				<a href="http://www.prisme.ch">
+					<img src="bisr-id.png">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="oe_row oe_spaced">
         <div class="oe_span12">
        		<h2 class="oe_slogan">Requirements</h2>
  		</div>
@@ -70,16 +85,6 @@
 				<li><a href="https://pypi.org/project/pypng/">PyPNG</a></li>
 				<li><a href="https://pypi.org/project/PyQRCode/">PyQRCode</a></li>
 			</ul>
-			<br>
-			<h4 class="oe_slogan">Modules</h4>
-			<h5 class="oe_mt32">This module depends on the "l10n_ch_payment_slip" which itself depends on several other OCA modules. All of these are free, you can either download them on the OCA repositories or on apps.odoo.com. Here is the list and links of all the modules you will need :</h5>
-			<ul>
-				<li>l10n_ch_payment_slip - <a href="https://github.com/OCA/l10n-switzerland/tree/10.0">on OCA repository</a> - <a href="https://apps.odoo.com/apps/modules/10.0/l10n_ch_payment_slip/">on apps.odoo.com</a></li>
-				<li>l10n_ch_base_bank - <a href="https://github.com/OCA/l10n-switzerland/tree/10.0">on OCA repository</a> - <a href="https://apps.odoo.com/apps/modules/10.0/l10n_ch_base_bank/">on apps.odoo.com</a></li>
-				<li>base_transaction_id - <a href="https://github.com/OCA/account-reconcile">on OCA repository</a> - <a href="https://apps.odoo.com/apps/modules/10.0/base_transaction_id/">on apps.odoo.com</a></li>
-				<li>account_payment_partner - <a href="https://github.com/OCA/bank-payment">on OCA repository</a> - <a href="https://www.odoo.com/apps/modules/10.0/account_payment_partner/">on apps.odoo.com</a></li>
-				<li>account_payment_mode - <a href="https://github.com/OCA/bank-payment">on OCA repository</a> - <a href="https://www.odoo.com/apps/modules/10.0/account_payment_mode/">on apps.odoo.com</a></li>
-			<ul>
  		</div>
  	</div>
  	<div class="oe_row oe_spaced">
@@ -89,11 +94,6 @@
  		<div class="oe_span12">
        		<h4 class="oe_slogan">Why is the payment part not present?</h4>
        		<h5 class="oe_slogan">If the payment part is not present in the report, there must be a reason. On the client invoice view there is a tab named "QR-Invoice" which contains the QRCode or the reason why the QRCode is not present.</h5>
- 		</div>
-		<div class="oe_span12">
-       		<h4 class="oe_slogan">My QR-bill reference won't generate.</h4>
-       		<h5 class="oe_slogan">In order to have a QR-Reference generated, make sure the bank account provided in the "Other info" tab of your invoice has the field "Bank BVR/ESR adherent number" filled. During the transition phase of QR-Bill in Switzerland, the adherent number should still be provided, but it will eventually drop out.
-			</h5>
  		</div>
  	</div>
     <div class="oe_row oe_spaced">
@@ -124,7 +124,7 @@
                             -o-transform: rotate(-7deg);
                             -moz-transform: rotate(-7deg);
                             -ms-transform: rotate(-7deg);">
-                    Tested on Odoo<br/>10.0 enterprise
+                    Tested on Odoo<br/>11.0 Enterprise
                 </div>
             </div>
         </div>

@@ -5,14 +5,14 @@
 #    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
+#    it under the terms of the GNU Lesser General Public License as
 #    published by the Free Software Foundation, either version 3 of the
 #    License, or (at your option) any later version.
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#    You should have received a copy of the GNU Affero General Public Lic
+#    GNU Lesser General Public License for more details.
+#    You should have received a copy of the GNU Lesser General Public Lic
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #    Project ID:    OERP-002-08
@@ -22,43 +22,85 @@
 
 from odoo import api, fields, exceptions, models, tools, _
 from odoo.modules.module import get_resource_path
+from odoo.tools.misc import mod10r
 from PIL import Image
 import os, io, base64, pyqrcode, traceback, sys
 
 CH_KREUZ_IMAGE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "static", "src", "img", "CH-Kreuz_7mm.png")
+IBAN_LENGTH_NO_CHECK_DIGIT = 26
 # CH_KREUZ_IMAGE_PATH = get_resource_path("prisme_invoice_swiss_qrbill", "static", "src", "img", "CH-Kreuz_7mm.png")
+
 
 # Compute the BVR reference number checksum
 # Using the modulo 10 
 # - The parameter must be a string containing only digit
 # Documentation of the algorithm from Credit Suisse:
 # https://www.credit-suisse.com/media/assets/private-banking/docs/ch/unternehmen/kmugrossunternehmen/besr-technische-dokumentation-en.pdf
-def bvr_checksum(bvr):
-    table = [
-        [0,9,4,6,8,2,7,1,3,5],
-        [9,4,6,8,2,7,1,3,5,0],
-        [4,6,8,2,7,1,3,5,0,9],
-        [6,8,2,7,1,3,5,0,9,4],
-        [8,2,7,1,3,5,0,9,4,6],
-        [2,7,1,3,5,0,9,4,6,8],
-        [7,1,3,5,0,9,4,6,8,2],
-        [1,3,5,0,9,4,6,8,2,7],
-        [3,5,0,9,4,6,8,2,7,1],
-        [5,0,9,4,6,8,2,7,1,3]
-    ]
-    report = 0
-    for serie in bvr[:-1]:
-        report = table[report][int(serie)]
-    return (10 - report) % 10
-
+# def bvr_checksum(bvr):
+#     table = [
+#         [0,9,4,6,8,2,7,1,3,5],
+#         [9,4,6,8,2,7,1,3,5,0],
+#         [4,6,8,2,7,1,3,5,0,9],
+#         [6,8,2,7,1,3,5,0,9,4],
+#         [8,2,7,1,3,5,0,9,4,6],
+#         [2,7,1,3,5,0,9,4,6,8],
+#         [7,1,3,5,0,9,4,6,8,2],
+#         [1,3,5,0,9,4,6,8,2,7],
+#         [3,5,0,9,4,6,8,2,7,1],
+#         [5,0,9,4,6,8,2,7,1,3]
+#     ]
+#     report = 0
+#     for serie in bvr[:-1]:
+#         report = table[report][int(serie)]
+#     return (10 - report) % 10
 
 
 class AccountInvoice(models.Model):
     _name = "account.invoice"
     _inherit = "account.invoice"
     
+    qr_reference = fields.Char(string='QR reference', compute='_create_qr_reference', store=True)
     qrcode_qrbill = fields.Binary(string='QRCode', compute='_iban_qrcode', store=False)
     qrcode_status = fields.Text(string='QRCode Status', compute='_iban_qrcode', store=False)
+    
+    @api.model
+    @api.depends('number', 'partner_bank_id.invoice_issuer_number')
+    def _create_qr_reference(self):
+        for inv in self:
+            qr_reference = ''
+            
+            # Skip if the invoice is not outgoing
+            if inv.type == 'out_invoice' and inv.partner_bank_id:
+                invoice_issuer_number = inv.partner_bank_id.invoice_issuer_number
+                invoice_internal_ref = ''
+                
+                # We get the invoice number and remove all non digit characters for qr_ref
+                try:
+                    if inv.number:
+                        for letter in inv.number:
+                            if letter.isdigit():
+                                invoice_internal_ref += letter
+                except:
+                    None
+                
+                # Creating the qr_reference
+                if invoice_internal_ref:
+                    # padding to know how many '0' characters to add for qr_reference to be 26 digits long 
+                    padding = IBAN_LENGTH_NO_CHECK_DIGIT - len(invoice_internal_ref)
+                    
+                    # we check if the invoice_issuer_number exists and contains only digits
+                    if invoice_issuer_number and invoice_issuer_number.isdigit():
+                        padding -= len(invoice_issuer_number)
+                        
+                        # adding the issuer number at the begining of the qr_reference
+                        qr_reference = invoice_issuer_number
+                        
+                    # setting the complete qr_reference without check digit
+                    qr_reference += '0' * padding + invoice_internal_ref
+                    
+                    inv.qr_reference = mod10r(qr_reference)
+                        
+                
 
     # Computes qrcode_qrbill and qrcode_status for a list of invoice
     # If the invoice is not a Customer Invoice, the entry will be skipped
@@ -197,11 +239,11 @@ class AccountInvoice(models.Model):
         # By default, no reference is provided
         ref_type = 'NON'
         ref = '\r'
-        if hasattr(invoice, 'isr_reference') and isinstance(invoice.isr_reference, str):
+        if hasattr(invoice, 'qr_reference') and isinstance(invoice.qr_reference, str):
             # Sanitize the BVR reference by suppressing spaces
-            tmp_ref = invoice.isr_reference.replace(' ', '')
+            tmp_ref = invoice.qr_reference.replace(' ', '')
             if tmp_ref and len(tmp_ref) > 0:
-                # If the invoice contains isr_reference and isr_reference is a string
+                # If the invoice contains qr_reference and qr_reference is a string
                 ref_type = 'QRR'
                 ref = tmp_ref
                 # The BVR reference must be 27 characters long

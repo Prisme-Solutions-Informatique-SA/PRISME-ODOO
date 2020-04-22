@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e-20190827\n"
+"Project-Id-Version: Odoo Server 11.0+e-20190827\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 07:02+0000\n"
-"PO-Revision-Date: 2020-04-17 07:02+0000\n"
+"POT-Creation-Date: 2020-04-22 13:51+0000\n"
+"PO-Revision-Date: 2020-04-22 13:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgid "Amount"
 msgstr "Betrag"
 
 #. module: prisme_invoice_swiss_qrbill
+#: model:ir.model,name:prisme_invoice_swiss_qrbill.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: prisme_invoice_swiss_qrbill
 #: model:ir.ui.view,arch_db:prisme_invoice_swiss_qrbill.report_invoice_qrinvoice_document
 msgid "Currency"
 msgstr "Währung"
@@ -36,7 +41,12 @@ msgid "Invoice"
 msgstr "Rechnung"
 
 #. module: prisme_invoice_swiss_qrbill
-#: model:ir.actions.report.xml,name:prisme_invoice_swiss_qrbill.print_qrinvoices
+#: model:ir.model.fields,field_description:prisme_invoice_swiss_qrbill.field_res_partner_bank_invoice_issuer_number
+msgid "Invoice Issuer Number"
+msgstr ""
+
+#. module: prisme_invoice_swiss_qrbill
+#: model:ir.actions.report,name:prisme_invoice_swiss_qrbill.print_qrinvoices
 msgid "Invoices with QR-bill"
 msgstr "QR-Rechnung"
 
@@ -49,6 +59,11 @@ msgstr "Zahlbar durch"
 #: model:ir.ui.view,arch_db:prisme_invoice_swiss_qrbill.report_invoice_qrinvoice_document
 msgid "Payment part"
 msgstr "Zahlteil"
+
+#. module: prisme_invoice_swiss_qrbill
+#: model:ir.model.fields,field_description:prisme_invoice_swiss_qrbill.field_account_invoice_qr_reference
+msgid "QR reference"
+msgstr "QR-Referenz"
 
 #. module: prisme_invoice_swiss_qrbill
 #: model:ir.ui.view,arch_db:prisme_invoice_swiss_qrbill.invoice_form_add_qr
@@ -72,7 +87,7 @@ msgid "Reference"
 msgstr "Referenz"
 
 #. module: prisme_invoice_swiss_qrbill
-#: code:addons/prisme_invoice_swiss_qrbill/model/account_invoice.py:85
+#: code:addons/prisme_invoice_swiss_qrbill/model/account_invoice.py:127
 #, python-format
 msgid "The QRCode will be generated once you validate the invoice"
 msgstr ""

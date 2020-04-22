@@ -19,37 +19,10 @@
 #    Phabricator:   T499
 #
 ##########################################################################
-{
-    'name': 'Swiss QR-bill',
-    'version': '2020-04-22 16:00',
-    'category': 'Accounting',
-    'summary': """QR-bill for payment slips in Switzerland""",
-    'description'  : """
-Adds a QR-bill to invoices.
-""",
-    'author': 'Prisme Solutions Informatique SA',
-    'website': 'https://www.prisme.ch',
-    'depends': [
-        'account_invoicing',
-        'l10n_ch'
-    ],
-    'external_dependencies' : {
-        'python' : [
-            'png', # png is the import of pypng
-            'pyqrcode'
-        ]
-    },
-    'data': [
-        'views/account_invoice.xml',
-        'views/res_partner_bank.xml',
-        'reports/report_invoice.xml',
-        'reports/reports.xml'
-    ],
-    'images':['static/images/main_screenshot.png'],
-    'installable': True,
-    'application': False,
-    'auto_install': False,
-    'price': 100,
-    'currency': 'EUR',
-    'license': 'LGPL-3',
-}
+from odoo import models, fields
+
+
+class ResPartnerBank(models.Model):
+    _inherit = "res.partner.bank"
+    
+    invoice_issuer_number = fields.Char('Invoice Issuer Number')
