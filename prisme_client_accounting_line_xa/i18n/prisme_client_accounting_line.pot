@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* prisme_client_accounting_line_xa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20191113\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-04 10:39+0000\n"
+"PO-Revision-Date: 2019-12-04 10:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Account"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.prisme_accountline_client_tree
+msgid "Amount in foreign currency"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Analytic Account"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Cancelled"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: code:addons/prisme_client_accounting_line_xa/model/account_move_line.py:0
+#: model:ir.model.fields,field_description:prisme_client_accounting_line_xa.field_account_move_line__invoice_currency
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+#, python-format
+msgid "Invoice Currency"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model:ir.model.fields,help:prisme_client_accounting_line_xa.field_account_move_line__invoice_currency
+msgid "Currency Code (ISO 4217)"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model:ir.actions.act_window,name:prisme_client_accounting_line_xa.prisme_accountline_client
+#: model:ir.ui.menu,name:prisme_client_accounting_line_xa.menu_prisme_accountline_client
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.prisme_accountline_client_tree
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Customer Invoices Lines"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Date Invoice"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Draft"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Group By"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: code:addons/prisme_client_accounting_line_xa/model/account_move_line.py:0
+#: model:ir.model.fields,field_description:prisme_client_accounting_line_xa.field_account_move_line__date_invoice
+#, python-format
+msgid "Invoice Date"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: code:addons/prisme_client_accounting_line_xa/model/account_move_line.py:0
+#: model:ir.model.fields,field_description:prisme_client_accounting_line_xa.field_account_move_line__journal_id
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+#, python-format
+msgid "Journal"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model:ir.model,name:prisme_client_accounting_line_xa.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Not Paid"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Paid"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Partner"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: code:addons/prisme_client_accounting_line_xa/model/account_move_line.py:0
+#: model:ir.model.fields,field_description:prisme_client_accounting_line_xa.field_account_move_line__invoice_payment_state
+#, python-format
+msgid "Payment State"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Posted"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_client_accounting_line_xa.search_prisme_accountline_client_tree
+msgid "Product"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: code:addons/prisme_client_accounting_line_xa/model/account_move_line.py:0
+#: model:ir.model.fields,field_description:prisme_client_accounting_line_xa.field_account_move_line__origin
+#, python-format
+msgid "Source Document"
+msgstr ""
+
+#. module: prisme_client_accounting_line_xa
+#: model:ir.model.fields,help:prisme_client_accounting_line_xa.field_account_move_line__origin
+msgid "The document(s) that generated the invoice."
+msgstr ""
