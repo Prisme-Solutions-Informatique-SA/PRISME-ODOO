@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e-20190827\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-19 08:55+0000\n"
-"PO-Revision-Date: 2019-09-19 08:55+0000\n"
+"POT-Creation-Date: 2020-04-27 09:01+0000\n"
+"PO-Revision-Date: 2020-04-27 09:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,18 @@ msgstr " * L'état \"Brouillon\" est utilisé lorsqu'un utilisateur est en train
 #: model:ir.ui.view,arch_db:prisme_client_accounting_line.search_view_prisme_accountline_client_tree
 msgid "Account"
 msgstr "Compte"
+
+#. module: prisme_client_accounting_line
+#: code:addons/prisme_client_accounting_line/model/account_invoice_line.py:38
+#, python-format
+msgid "Amount (with Taxes)"
+msgstr "Montant (TTC)"
+
+#. module: prisme_client_accounting_line
+#: code:addons/prisme_client_accounting_line/model/account_invoice_line.py:37
+#, python-format
+msgid "Amount (without Taxes)"
+msgstr "Montant (HT)"
 
 #. module: prisme_client_accounting_line
 #: model:ir.ui.view,arch_db:prisme_client_accounting_line.search_view_prisme_accountline_client_tree
@@ -66,17 +78,17 @@ msgstr "Filtres"
 #. module: prisme_client_accounting_line
 #: model:ir.ui.view,arch_db:prisme_client_accounting_line.search_view_prisme_accountline_client_tree
 msgid "Group By"
-msgstr "Regroupé par"
+msgstr "Regrouper par"
+
+#. module: prisme_client_accounting_line
+#: model:ir.model.fields,field_description:prisme_client_accounting_line.field_account_invoice_line_date_invoice
+msgid "Invoice Date"
+msgstr "Date de facture"
 
 #. module: prisme_client_accounting_line
 #: model:ir.model,name:prisme_client_accounting_line.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Ligne de facture"
-
-#. module: prisme_client_accounting_line
-#: model:ir.model.fields,field_description:prisme_client_accounting_line.field_account_invoice_line_date_invoice
-msgid "Invoice date"
-msgstr "Date de la facture"
 
 #. module: prisme_client_accounting_line
 #: model:ir.model.fields,field_description:prisme_client_accounting_line.field_account_invoice_line_journal_id
@@ -88,6 +100,11 @@ msgstr "Journal"
 #: model:ir.model.fields,help:prisme_client_accounting_line.field_account_invoice_line_date_invoice
 msgid "Keep empty to use the current date"
 msgstr "Laissez vide pour utiliser la date courante"
+
+#. module: prisme_client_accounting_line
+#: model:ir.model.fields,field_description:prisme_client_accounting_line.field_account_invoice_line_local_currency_id
+msgid "Local Currency"
+msgstr "Local Currency"
 
 #. module: prisme_client_accounting_line
 #: model:ir.ui.view,arch_db:prisme_client_accounting_line.search_view_prisme_accountline_client_tree
@@ -112,10 +129,37 @@ msgstr "Article"
 #. module: prisme_client_accounting_line
 #: model:ir.model.fields,field_description:prisme_client_accounting_line.field_account_invoice_line_state
 msgid "State"
-msgstr "État"
+msgstr "Région"
 
 #. module: prisme_client_accounting_line
 #: model:ir.ui.view,arch_db:prisme_client_accounting_line.search_view_prisme_accountline_client_tree
 msgid "Supplier Accounting Line"
 msgstr "Ligne Comptable Fournisseur"
 
+#. module: account
+#. openerp-web
+#: model:ir.model.fields,field_description:account.field_account_invoice_line_price_total
+#, python-format
+msgid "Amount"
+msgstr "Montant (TTC)"
+
+#. module: account
+#. openerp-web
+#: model:ir.model.fields,field_description:account.field_account_invoice_line_price_subtotal
+#, python-format
+msgid "Amount"
+msgstr "Montant (HT)"
+
+#. module: account
+#. openerp-web
+#: model:ir.model.fields,field_description:account.field_account_invoice_line_price_total
+#, python-format
+msgid "Amount (with Taxes)"
+msgstr "Montant (TTC)"
+
+#. module: account
+#. openerp-web
+#: model:ir.model.fields,field_description:account.field_account_invoice_line_price_subtotal
+#, python-format
+msgid "Amount (without Taxes)"
+msgstr "Montant (HT)"

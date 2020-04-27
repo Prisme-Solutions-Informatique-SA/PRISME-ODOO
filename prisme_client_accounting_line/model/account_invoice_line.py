@@ -22,7 +22,7 @@
 #    $01		19.09.2019		Added new 'state' field
 #
 ##########################################################################
-from odoo import models, fields
+from odoo import models, fields, _
 
 
 class AccountInvoiceLine(models.Model):
@@ -34,3 +34,6 @@ class AccountInvoiceLine(models.Model):
 	journal_id = fields.Many2one(related='invoice_id.journal_id', relation='account.journal', string='Journal', store=True)
 	currency_id = fields.Many2one(related='invoice_id.currency_id', relation='res.currency', string='Currency', store=True)
 	local_currency_id = fields.Many2one('res.currency', string='Local Currency', default=lambda self: self.env.user.company_id.currency_id, store=True)
+	price_subtotal = fields.Monetary(string=_('Amount (without Taxes)'))
+	price_total = fields.Monetary(string=_('Amount (with Taxes)'))
+    
