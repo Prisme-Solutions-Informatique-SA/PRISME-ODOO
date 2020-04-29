@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#    You should have received a copy of the GNU Lesser General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID:    OERP-002-05 T496
+#
+##########################################################################
+-->
+<odoo>
+    <data>
+	
+		<record id="prisme_accountline_supplier_tree" model="ir.ui.view">
+            <field name="name">prisme.accountline.supplier.tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+				<tree string="Supplier Accounting Line" create="false">
+					<field name="invoice_id"/>
+					<field name="state"/>
+					<field name="date_invoice"/>
+					<field name="partner_id"/>
+					<field name="origin"/>
+					<field name="product_id"/>
+					<field name="name"/>
+					<field name="account_id"/>
+					<field name="price_unit"/>
+					<field name="currency_id"/>
+					<field name="quantity"/>
+					<field name="price_subtotal"/>
+					<field name="local_currency_id" invisible="1"/>
+            		<field name="price_subtotal_signed" widget='monetary' options="{'currency_field': 'local_currency_id'}"/>
+					<field name="journal_id"/>
+					<field name="account_analytic_id"/>
+					<field name="invoice_line_tax_ids"/>
+				</tree>
+            </field>
+        </record>
+		
+		<record model="ir.actions.act_window" id="prisme_accountline_supplier">
+			<field name="name">Supplier Accounting Line</field>
+			<field name="res_model">account.invoice.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,pivot</field>
+			<field name="domain">[('invoice_id.type','in',['in_invoice','in_refund'])]</field>
+			<field name="view_id" ref="prisme_accountline_supplier_tree"/>
+		</record>
+		
+		<!-- Menu -->
+		<menuitem name="Supplier Accounting Line" id="menu_prisme_account_line_supplier" parent="account.menu_finance_payables" sequence="10" action="prisme_accountline_supplier"/>
+		
+		
+		<!-- Supplier accounting lines Search View -->
+		<record model="ir.ui.view" id="search_view_prisme_accountline_supplier_tree">
+			<field name="name">prisme.accountline.supplier.tree</field>
+			<field name="model">account.invoice.line</field>
+	        <field name="arch" type="xml">
+	            <search string="Supplier accounting Line">
+					<group expand="0" string="Group By">
+						<filter string="Partner" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+					<filter string="Product" name="product_id" domain="[]" context="{'group_by':'product_id'}"/>
+					<filter string="Account" name="account_id" domain="[]" context="{'group_by':'account_id'}"/>
+					<filter string="Currency" name="currency_id" domain="[]" context="{'group_by':'currency_id'}"/>
+					<filter string="Journal" name="journal_id" domain="[]" context="{'group_by':'journal_id'}"/>
+					
+					<filter string="Analytic Account" name="account_analytic_id" domain="[]" context="{'group_by':'account_analytic_id'}"/>
+					<filter string="Open" name="unpaid" domain="[('state', '=', 'open')]"/>
+					<filter string="Paid" name="paid" domain="[('state', '=', 'paid')]"/>
+					<filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+					<filter string="Cancelled" name="cancelled" domain="[('state', '=', 'cancel')]"/>
+					</group>
+				</search>
+	        </field>
+    	</record>
+		
+    </data>
+</odoo>
