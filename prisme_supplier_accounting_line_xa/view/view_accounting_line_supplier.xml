@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#    You should have received a copy of the GNU Lesser General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID:    OERP-002-05 - T496
+#
+##########################################################################
+-->
+<odoo>
+    <data>
+
+	<!--  Supplier accounting lines Tree View -->
+		<record id="prisme_accountline_supplier_tree" model="ir.ui.view">
+            <field name="name">prisme.accountline.supplier.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+				<tree string="Supplier Accounting Line" create="false">
+					<field name="move_id"/>
+					<field name="parent_state"/>
+					<field name="invoice_payment_state"/>
+					<field name="date_invoice" optional="show"/>
+					<field name="partner_id"/>
+					<field name="origin" optional="show"/>
+					<field name="product_id" optional="show"/>
+					<field name="name" optional="show"/>
+					<field name="account_id"/>
+					<field name="quantity"/>
+					<field name="price_unit" widget="monetary"/>
+					<field name="amount_currency" string="Amount in foreign currency" widget="monetary" optional="show"/>
+					<field name="invoice_currency"/>
+					<field name="debit" widget="monetary"/>
+					<field name="credit" widget="monetary"/>
+					<field name="journal_id"/>
+					<field name="analytic_account_id"/>
+					<field name="tax_ids" widget="many2many_tags" width="0.5" optional="show" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+				</tree>
+            </field>
+        </record>
+
+		<!-- Supplier accounting lines Search View -->
+		<record model="ir.ui.view" id="search_view_prisme_accountline_supplier_tree">
+			<field name="name">prisme.accountline.supplier.tree</field>
+			<field name="model">account.move.line</field>
+	        <field name="arch" type="xml">
+	            <search string="Supplier accounting Line">
+					<group expand="0" string="Group By">
+						<filter string="Partner" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+						<filter string="Product" name="product_id" domain="[]" context="{'group_by':'product_id'}"/>
+						<filter string="Account" name="account_id" domain="[]" context="{'group_by':'account_id'}"/>
+						<filter string="Invoice Currency" name="invoice_currency" domain="[]" context="{'group_by':'invoice_currency'}"/>
+						<filter string="Journal" name="journal_id" domain="[]" context="{'group_by':'journal_id'}"/>
+						<filter string="Analytic Account" name="analytic_account_id" domain="[]" context="{'group_by':'analytic_account_id'}"/>
+					</group>
+					
+					<group>
+						<filter string="Posted" name="posted" domain="[('parent_state', '=', 'posted')]"/>
+						<filter string="Draft" name="draft" domain="[('parent_state', '=', 'draft')]"/>
+						<filter string="Cancelled" name="cancel" domain="[('parent_state', '=', 'cancel')]"/>
+						
+						<separator/>
+						
+						<filter string="Paid" name="paid" domain="[('invoice_payment_state', '=', 'paid')]"/>
+						<filter string="Not Paid" name="not_paid" domain="[('invoice_payment_state', '=', 'not_paid')]"/>
+						
+						<separator/>
+						
+						<filter string="Date Invoice" name="date_invoice" date="date_invoice"/>
+					</group>
+				</search>
+	        </field>
+    	</record>
+
+		<record model="ir.actions.act_window" id="prisme_accountline_supplier">
+			<field name="name">Supplier Accounting Line</field>
+			<field name="res_model">account.move.line</field>
+			<field name="view_mode">tree,form,pivot</field>
+			<field name="domain">[('move_id.type','in',['in_invoice','in_refund'])]</field>
+			<field name="view_id" ref="prisme_accountline_supplier_tree"/>
+			<field name="search_view_id" ref="search_view_prisme_accountline_supplier_tree"/>
+		</record>
+
+		<!-- Menu -->
+		<menuitem name="Supplier Accounting Line" id="menu_prisme_account_line_supplier" parent="account.menu_finance_payables" sequence="999" action="prisme_accountline_supplier"/>
+
+
+    </data>
+</odoo>

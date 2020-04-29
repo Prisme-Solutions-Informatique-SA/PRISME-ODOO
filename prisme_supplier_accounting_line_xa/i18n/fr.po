@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* prisme_supplier_accounting_line_xa
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20191113\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 12:40+0000\n"
+"PO-Revision-Date: 2020-04-28 12:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Account"
+msgstr "Compte"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.prisme_accountline_supplier_tree
+msgid "Amount in foreign currency"
+msgstr "Montant (monn. étrangère)"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Analytic Account"
+msgstr "Compte Analytique"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model:ir.model.fields,help:prisme_supplier_accounting_line_xa.field_account_move_line__invoice_currency
+msgid "Currency Code (ISO 4217)"
+msgstr "Code monnaie (ISO 4217)"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Date Invoice"
+msgstr "Date Facture"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model:ir.model.fields,field_description:prisme_supplier_accounting_line_xa.field_account_move_line__date_invoice
+msgid "Date de facturation"
+msgstr "Date de facturation"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: prisme_supplier_accounting_line_xa
+#: code:addons/prisme_supplier_accounting_line_xa/model/account_invoice_line.py:0
+#: model:ir.model.fields,field_description:prisme_supplier_accounting_line_xa.field_account_move_line__invoice_currency
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+#, python-format
+msgid "Invoice Currency"
+msgstr "Monnaie de la facture"
+
+#. module: prisme_supplier_accounting_line_xa
+#: code:addons/prisme_supplier_accounting_line_xa/model/account_invoice_line.py:0
+#, python-format
+msgid "Invoice Date"
+msgstr "Date Facture"
+
+#. module: prisme_supplier_accounting_line_xa
+#: code:addons/prisme_supplier_accounting_line_xa/model/account_invoice_line.py:0
+#: model:ir.model.fields,field_description:prisme_supplier_accounting_line_xa.field_account_move_line__journal_id
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+#, python-format
+msgid "Journal"
+msgstr "Journal"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model:ir.model,name:prisme_supplier_accounting_line_xa.model_account_move_line
+msgid "Journal Item"
+msgstr "Journal Item"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Not Paid"
+msgstr "Non Payé"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Paid"
+msgstr "Payé"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: prisme_supplier_accounting_line_xa
+#: code:addons/prisme_supplier_accounting_line_xa/model/account_invoice_line.py:0
+#: model:ir.model.fields,field_description:prisme_supplier_accounting_line_xa.field_account_move_line__invoice_payment_state
+#, python-format
+msgid "Payment State"
+msgstr "État Paiement"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Posted"
+msgstr "Comptabilisé"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Product"
+msgstr "Produit"
+
+#. module: prisme_supplier_accounting_line_xa
+#: code:addons/prisme_supplier_accounting_line_xa/model/account_invoice_line.py:0
+#: model:ir.model.fields,field_description:prisme_supplier_accounting_line_xa.field_account_move_line__origin
+#, python-format
+msgid "Source Document"
+msgstr "Document Source"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model:ir.actions.act_window,name:prisme_supplier_accounting_line_xa.prisme_accountline_supplier
+#: model:ir.ui.menu,name:prisme_supplier_accounting_line_xa.menu_prisme_account_line_supplier
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.prisme_accountline_supplier_tree
+msgid "Supplier Accounting Line"
+msgstr "Ligne Facture Fournisseur"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model_terms:ir.ui.view,arch_db:prisme_supplier_accounting_line_xa.search_view_prisme_accountline_supplier_tree
+msgid "Supplier accounting Line"
+msgstr "Ligne Facture Fournisseur"
+
+#. module: prisme_supplier_accounting_line_xa
+#: model:ir.model.fields,help:prisme_supplier_accounting_line_xa.field_account_move_line__origin
+msgid "The document(s) that generated the invoice."
+msgstr "Le document ayant généré la facture."
