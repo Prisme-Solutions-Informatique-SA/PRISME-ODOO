@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2019 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Lesser General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Lesser General Public License for more details.
+#    You should have received a copy of the GNU Lesser General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID:    OERP-002-04 
+#	 Phabricator: 	T945
+#
+#    Modifications:
+#    $01        12.09.2019    	Changed 'Customer Invoice Lines' parent to fit in 'document' submenu
+#    $02		12.09.2019		Changed lines to have the whole code in english for translating purposes
+#	 $03		12.09.2019		Changed filter 'analytic_journal' for 'account_analytic_id'. Analytic journal doesn't exist
+#	 $04		19.09.2019		Added new fields 'date_invoice' and 'state' with filters on 'state'
+#
+##########################################################################
+-->
+
+<odoo>
+    <data>
+		<!-- Creating the Customer Invoices Lines tree view -->
+		<record id="prisme_accountline_client_tree" model="ir.ui.view">
+            <field name="name">prisme.accountline.client.tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+				<tree string="Customer Invoices Lines" create="false">
+					<field name="invoice_id"/>
+					<field name="state"/>
+					<field name="date_invoice"/>
+					<field name="partner_id"/>
+					<field name="origin"/>
+					<field name="product_id"/>
+					<field name="name"/>
+					<field name="account_id"/>
+					<field name="price_unit"/>
+					<field name="currency_id"/>
+					<field name="quantity"/>
+					<field name="price_subtotal"/>
+					<field name="local_currency_id" invisible="1"/>
+            		<field name="price_subtotal_signed" widget='monetary' options="{'currency_field': 'local_currency_id'}"/>
+					<field name="journal_id"/>
+					<field name="account_analytic_id"/>
+					<field name="invoice_line_tax_ids"/>
+				</tree>
+            </field>
+        </record>
+		
+		<!-- Action for the Customer Invoices Line -->
+		<record model="ir.actions.act_window" id="prisme_accountline_client">
+			<field name="name">Customer Invoices Lines</field>
+			<field name="res_model">account.invoice.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,pivot</field>
+			<field name="domain">[('invoice_id.type','=',['out_invoice','out_refund'])]</field>
+			<field name="view_id" ref="prisme_accountline_client_tree"/>
+		</record>
+		
+		<!-- Creating the submenu line -->
+		<menuitem name="Customer Invoices Lines" id="menu_prisme_account_line_client" parent="account.menu_finance_receivables_documents" sequence="10" action="prisme_accountline_client"/>
+		
+		<!-- Creating the search view for the Customer Invoices Lines -->
+		<record model="ir.ui.view" id="search_view_prisme_accountline_client_tree">
+			<field name="name">prisme.accountline.client.tree</field>
+			<field name="model">account.invoice.line</field>
+	        <field name="arch" type="xml">
+	            <search string="Supplier Accounting Line">
+					<group expand="0" string="Group By">
+						<filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+						<filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+						<filter string="Account" domain="[]" context="{'group_by':'account_id'}"/>
+						<filter string="Currency" domain="[]" context="{'group_by':'currency_id'}"/>
+						<filter string="Journal" domain="[]" context="{'group_by':'journal_id'}"/>
+						<!-- <filter string="Analytic Journal" domain="[]" context="{'group_by':'analytic_journal'}"/> -->
+						<filter string="Analytic Account" domain="[]" context="{'group_by':'account_analytic_id'}"/>
+					</group>
+					<group expand="0" string="Filters">
+						<filter string="Open" domain="[('state', '=', 'open')]"/>
+						<filter string="Paid" domain="[('state', '=', 'paid')]"/>
+						<filter string="Draft" domain="[('state', '=', 'draft')]"/>
+						<filter string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+					</group>
+				</search>
+	        </field>
+	    </record>
+	</data>
+</odoo>
