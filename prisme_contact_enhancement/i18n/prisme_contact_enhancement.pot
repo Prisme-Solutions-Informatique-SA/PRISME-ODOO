@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* prisme_contact_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e-20190830\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-18 09:23+0000\n"
+"PO-Revision-Date: 2019-09-18 09:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_contact_enhancement
+#: model:ir.model,name:prisme_contact_enhancement.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: prisme_contact_enhancement
+#: model:ir.model.fields,field_description:prisme_contact_enhancement.field_res_partner__prescriber
+#: model:ir.model.fields,field_description:prisme_contact_enhancement.field_res_users__prescriber
+msgid "Prescriber"
+msgstr ""
+
