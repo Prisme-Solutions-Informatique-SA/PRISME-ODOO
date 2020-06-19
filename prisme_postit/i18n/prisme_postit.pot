@@ -1,0 +1,399 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* prisme_postit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-12 13:54+0000\n"
+"PO-Revision-Date: 2020-06-12 13:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:104
+#, python-format
+msgid " In process. End date"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_kanban
+msgid "<strong>Assigned by: </strong>"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_kanban
+msgid "<strong>Assigned to: </strong>"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_kanban
+msgid "<strong>Client: </strong>"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:154
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_assigned_by
+#, python-format
+msgid "Assigned by"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:168
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_assigned_to
+#, python-format
+msgid "Assigned to"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:156
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_partner_id
+#, python-format
+msgid "Client"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+msgid "Close"
+msgstr ""
+
+#. module: prisme_postit
+#: selection:prisme.postit,state:0
+msgid "Completed"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:171
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_copy_to
+#, python-format
+msgid "Copy to"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_create_uid
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_create_uid
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_create_uid
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_create_date
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_create_date
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_create_date
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_date_end
+msgid "Date end"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_date_start
+msgid "Date start"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_name
+msgid "Day name"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_nbr
+msgid "Day number"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_days
+msgid "Days"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+msgid "Days..."
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:173
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_description
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+#, python-format
+msgid "Description"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_display_name
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_display_name
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_display_name
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:162
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_duration
+#, python-format
+msgid "Duration"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:160
+#, python-format
+msgid "End date"
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.4
+msgid "Friday"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_search
+msgid "Group By"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_id
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_id
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_id
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_id
+msgid "ID"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+#: selection:prisme.postit,state:0
+msgid "In process"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit___last_update
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day___last_update
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag___last_update
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_write_uid
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_write_uid
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_write_uid
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_day_write_date
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_write_date
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_write_date
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.0
+msgid "Monday"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_name
+msgid "Name"
+msgstr ""
+
+#. module: prisme_postit
+#: selection:prisme.postit,state:0
+msgid "Not Completed"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.menu,name:prisme_postit.menu_prisme_postit
+msgid "PostIt"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.menu,name:prisme_postit.menu_prisme_postit_tag
+msgid "PostIt Tag"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.menu,name:prisme_postit.menu_prisme_postit_team
+msgid "PostIt Team"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.actions.act_window,name:prisme_postit.action_prisme_postit
+#: model:ir.ui.menu,name:prisme_postit.menu_prisme_postit_base
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_search
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_tree
+msgid "Postit"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_calendar
+msgid "Postit Calendar"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model,name:prisme_postit.model_prisme_postit_day
+msgid "Postit Day"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.actions.server,name:prisme_postit.postit_management_scheduler_ir_actions_server
+#: model:ir.cron,cron_name:prisme_postit.postit_management_scheduler
+#: model:ir.cron,name:prisme_postit.postit_management_scheduler
+msgid "Postit Management Scheduler"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.actions.act_window,name:prisme_postit.action_prisme_postit_tag
+#: model:ir.model,name:prisme_postit.model_prisme_postit_tag
+msgid "Postit Tag"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.actions.act_window,name:prisme_postit.action_prisme_postit_team
+#: model:ir.model,name:prisme_postit.model_prisme_postit_team
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_team_form
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_team_tree
+msgid "Postit Team"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_tag_form
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_tag_search
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_tag_tree
+msgid "Postit tag"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_priority
+msgid "Priority"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model,name:prisme_postit.model_prisme_postit
+msgid "Prisme postit"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_recall_date
+msgid "Recall Date"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:164
+#, python-format
+msgid "Recall date"
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.5
+msgid "Saturday"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+msgid "Start"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:158
+#, python-format
+msgid "Start date"
+msgstr ""
+
+#. module: prisme_postit
+#: selection:prisme.postit,state:0
+msgid "Started"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_state
+msgid "State"
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.6
+msgid "Sunday"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tag_name
+msgid "Tag name"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_tags
+msgid "Tags"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+msgid "Tags..."
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:149
+#, python-format
+msgid "Task"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:146
+#, python-format
+msgid "Task expiration reminder"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:152
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_team_name
+#, python-format
+msgid "Team"
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.3
+msgid "Thursday"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+msgid "To do"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.ui.view,arch_db:prisme_postit.view_prisme_postit_form
+msgid "To..."
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.1
+msgid "Tuesday"
+msgstr ""
+
+#. module: prisme_postit
+#: code:addons/prisme_postit/models/postit.py:176
+#, python-format
+msgid "Type"
+msgstr ""
+
+#. module: prisme_postit
+#: model:ir.model.fields,field_description:prisme_postit.field_prisme_postit_names_users
+msgid "Users Assigned"
+msgstr ""
+
+#. module: prisme_postit
+#: model:prisme.postit.day,name:prisme_postit.2
+msgid "Wednesday"
+msgstr ""
+
