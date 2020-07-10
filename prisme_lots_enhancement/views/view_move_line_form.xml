@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#    You should have received a copy of the GNU Affero General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID :	OERP-006-02
+#	 Phabricator :	T515
+#
+##########################################################################
+-->
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_move_line_form_prisme">
+			<field name="name">stock.move.line.form.prisme</field>
+			<field name="model">stock.move.line</field>
+			<!-- <field name="type">search</field> -->
+			<field name="inherit_id" ref="stock.view_move_line_form" />
+			<field name="arch" type="xml">
+				<!-- set new filter domain -->
+				<xpath expr="//field[@name='lot_id']" position="attributes">
+					<attribute name="domain">[('product_id','=', parent.product_id),'|',('end_life_date','=',False),('end_life_date','&gt;=',datetime.datetime.now())]</attribute>
+				</xpath>
+				
+			</field>
+		</record>
+	</data>
+</odoo>

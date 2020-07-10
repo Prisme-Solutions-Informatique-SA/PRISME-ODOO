@@ -1,0 +1,378 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* prisme_lots_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e-20190827\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-03 12:36+0000\n"
+"PO-Revision-Date: 2020-03-03 12:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: prisme_lots_enhancement
+#: selection:prisme.warranty.warranty,state:0
+msgid "Active"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_assigned_by
+msgid "Assigned By"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_assigned_to
+msgid "Assigned To"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_search
+msgid "Assigned by"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_search
+msgid "Assigned to"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_attachments
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Attachments"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_search_prisme
+msgid "Available"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: selection:prisme.warranty.warranty,state:0
+msgid "Closed"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Contacts"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_copy_to
+msgid "Copy To"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_create_uid
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_create_date
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: selection:prisme.warranty.warranty,state:0
+msgid "Current Renewal (Cust.)"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: selection:prisme.warranty.warranty,state:0
+msgid "Current Renewal (Suppl.)"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_customer
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_search_prisme
+msgid "Customer"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_customer_invoice
+msgid "Customer Invoice"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Customer/User"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Dates"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_delivery_date
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_end_life_date
+msgid "Delivery Date"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_description
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_description
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_description
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_type_form
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Description"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_display_name
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_end_date
+msgid "End Date"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_user
+msgid "End User"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_user_department
+msgid "End User Dept"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "End life date"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_search
+msgid "Group By"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_id
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_id
+msgid "ID"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Informations"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_installation_date
+msgid "Installation Date"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_internal_notes
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Internal Notes"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Inventory"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Invoices"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_last_cust_invoice
+msgid "Last Customer Invoice"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type___last_update
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_last_suppl_invoice
+msgid "Last Supplier Invoice"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_write_uid
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_write_date
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_search
+msgid "Lot"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model,name:prisme_lots_enhancement.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_search_prisme
+msgid "Lots whose end life date is valid"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_manufacturer
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Manufacturer"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_model_no
+msgid "Model No"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_type_name
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_type_form
+msgid "Name"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_contact_notes
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Notes for Contact"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_manufact_item_no
+msgid "Part. Number"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_partner
+msgid "Partner"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_lot_id
+msgid "Production Lot"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_remarks
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Remarks"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_recall_date
+msgid "Reminder Date"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_search
+msgid "Search Warranty"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_type_search
+msgid "Search Warranty Type"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_state
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_search
+msgid "State"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_supplier
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Supplier"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_supplier_invoice
+msgid "Supplier Invoice"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_supplier_item_no
+msgid "Supplier Item No"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_prisme_warranty_warranty_warranty_type_id
+msgid "Type"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: sql_constraint:prisme.warranty.type:0
+msgid "Type must be unique"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.actions.act_window,name:prisme_lots_enhancement.prisme_warranty_warranty_action
+#: model:ir.model.fields,field_description:prisme_lots_enhancement.field_stock_production_lot_warranties_ids
+#: model:ir.ui.menu,name:prisme_lots_enhancement.prisme_warranty_warranty_menu
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_stock_production_lot_form_prisme
+msgid "Warranties"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.view_prisme_warranty_waranty_form_prisme
+msgid "Warranty"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.actions.server,name:prisme_lots_enhancement.warranty_management_scheduler_ir_actions_server
+#: model:ir.cron,cron_name:prisme_lots_enhancement.warranty_management_scheduler
+#: model:ir.cron,name:prisme_lots_enhancement.warranty_management_scheduler
+msgid "Warranty Management Scheduler"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_type_form
+msgid "Warranty Type"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.actions.act_window,name:prisme_lots_enhancement.prisme_warranty_type_action
+#: model:ir.ui.menu,name:prisme_lots_enhancement.prisme_warranty_type_menu
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_type_tree
+#: model:ir.ui.view,arch_db:prisme_lots_enhancement.prisme_warranty_warranty_tree
+msgid "Warranty Types"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model,name:prisme_lots_enhancement.model_prisme_warranty_type
+msgid "prisme.warranty.type"
+msgstr ""
+
+#. module: prisme_lots_enhancement
+#: model:ir.model,name:prisme_lots_enhancement.model_prisme_warranty_warranty
+msgid "prisme.warranty.warranty"
+msgstr ""
+
