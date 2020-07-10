@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#    You should have received a copy of the GNU Affero General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID :	OERP-006-02
+#	 Phabricator :	T515
+#
+##########################################################################
+-->
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="prisme_warranty_warranty_search">
+			<field name="name">prisme.warranty.warranty.search</field>
+			<field name="model">prisme.warranty.warranty</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Warranty">
+					<!-- Search fields -->
+					<field name="description" />
+					<field name="assigned_by" />
+					<field name="assigned_to" />
+					<field name="copy_to" />
+					<field name="warranty_type_id" />
+					<field name="state" />
+					<newline />
+					<field name="recall_date" />
+					<field name="end_date" />
+					<field name="lot_id" />
+					<newline />
+					
+					<!-- Group by clauses -->
+					<group expand="0" string="Group By">
+						<filter name="group_by_state" string="State" icon="terp-personal" domain="[]" context="{'group_by':'state'}" />
+						<filter name="group_by_lot" string="Lot" icon="terp-personal" domain="[]" context="{'group_by':'lot_id'}" />
+						<filter name="group_by_assigned_by" string="Assigned by" icon="terp-personal" domain="[]" context="{'group_by':'assigned_by'}" />
+						<filter name="group_by_assigned_to" string="Assigned to" icon="terp-personal" domain="[]" context="{'group_by':'assigned_to'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="prisme_warranty_warranty_tree">
+			<field name="name">prisme.warranty.warranty.tree</field>
+			<field name="model">prisme.warranty.warranty</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Warranty Types">
+					<field name="description" />
+					<field name="assigned_by" />
+					<field name="assigned_to" />
+					<field name="copy_to" />
+					<field name="warranty_type_id" />
+					<field name="state" />
+					<field name="recall_date" />
+					<field name="end_date" />
+					<field name="lot_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_prisme_warranty_waranty_form_prisme">
+			<field name="name">prisme.warranty.warranty.form</field>
+			<field name="model">prisme.warranty.warranty</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Warranty">
+					<group colspan="2" col="2">
+						<separator string="Description" colspan="2" />
+						<field name="description" nolabel="1" colspan="2" />
+						<separator string="Contacts" colspan="2" />
+						<field name="assigned_by" />
+						<field name="assigned_to" />
+						<field name="copy_to" />
+						<separator string="Informations" colspan="2" />
+						<field name="lot_id"/>
+						<field name="warranty_type_id" />
+						<field name="state" />
+						<separator string="Invoices" colspan="2" />
+						<field name="last_suppl_invoice" />
+						<field name="last_cust_invoice" />
+					</group>
+					<group colspan="2" col="2">
+						<separator string="Dates" colspan="2" />
+						<field name="start_date" />
+						<field name="end_date" />
+						<field name="recall_date" />
+						<separator string="Internal Notes" colspan="2" />
+						<field name="internal_notes" colspan="2" nolabel="1" />
+						<separator string="Notes for Contact" colspan="2" />
+						<field name="contact_notes" colspan="2" nolabel="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="prisme_warranty_warranty_action">
+			<field name="name">Warranties</field>
+			<field name="res_model">prisme.warranty.warranty</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="prisme_warranty_warranty_search" />
+		</record>
+
+		<menuitem id="prisme_warranty_warranty_menu" parent="stock.menu_stock_inventory_control"
+			name="Warranties" icon="STOCK_JUSTIFY_FILL" action="prisme_warranty_warranty_action"
+			sequence="1001" />
+	</data>
+</odoo>						

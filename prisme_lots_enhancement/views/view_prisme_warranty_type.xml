@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#    You should have received a copy of the GNU Affero General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID :	OERP-006-02
+#	 Phabricator :	T515
+#
+##########################################################################
+-->
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="prisme_warranty_type_search">
+			<field name="name">prisme.warranty.type.search</field>
+			<field name="model">prisme.warranty.type</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Warranty Type">
+					<field name="name" />
+					<field name="description" />
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="prisme_warranty_type_tree">
+			<field name="name">prisme.warranty.type.tree</field>
+			<field name="model">prisme.warranty.type</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Warranty Types">
+					<field name="name" />
+					<field name="description" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="prisme_warranty_type_form">
+			<field name="name">prisme.warranty.type.form</field>
+			<field name="model">prisme.warranty.type</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Warranty Type">
+					<group colspan="2" col="2">
+					    <separator string="Name" colspan="2" />
+						<field name="name" nolabel="1" />
+					</group>
+					<group colspan="2" col="2">
+						<separator string="Description" colspan="2" />
+						<field name="description" colspan="2" nolabel="1" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="prisme_warranty_type_action">
+			<field name="name">Warranty Types</field>
+			<field name="res_model">prisme.warranty.type</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="prisme_warranty_type_search" />
+		</record>
+
+		<menuitem id="prisme_warranty_type_menu" parent="stock.menu_stock_inventory_control"
+			name="Warranty Types" icon="STOCK_JUSTIFY_FILL" action="prisme_warranty_type_action"
+			sequence="1002" />
+	</data>
+</odoo>

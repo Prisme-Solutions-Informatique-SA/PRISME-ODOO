@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################################################
+#
+#    Prisme Solutions Informatique SA
+#    Copyright (c) 2020 Prisme Solutions Informatique SA <http://prisme.ch>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#    You should have received a copy of the GNU Affero General Public Lic
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#    Project ID :	OERP-006-02
+#	 Phabricator :	T515
+#
+##########################################################################
+-->
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_stock_production_lot_search_prisme">
+			<field name="name">stock.production.lot.search.prisme</field>
+			<field name="model">stock.production.lot</field>
+			<field name="inherit_id" ref="stock.search_product_lot_filter"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='product_id']" position="after">
+					<!-- Adding new search fields -->
+					<newline/>
+					<field name="customer"/>
+					<field name="description"/>
+					
+					<!-- Adding new filter "Available" ==> Lots whose end life date is greater than today or not set -->
+					<filter name="available" string="Available" domain="['|',('end_life_date','=',False),('end_life_date','&gt;=',datetime.datetime.now())]" help="Lots whose end life date is valid" icon="terp-dialog-close"/>
+                   	<separator/>
+				</xpath>
+				
+				<xpath expr="/search/group" position="inside">
+					<!-- Adding new group by clause on customer -->
+					<filter name="group_by_customer" string="Customer" domain="[]" context="{'group_by':'customer'}" icon="terp-partner"/>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_stock_production_lot_tree_prisme">
+			<field name="name">stock.production.lot.tree.prisme</field>
+			<field name="model">stock.production.lot</field>
+			<!-- <field name="type">tree</field> -->
+			<field name="inherit_id" ref="stock.view_production_lot_tree" />
+			<field name="arch" type="xml">
+				<!--
+				<field name="prefix" position="replace" />
+				<field name="date" position="replace" />
+				<field name="stock_available" position="replace" />
+				-->
+				<field name="ref" position="replace" />
+				
+				
+				<field name="product_id" position="after">
+					<field name="customer" />
+					<field name="description" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_stock_production_lot_form_prisme">
+			<field name="name">stock.production.lot.form.prisme</field>
+			<field name="model">stock.production.lot</field>
+			<!-- <field name="type">form</field> -->
+			<field name="inherit_id" ref="stock.view_production_lot_form" />
+			<field name="arch" type="xml">
+				<field name="product_id" position="replace">
+					<field name="product_id" colspan="4" />
+				</field>
+				<!-- <xpath expr="/form/sheet/notebook/page[1]" -->
+				<xpath expr="//group[@name='main_group']"
+					position="after">
+					<notebook>
+						<page string="Inventory">
+							<group colspan="2" col="2">
+								<separator string="Description" colspan="2" />
+								<field name="description" nolabel="1" colspan="2" />
+								<separator string="Customer/User" colspan="2" />
+								<field name="customer" />
+								<field name="user" />
+								<field name="user_department" />
+								<field name="installation_date" />
+								<field name="customer_invoice" />
+								<separator string="Attachments" colspan="2" />
+								<field name="attachments" nolabel="1" colspan="2" />
+							</group>
+							<group colspan="2" col="2">
+								<separator string="Manufacturer" colspan="2" />
+								<field name="manufacturer" />
+								<field name="model_no" />
+								<field name="manufact_item_no" />
+								<separator string="Supplier" colspan="2" />
+								<field name="supplier" />
+								<field name="supplier_item_no" />
+								<field name="supplier_invoice" />
+								<field name="delivery_date" />
+								<separator string="Remarks" colspan="2" />
+								<field name="remarks" colspan="2" nolabel="1" />
+								<separator string="End life date" colspan="2" />
+								<field name="end_life_date" colspan="2" nolabel="1" />
+							</group>
+						</page>
+						<page string="Warranties">
+							<field name="warranties_ids" nolabel="1">
+								<tree>
+									<field name="description" />
+									<field name="assigned_by" />
+									<field name="assigned_to" />
+									<field name="copy_to" />
+									<field name="warranty_type_id" />
+									<field name="state" />
+									<field name="recall_date" />
+									<field name="end_date" />
+								</tree>
+								<form>
+									<group colspan="2" col="2">
+										<separator string="Description" colspan="2" />
+										<field name="description" nolabel="1" colspan="2" />
+										<separator string="Contacts" colspan="2" />
+										<field name="assigned_by" />
+										<field name="assigned_to" />
+										<field name="copy_to" />
+										<field name="partner"/>
+										<separator string="Informations" colspan="2" />
+										<field name="warranty_type_id" />
+										<field name="state" />
+										<separator string="Invoices" colspan="2" />
+										<field name="last_suppl_invoice" />
+										<field name="last_cust_invoice" />
+									</group>
+									<group colspan="2" col="2">
+										<separator string="Dates" colspan="2" />
+										<field name="start_date" />
+										<field name="end_date" />
+										<field name="recall_date" />
+										<separator string="Internal Notes" colspan="2" />
+										<field name="internal_notes" colspan="2" nolabel="1" />
+										<separator string="Notes for Contact" colspan="2" />
+										<field name="contact_notes" colspan="2" nolabel="1" />
+									</group>
+								</form>
+							</field>
+						</page>
+					</notebook>
+				</xpath>
+			</field>
+		</record>
+		
+		<!-- set filter 'available' by default -->
+		<record model="ir.actions.act_window" id="stock.action_production_lot_form">
+			<field name="name">Serial Numbers Prisme</field>
+			<!-- <field name="type">ir.actions.act_window</field> -->
+            <field name="res_model">stock.production.lot</field>
+			<!-- <field name="inherit_id" ref="stock.action_production_lot_form" /> -->
+			<field name="context">{"search_default_available":1}</field>
+		</record>
+		
+		
+	</data>
+</odoo>
