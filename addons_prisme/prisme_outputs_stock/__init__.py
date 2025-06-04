@@ -1,2 +1,0 @@
-import report
-import stock_picking_model

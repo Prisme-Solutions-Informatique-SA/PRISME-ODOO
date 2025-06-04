@@ -1,2 +1,0 @@
-import data_product_product
-import data_stock

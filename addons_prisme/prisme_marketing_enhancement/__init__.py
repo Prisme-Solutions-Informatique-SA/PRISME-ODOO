@@ -1,2 +1,0 @@
-import res_partner_worker
-#import res_partner_address_worker
