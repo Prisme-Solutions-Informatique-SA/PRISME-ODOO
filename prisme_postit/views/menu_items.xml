@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <menuitem name="Postit" id="menu_prisme_postit_base"
+              sequence="150" web_icon="prisme_postit,static/description/icon.png" />
+    <menuitem name="PostIt" id="menu_prisme_postit"
+              parent="menu_prisme_postit_base" sequence="22"
+              action="action_prisme_postit" />
+    <menuitem name="PostIt Tag" id="menu_prisme_postit_tag"
+              parent="menu_prisme_postit_base" sequence="23"
+              action="action_prisme_postit_tag" />
+    <menuitem name="PostIt Team" id="menu_prisme_postit_team" parent="menu_prisme_postit_base" sequence="24" action="action_prisme_postit_team"/>
+
+
+</odoo>

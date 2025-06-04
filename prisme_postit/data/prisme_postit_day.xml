@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record model="prisme.postit.day" id="0">
+		<field name="name">Monday</field>
+		<field name="nbr">0</field>
+	</record>
+	<record model="prisme.postit.day" id="1">
+		<field name="name">Tuesday</field>
+		<field name="nbr">1</field>
+	</record>
+	<record model="prisme.postit.day" id="2">
+		<field name="name">Wednesday</field>
+		<field name="nbr">2</field>
+	</record>
+	<record model="prisme.postit.day" id="3">
+		<field name="name">Thursday</field>
+		<field name="nbr">3</field>
+	</record>
+	<record model="prisme.postit.day" id="4">
+		<field name="name">Friday</field>
+		<field name="nbr">4</field>
+	</record>
+	<record model="prisme.postit.day" id="5">
+		<field name="name">Saturday</field>
+		<field name="nbr">5</field>
+	</record>
+	<record model="prisme.postit.day" id="6">
+		<field name="name">Sunday</field>
+		<field name="nbr">6</field>
+	</record>
+
+</odoo>

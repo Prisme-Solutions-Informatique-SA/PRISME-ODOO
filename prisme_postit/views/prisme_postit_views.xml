@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_prisme_postit_form">
+		<field name="name">prisme.postit.form</field>
+		<field name="model">prisme.postit</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Postit" version="11.0">
+				<header>
+					<button name="active" string="To do"
+							invisible="state in ['terminated','in_process'] "
+							type="object" />
+
+					<button name="get_started" string="Start"
+							invisible="state == 'active'"
+							type="object" />
+
+					<button name="in_process" string="In process"
+							invisible="state == 'get_started'"
+							type="object" />
+
+					<button name="terminated" string="Close"
+							invisible="state == 'in_process'"
+							class="oe_highlight" type="object" />
+
+					<field name="state" widget="statusbar" type="object" />
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="team"/>
+							<field name="name" />
+							<field name="tags" widget="many2many_tags"
+								   placeholder="Tags..." />
+							<field name="assigned_to" widget="many2many_tags"
+								   placeholder="To..." />
+							<field name="copy_to" widget="many2many_tags"
+								   placeholder="To..." />
+							<field name="assigned_by" />
+							<field name="partner_id" />
+						</group>
+						<group>
+							<field name="days" widget="many2many_tags"
+								   placeholder="Days..." />
+							<field name="priority" />
+							<field name="date_start"  />
+							<field name="date_end" />
+							<field name="recall_date" />
+							<field name="duration" />
+						</group>
+
+
+						<!--<field name="status"/> -->
+					</group>
+					<notebook>
+						<page string="Description">
+							<field name="description" widget="html" style="display:block !important; white-space: pre-line!important"/>
+						</page>
+					</notebook>
+				</sheet>
+				<div class="oe_chatter">
+					<field name="message_follower_ids" widget="mail_followers" />
+					<field name="message_ids" widget="mail_thread" />
+				</div>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_prisme_postit_tree">
+		<field name="name">prisme.postit.tree</field>
+		<field name="model">prisme.postit</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Postit">
+				<field name="team"/>
+				<field name="names_users" />
+				<field name="priority" />
+				<field name="state" />
+				<field name="tags" />
+				<field name="name" />
+				<field name="partner_id" />
+				<field name="date_end" />
+				<field name="assigned_by" />
+			</tree>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_prisme_postit_search">
+		<field name="name">postit.tree</field>
+		<field name="model">prisme.postit</field>
+		<field name="arch" type="xml">
+			<search string="Postit">
+				<field name="team"/>
+				<field name="assigned_to" />
+				<field name="assigned_by" />
+				<field name="name" />
+				<field name="partner_id" />
+				<group expand="0" string="Group By">
+					<filter name="Assigned to" domain="[]"
+							context="{'group_by':'names_users'}" />
+					<filter name="Assigned by" domain="[]"
+							context="{'group_by':'assigned_by'}" />
+					<filter name="Client" domain="[]"
+							context="{'group_by':'partner_id'}" />
+					<filter name="Statut" domain="[]"
+							context="{'group_by':'state'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_prisme_postit_kanban">
+		<field name="name">prisme.postit.kanban</field>
+		<field name="model">prisme.postit</field>
+		<field name="arch" type="xml">
+			<kanban default_group_by="state"
+					class="o_kanban_small_column" default_order="state">
+				<field name="team"/>
+				<field name="name" />
+				<field name="state" />
+				<templates>
+					<t t-name="kanban-box">
+						<div t-attf-class="oe_kanban_card oe_kanban_global_click">
+							<div class="oe_kanban_content">
+								<div>
+									<h4>
+										<a type="open">
+											<field name="name" />
+										</a>
+									</h4>
+								</div>
+								<div>
+									<p>
+										<strong>Assigned to: </strong>
+										<field name="names_users" />
+									</p>
+									<p>
+										<strong>Assigned by: </strong>
+										<field name="assigned_by" />
+									</p>
+									<p>
+										<strong>Client: </strong>
+										<field name="partner_id" />
+									</p>
+									<span class="oe_kanban_list_many2many">
+										<field name="tags" />
+									</span>
+								</div>
+							</div>
+							<div class="oe_clear" />
+						</div>
+					</t>
+				</templates>
+			</kanban>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_prisme_postit_calendar">
+		<field name="name">prisme.postit.calendar</field>
+		<field name="model">prisme.postit</field>
+		<field name="priority" eval="2" />
+		<field name="arch" type="xml">
+			<calendar string="Postit Calendar" date_start="date_start"
+					  date_stop="recall_date" color="state">
+				<field name="team"/>
+				<field name="name" />
+				<field name="names_users" />
+			</calendar>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="action_prisme_postit">
+		<field name="name">Postit</field>
+		<field name="res_model">prisme.postit</field>
+		<field name="view_mode">tree,form,kanban,calendar</field>
+		<field name="search_view_id" ref="view_prisme_postit_search" />
+	</record>
+
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_prisme_postit_tag_form">
+        <field name="name">prisme.postit.tag.form</field>
+        <field name="model">prisme.postit.tag</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Postit tag">
+                <group>
+                    <field name="name" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_prisme_postit_tag_tree">
+        <field name="name">prisme.postit.tag.tree</field>
+        <field name="model">prisme.postit.tag</field>
+        <!--			<field name="field_parent"/>-->
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Postit tag" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_prisme_postit_tag_search">
+        <field name="name">prisme.postit.tag.search</field>
+        <field name="model">prisme.postit.tag</field>
+        <field name="arch" type="xml">
+            <search string="Postit tag">
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_prisme_postit_tag">
+        <field name="name">Postit Tag</field>
+        <field name="res_model">prisme.postit.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id"
+               ref="view_prisme_postit_tag_search" />
+    </record>
+
+</odoo>

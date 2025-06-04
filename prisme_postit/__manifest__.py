@@ -1,0 +1,22 @@
+{
+    'name': 'Prisme postit',
+    'version': '17.0.1.0.0',
+    'category': 'Tools',
+    'summary': "Reminders for managers and tasks",
+    'author': 'Prisme Solutions Informatique SA',
+    'website': 'https://www.prisme.ch',
+    'summary': 'Reminders for managers and tasks',
+    'depends': ['mail'],
+    'data': [
+        'data/prisme_postit_day.xml',
+        'data/ir_cron.xml',
+        'views/prisme_postit_views.xml',
+        'views/prisme_postit_tag_views.xml',
+        'views/prisme_postit_team_views.xml',
+        'views/menu_items.xml',
+        'security/ir.model.access.csv',
+    ],
+    'application': True,
+    'images': ['images/icon.png', 'images/banner.png'],
+    'license': 'LGPL-3',
+}
